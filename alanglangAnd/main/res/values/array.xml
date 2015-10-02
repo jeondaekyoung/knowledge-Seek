@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="type">
+        <item>알랑랑 알람</item>
+        <item>영어 알람</item>
+        <item>스타 알람</item>
+    </string-array>
+
+    <string-array name="type2">
+        <item>김영철</item>
+    </string-array>
+
+    <string-array name="repeat">
+        <item>해제</item>
+        <item>5분</item>
+        <item>10분</item>
+        <item>15분</item>
+        <item>20분</item>
+        <item>30분</item>
+        <item>1시간</item>
+    </string-array>
+
+</resources>

@@ -65,10 +65,10 @@ public class AlarmListAdapter extends BaseAdapter {
     public View getView(int position, View view, ViewGroup viewGroup) {
         AlarmView alarmView;
         if(view == null){
-            Log.d("-진우- 어덥터갯뷰 ", "------ view == null");
+            //Log.d("-진우- 어덥터갯뷰 ", "------ view == null");
             alarmView = new AlarmView(context, alarmList.get(position));
         } else {
-            Log.d("-진우- 어덥터갯뷰 ", "------ view != null");
+            //Log.d("-진우- 어덥터갯뷰 ", "------ view != null");
             alarmView = (AlarmView) view;
 
             Alarm alarm = alarmList.get(position);
@@ -85,7 +85,7 @@ public class AlarmListAdapter extends BaseAdapter {
                 alarmView.getAlarm_set().setAlpha(0.6f);
             }
 
-            Log.d("-진우- 어덥터갯뷰 ", alarm.toString());
+            //Log.d("-진우- 어덥터갯뷰 ", alarm.toString());
         }
         return alarmView;
     }

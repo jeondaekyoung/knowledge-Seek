@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -385,12 +386,15 @@ public class Alarm implements Serializable {
 
     //브로드캐스트 인텐트를 만들고 알람매니저에 셋팅한다.
     public void schedule(Context context){
+        Log.d("-진우- 알람저장 ", this.toString() + ", " + this.getRepeat());
+
         //알람 활동을 true로 만듬.. 필요한가?
         setAlarmActive(true);       //-->여기 어디서쓰는지 확인하자
 
         //AlarmServiceBroadcastReceiver를 브로드캐스트에 등록
         Intent myIntent = new Intent(context, AlarmAlertBroadcastReceiver.class);
         myIntent.putExtra("alarm", this);
+
 
         //PendingIntent : 인텐트를 전송하고자 하는 송신자가 인텐트1를 하나 생성한 후, 별도의 컴포넌트에게
         // 인텐트1를 나 대신 보내주기위해 전달하고자 할 때 사용되는 클래스이다.
@@ -406,7 +410,25 @@ public class Alarm implements Serializable {
         //          반복적으로 알람을 발생시키는 메서드이다. interval은 반복 주기이다.
         //AlarmManager.RTC_WAKEUP : UTC표준 시간을 기준으로 알람 시간을 설정하며 안드로이드가 절전 모드(슬립 모드)로
         //          되어 있을 때, 알람 시점에 PowerManager를 이용하여 안드로이드를 깨운다.
-        alarmManager.set(AlarmManager.RTC_WAKEUP, getAlarmTime().getTimeInMillis(), pendingIntent);
+
+        //다시알람에 따라서 알람등록하기
+
+        if(this.getRepeat() == Alarm.Repeat.MIN_0){
+            alarmManager.set(AlarmManager.RTC_WAKEUP, getAlarmTime().getTimeInMillis(), pendingIntent);
+        } else if(this.getRepeat() == Alarm.Repeat.MIN_5){
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, getAlarmTime().getTimeInMillis(), 5*60*1000, pendingIntent);
+        } else if(this.getRepeat() == Alarm.Repeat.MIN_10){
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, getAlarmTime().getTimeInMillis(), 10*60*1000, pendingIntent);
+        } else if(this.getRepeat() == Alarm.Repeat.MIN_15){
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, getAlarmTime().getTimeInMillis(), 15*60*1000, pendingIntent);
+        } else if(this.getRepeat() == Alarm.Repeat.MIN_20){
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, getAlarmTime().getTimeInMillis(), 20*60*1000, pendingIntent);
+        } else if(this.getRepeat() == Alarm.Repeat.MIN_30){
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, getAlarmTime().getTimeInMillis(), 30*60*1000, pendingIntent);
+        } else if(this.getRepeat() == Alarm.Repeat.MIN_60){
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, getAlarmTime().getTimeInMillis(), 60*60*1000, pendingIntent);
+        }
+        //alarmManager.set(AlarmManager.RTC_WAKEUP, getAlarmTime().getTimeInMillis(), pendingIntent);
 
     }
 

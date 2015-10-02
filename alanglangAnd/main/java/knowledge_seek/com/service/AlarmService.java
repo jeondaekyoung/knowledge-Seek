@@ -86,8 +86,9 @@ public class AlarmService extends Service {
 
         //데이터베이스에 저장된 알람리스트 중에서 알람활동이 사용인 것을 불러온다.
         Alarm alarm = getNext();
-        //Log.d("-진우- 알람등록 ", alarm.toString());
+
         if(alarm != null){
+            Log.d("-진우- 알람등록 ", alarm.toString());
             //알람이 있으면 알람등록
             alarm.schedule(getApplicationContext());
             //Log.d(this.getClass().getSimpleName(), alarm.getTimeUntilNextAlarmMessage());

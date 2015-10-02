@@ -8,6 +8,8 @@ import android.util.Log;
 
 import knowledge_seek.com.Alarm;
 import knowledge_seek.com.alanglang.Activity_alarm_alanglang;
+import knowledge_seek.com.alanglang.Activity_alarm_eng;
+import knowledge_seek.com.alanglang.Activity_alarm_star;
 import knowledge_seek.com.service.AlarmServiceBroadcastReceiver;
 
 /**
@@ -24,17 +26,17 @@ public class AlarmAlertBroadcastReceiver extends BroadcastReceiver {
         Bundle bundle = intent.getExtras();
         final Alarm alarm = (Alarm)bundle.getSerializable("alarm");
 
-        Log.d("-진우- 알람울려? ", alarm.toString());
+        //Log.d("-진우- 알람울려? ", alarm.toString());
         Intent alarmActiveActivity;
-        //알람화면 등록 - 나중에 풀자
-        alarmActiveActivity = new Intent(context, Activity_alarm_alanglang.class);
-        /*if(alarm.getType() == Alarm.Type.GAKKOGA){
-            alarmActiveActivity = new Intent(context, Activity_alarm_gakko.class);
+        //알람화면 등록 - 광고화면, 영어학습화면, 스타화면
+        //alarmActiveActivity = new Intent(context, Activity_alarm_alanglang.class);
+        if(alarm.getType() == Alarm.Type.ALANGLANG){
+            alarmActiveActivity = new Intent(context, Activity_alarm_alanglang.class);
         } else if(alarm.getType() == Alarm.Type.ENG){
             alarmActiveActivity = new Intent(context, Activity_alarm_eng.class);
         } else {
             alarmActiveActivity = new Intent(context, Activity_alarm_star.class);
-        }*/
+        }
 
         alarmActiveActivity.putExtra("alarm", alarm);
         /*

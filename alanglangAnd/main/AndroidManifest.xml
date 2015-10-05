@@ -2,101 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="knowledge_seek.com.alanglang" >
 
-    <!-- 애플리케이션에 필요한 sdk : 최소요구사항은 18, 타겟은 21 -->
-    <uses-sdk
-        android:minSdkVersion="18"
-        android:targetSdkVersion="21" />
-
-    <!-- Allows using PowerManager WakeLocks to keep processor from sleeping or screen from dimming. -->
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-
-    <!-- Allows an application to receive the ACTION_BOOT_COMPLETED that is broadcast after the system finishes booting.
-      ACTION_BOOT_COMPLETED (This is a protected intent that can only be sent by the system.)
-       : Broadcast Action: Indicates the battery is now okay after being low. This will be sent after ACTION_BATTERY_LOW once the battery has gone back up to an okay state. -->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <!-- Allows read only access to phone state. -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <!-- Allows an application to read from external storage. -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-
-        <!-- 시작 액티비티 MainActivity -->
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait">
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".Activity_add"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".Activity_alarm_alanglang"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".Activity_alarm_eng"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".Activity_alarm_star"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".Activity_event"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"/>
-
-        <!-- 서비스등록
-              process : 서비스의 프로세스 속성의 모든 컴포넌트는 애플리케이션이 동작할 때 프로세스가 생성된다.
-                           보통의 경우에는 <application>의 프로세스를 상속받아서 동일하게 생성된다. 특별히 다른 프로세스로 실행하기 위해 설정한다.
-              -->
-        <service
-            android:process="knowledge_seek.com.serviceProcess"
-            android:name="knowledge_seek.com.service.AlarmService"
-            android:icon="@drawable/ic_launcher_alarm"
-            android:label="alanglang Alarm"
-            />
-
-        <!-- 브로드캐스트 리시버 등록
-              intent-filter : 액티비티, 서비스, 브로드캐스트 리시버 등이 인텐트에 반응하기 위해 인텐트 값을 정의하는 요소
-              action : 부팅완료 메시지를 수신함
-             Broadcast Actions - ACTION_BOOT_COMPLETED : Broadcast Action: This is broadcast once, after the system has finished booting.
-                                                                                It can be used to perform application-specific initialization, such as installing alarms.
-                                                                                You must hold the RECEIVE_BOOT_COMPLETED permission in order to receive this broadcast.-->
-        <receiver
-            android:name="knowledge_seek.com.service.AlarmServiceBroadcastReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-
-        <!-- 브로드캐스트 리시버 등록 -->
-        <receiver android:name="knowledge_seek.com.receiver.AlarmAlertBroadcastReceiver" >
-        </receiver>
-
-        <!--브로드캐스트 리시버 등록
-             TelephonyManager - ACTION_PHONE_STATE_CHANGED : Broadcast intent action indicating that the call state on the device has changed.
-            The EXTRA_STATE extra indicates the new call state. If the new state is RINGING, a second extra EXTRA_INCOMING_NUMBER provides the incoming phone number as a String.
-        -->
-        <receiver android:name="knowledge_seek.com.telephony.PhoneStateChangedBroadcastReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.PHONE_STATE" />
-            </intent-filter>
-        </receiver>
-
     </application>
 
 </manifest>

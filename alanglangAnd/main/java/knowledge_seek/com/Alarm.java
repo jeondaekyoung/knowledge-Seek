@@ -387,6 +387,7 @@ public class Alarm implements Serializable {
     //브로드캐스트 인텐트를 만들고 알람매니저에 셋팅한다.
     public void schedule(Context context){
         Log.d("-진우- 알람저장 ", this.toString() + ", " + this.getRepeat());
+        Log.d("-진우- 알람아이디 ", String.valueOf(this.getId()));
 
         //알람 활동을 true로 만듬.. 필요한가?
         setAlarmActive(true);       //-->여기 어디서쓰는지 확인하자
@@ -399,7 +400,7 @@ public class Alarm implements Serializable {
         //PendingIntent : 인텐트를 전송하고자 하는 송신자가 인텐트1를 하나 생성한 후, 별도의 컴포넌트에게
         // 인텐트1를 나 대신 보내주기위해 전달하고자 할 때 사용되는 클래스이다.
         //FLAG_CANCEL_CURRENT : 이전에 생성한 PendingIntent는 취소하고, 새롭게 하나를 만듭니다.
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, myIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, myIntent, PendingIntent.FLAG_CANCEL_CURRENT);;
 
         //AlarmManager : 일정 시간이 되면 사용자에게 알리는 기능을 제공한다.
         AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
@@ -412,23 +413,37 @@ public class Alarm implements Serializable {
         //          되어 있을 때, 알람 시점에 PowerManager를 이용하여 안드로이드를 깨운다.
 
         //다시알람에 따라서 알람등록하기
-
-        if(this.getRepeat() == Alarm.Repeat.MIN_0){
+        alarmManager.set(AlarmManager.RTC_WAKEUP, getAlarmTime().getTimeInMillis(), pendingIntent);
+        /*if(this.getRepeat() == Alarm.Repeat.MIN_0){
+            Log.d("-진우- 다시알림", "해제");
+            pendingIntent = PendingIntent.getBroadcast(context, this.getId(), myIntent, PendingIntent.FLAG_CANCEL_CURRENT);
             alarmManager.set(AlarmManager.RTC_WAKEUP, getAlarmTime().getTimeInMillis(), pendingIntent);
         } else if(this.getRepeat() == Alarm.Repeat.MIN_5){
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, getAlarmTime().getTimeInMillis(), 5*60*1000, pendingIntent);
+            Log.d("-진우- 다시알림", "2분");
+            pendingIntent = PendingIntent.getBroadcast(context, this.getId(), myIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, getAlarmTime().getTimeInMillis(), 2*60*1000, pendingIntent);
         } else if(this.getRepeat() == Alarm.Repeat.MIN_10){
+            Log.d("-진우- 다시알림", "10분");
+            pendingIntent = PendingIntent.getBroadcast(context, this.getId(), myIntent, PendingIntent.FLAG_CANCEL_CURRENT);
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, getAlarmTime().getTimeInMillis(), 10*60*1000, pendingIntent);
         } else if(this.getRepeat() == Alarm.Repeat.MIN_15){
+            Log.d("-진우- 다시알림", "15분");
+            pendingIntent = PendingIntent.getBroadcast(context, this.getId(), myIntent, PendingIntent.FLAG_CANCEL_CURRENT);
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, getAlarmTime().getTimeInMillis(), 15*60*1000, pendingIntent);
         } else if(this.getRepeat() == Alarm.Repeat.MIN_20){
+            Log.d("-진우- 다시알림", "20분");
+            pendingIntent = PendingIntent.getBroadcast(context, this.getId(), myIntent, PendingIntent.FLAG_CANCEL_CURRENT);
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, getAlarmTime().getTimeInMillis(), 20*60*1000, pendingIntent);
         } else if(this.getRepeat() == Alarm.Repeat.MIN_30){
+            Log.d("-진우- 다시알림", "30분");
+            pendingIntent = PendingIntent.getBroadcast(context, this.getId(), myIntent, PendingIntent.FLAG_CANCEL_CURRENT);
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, getAlarmTime().getTimeInMillis(), 30*60*1000, pendingIntent);
         } else if(this.getRepeat() == Alarm.Repeat.MIN_60){
+            Log.d("-진우- 다시알림", "1시간");
+            pendingIntent = PendingIntent.getBroadcast(context, this.getId(), myIntent, PendingIntent.FLAG_CANCEL_CURRENT);
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, getAlarmTime().getTimeInMillis(), 60*60*1000, pendingIntent);
-        }
-        //alarmManager.set(AlarmManager.RTC_WAKEUP, getAlarmTime().getTimeInMillis(), pendingIntent);
+        }*/
+
 
     }
 

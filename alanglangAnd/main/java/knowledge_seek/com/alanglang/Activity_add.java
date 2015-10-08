@@ -28,7 +28,7 @@ public class Activity_add extends BaseActivity{
     private TimePicker timePicker;
     LinearLayout popType;
     LinearLayout popType2;
-    LinearLayout popRepeat;
+    //LinearLayout popRepeat;
 
     //월, 화, 수, 목, 금, 토, 일
     ImageView day1, day2, day3, day4, day5, day6, day7;
@@ -332,7 +332,7 @@ public class Activity_add extends BaseActivity{
 
 
         //다시알림 설정
-        popRepeat = (LinearLayout)findViewById(R.id.popRepeat);
+        /*popRepeat = (LinearLayout)findViewById(R.id.popRepeat);
         Log.d("-진우- 다시알림 : ", String.valueOf(alarm.getRepeat()));
         TextView alarm_repeat = (TextView)findViewById(R.id.alarm_repeat);
         alarm_repeat.setText(String.valueOf(alarm.getRepeat()));
@@ -363,7 +363,7 @@ public class Activity_add extends BaseActivity{
                         .setNegativeButton("취소", null)
                         .show();
             }
-        });
+        });*/
     }
 
     //알람타입

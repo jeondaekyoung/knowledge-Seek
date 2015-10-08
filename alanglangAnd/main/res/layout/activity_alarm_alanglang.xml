@@ -39,7 +39,8 @@
     <WebView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="10">
+        android:layout_weight="10"
+        android:id="@+id/webView">
 
     </WebView>
 
@@ -49,7 +50,7 @@
         android:layout_height="wrap_content"
         android:background="#424242"
         android:padding="5dp"
-        android:text="확인(알랑랑)"
+        android:text="확인"
         android:textColor="@color/white" />
 
 </LinearLayout>

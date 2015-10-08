@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import knowledge_seek.com.alanglang.MainActivity;
 import knowledge_seek.com.alanglang.R;
 import knowledge_seek.com.database.Database;
 
@@ -82,6 +81,7 @@ public class AlarmView extends LinearLayout {
                 //getAlarm().setAlarmActive(activeImage);
                 Database.update(getAlarm());
                 ((MainActivity)getContext()).callAlarmScheduleService();
+
             }
         });
 

@@ -21,6 +21,7 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public Admin login(String admin_id, String admin_pw) {
+		System.out.println("AdminServiceImpl.login()");
 		Admin admin = adminDao.searchAdmin(admin_id);
 		
 		if(admin == null){

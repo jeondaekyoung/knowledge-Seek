@@ -17,12 +17,15 @@ public class CommonServiceImpl implements CommonService {
 
 	@Override
 	public void writeFile(MultipartFile multipartFile, String gubun, String filename, String fileserver) {
-		String tempPath = "C:\\GakkoGa\\workspace\\GakkoGaWeb\\src\\main\\webapp\\fileupload\\temp\\" + filename;
+		//String tempPath = "C:\\GakkoGa\\workspace\\GakkoGaWeb\\src\\main\\webapp\\fileupload\\temp\\" + filename;
+		String tempPath = "/usr/local/server/apache-tomcat-7.0.64/webapps/knowledge-seek/fileupload/temp/" + filename;
 		String serverPath = null;
 		if(gubun.equals("sound")){
-			serverPath = "C:\\GakkoGa\\workspace\\GakkoGaWeb\\src\\main\\webapp\\fileupload\\sound\\" + fileserver;
+			//serverPath = "C:\\GakkoGa\\workspace\\GakkoGaWeb\\src\\main\\webapp\\fileupload\\sound\\" + fileserver;
+			serverPath = "/usr/local/server/apache-tomcat-7.0.64/webapps/knowledge-seek/fileupload/sound/" + fileserver;
 		} else if(gubun.equals("image")){
-			serverPath = "C:\\GakkoGa\\workspace\\GakkoGaWeb\\src\\main\\webapp\\fileupload\\image\\" + fileserver;
+			//serverPath = "C:\\GakkoGa\\workspace\\GakkoGaWeb\\src\\main\\webapp\\fileupload\\image\\" + fileserver;
+			serverPath = "/usr/local/server/apache-tomcat-7.0.64/webapps/knowledge-seek/fileupload/image/" + fileserver;
 		}
 		//System.out.println(tempPath + ", " + serverPath);
 		

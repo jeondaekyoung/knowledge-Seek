@@ -98,4 +98,16 @@ public class AndController {
 		
 		return resultStr;
 	}
+	
+	@RequestMapping(value = "adSound.do", method=RequestMethod.GET)
+	@ResponseBody
+	public Ad adSound(){
+		System.out.println("소리파일이름은?");
+		
+		Ad ad = andService.findAd();
+		
+		return ad;
+		
+	}
+	
 }

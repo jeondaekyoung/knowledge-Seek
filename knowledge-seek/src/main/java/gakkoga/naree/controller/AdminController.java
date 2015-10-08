@@ -51,11 +51,13 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "login.do", method=RequestMethod.POST)
 	public ModelAndView login(Admin admin, HttpSession session){
+		System.out.println("로그인 : " + admin.getAdmin_id());
 		ModelAndView mv = new ModelAndView();
 	
 		Admin resultAdmin = adminService.login(admin.getAdmin_id(), admin.getAdmin_pw());
 		session.setAttribute("adminName", resultAdmin.getAdmin_name());
 		
+		System.out.println("로그인 완료");
 		mv.setViewName("admin/index");
 		return mv;
 	}

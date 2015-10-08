@@ -42,19 +42,20 @@
 		        <iframe width="100%" height="100%" src="${ad.youtube_addr }" frameborder="0" allowfullscreen></iframe>
 		    </div>
 		</div>
-		
-		<div id="entry_orY" class="tbl inputTxt" >
-		    <div class="tbl-cell">
-		        이름 <input type="text" id="name">
-		        전화번호 <input type="text" id="phone">
-		        이메일 <input type="text" id="email">
-		    </div>
-		</div>
-		
-		<div class="tbl inputBtn">
-		    <div class="tbl-cell">
-		        <input type="button" id="entry" value="응모하기" >
-		    </div>
+
+		<div id="entry_orY">		
+			<div class="tbl inputTxt" >
+			    <div class="tbl-cell">
+			        이름 <input type="text" id="name">
+			        전화번호 <input type="text" id="phone">
+			        이메일 <input type="text" id="email">
+			    </div>
+			</div>
+			<div class="tbl inputBtn">
+			    <div class="tbl-cell">
+			        <input type="button" id="entry" value="응모하기" >
+			    </div>
+			</div>
 		</div>
 	</div>
 	

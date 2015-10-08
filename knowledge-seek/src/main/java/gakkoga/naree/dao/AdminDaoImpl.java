@@ -18,6 +18,7 @@ import org.springframework.stereotype.Repository;
 public class AdminDaoImpl implements AdminDao {
 
 	public Admin searchAdmin(String admin_id){
+		System.out.println("AdminDaoImpl.searchAdmin()");
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
 		Admin admin = null;
 		try {

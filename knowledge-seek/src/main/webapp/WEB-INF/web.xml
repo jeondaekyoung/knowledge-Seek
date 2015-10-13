@@ -15,7 +15,7 @@
     <!-- 한글인코딩 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
-		<filter-class>gakkoga.naree.util.filter.EncodingFilter</filter-class>
+		<filter-class>alanglang.naree.util.filter.EncodingFilter</filter-class>
 		<init-param>
 			<param-name>encoding</param-name>
 			<param-value>UTF-8</param-value>

@@ -39,9 +39,9 @@ $(document).ready(function(){
 		var email = checkNull($("#email").val());
 		
 		if(checkValue() == true){
-			console.log("응모하기");
+			console.log("응모하기 ");
 			$.ajax({
-				url: url + "/GakkoGa/and/entry.do"
+				url: "/and/entry.do"
 				,type: "POST"
 				,data: {
 					name: checkNull($("#name").val())

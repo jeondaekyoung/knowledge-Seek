@@ -81,7 +81,7 @@ $(document).ready(function(){
 		//console.log(entriesY + ", " + couponY + ", "+ entriesN);
 		if(entriesY.length > 0){
 			$.ajax({
-				url: url + "/GakkoGa/admin/sendWinner.do"
+				url: "/admin/sendWinner.do"
 				,type: "POST"
 				,data: {
 					entry_seqsY: entriesY

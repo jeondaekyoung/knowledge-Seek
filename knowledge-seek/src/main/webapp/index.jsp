@@ -9,7 +9,11 @@
 <body>
 
 <%
-	response.sendRedirect("/knowledge-seek/homepage/index.jsp"); 
+	//배포시
+	response.sendRedirect("/homepage/index.jsp"); 
+
+	//localhost
+	//response.sendRedirect("/knowledge-seek/homepage/index.jsp");
 %>
 
 

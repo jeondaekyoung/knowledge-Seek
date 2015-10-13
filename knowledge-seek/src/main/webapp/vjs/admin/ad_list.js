@@ -15,7 +15,7 @@ $(document).ready(function(){
 			alert("검색조건을 입력해주세요");
 		} else {
 			$.ajax({
-				url:  url + "/GakkoGa/admin/searchAdList.do"
+				url:  "/admin/searchAdList.do"
 				,type: "POST"
 				,data: {
 					ad_name: ad_name
@@ -55,7 +55,7 @@ var sbmHtmlTemplate = {
 
 var winners = function(ad_seq){
 	console.log("광고시퀀스 : " + ad_seq + " - 응모자목록으로 가서 당첨자를 만든다.");
-	var url = window.location.protocol + '//' +window.location.host + "/GakkoGa/admin/popEntries.do?ad_seq=" + ad_seq;
+	var url = window.location.protocol + '//' +window.location.host + "/admin/popEntries.do?ad_seq=" + ad_seq;
 	window.open(url, '응모자 목록','width=600, height=620, scrollbars=yes, location=no');
 }
 

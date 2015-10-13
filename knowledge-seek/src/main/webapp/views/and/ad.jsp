@@ -12,7 +12,7 @@
         *{padding:0; margin: 0; border-spacing: 0; border-collapse:collapse; font-size: 12px; font-family: 'malgun gothic', sans-serif; text-decoration: none;}
         body{width:100%; height:100%;}
         .tbl {display: table; width:100%}
-        .tbl-cell {display: table-cell; vertical-align: middle; text-align: center;}
+        .tbl-cell {display: table-cell; vertical-align: middle; text-align: center; }
         .eventImg {}
         .eventImg .tbl-cell {}
         .outIframe iframe {width:100%; height:600px}
@@ -49,10 +49,6 @@
 			        이름 <input type="text" id="name">
 			        전화번호 <input type="text" id="phone">
 			        이메일 <input type="text" id="email">
-			    </div>
-			</div>
-			<div class="tbl inputBtn">
-			    <div class="tbl-cell">
 			        <input type="button" id="entry" value="응모하기" >
 			    </div>
 			</div>

@@ -10,10 +10,10 @@
 	</settings>
 	
 	<typeAliases>
-		<typeAlias type="gakkoga.naree.db.domain.Ad" alias="Ad"/>
-		<typeAlias type="gakkoga.naree.db.domain.Admin" alias="Admin"/>
-		<typeAlias type="gakkoga.naree.db.domain.Eng" alias="Eng"/>
-		<typeAlias type="gakkoga.naree.db.domain.Entries" alias="Entries"/>
+		<typeAlias type="alanglang.naree.db.domain.Ad" alias="Ad"/>
+		<typeAlias type="alanglang.naree.db.domain.Admin" alias="Admin"/>
+		<typeAlias type="alanglang.naree.db.domain.Eng" alias="Eng"/>
+		<typeAlias type="alanglang.naree.db.domain.Entries" alias="Entries"/>
 		
 	</typeAliases>
 
@@ -22,8 +22,8 @@
       <transactionManager type="JDBC"/>
       <dataSource type="POOLED">
         <property name="driver" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhsot:3306/alanglang_db"/>
-        <!-- <property name="url" value="jdbc:mysql://114.108.167.84:3306/alanglang_db"/> -->
+        <!-- <property name="url" value="jdbc:mysql://182.162.143.24:3306/alanglang_db"/> -->
+        <property name="url" value="jdbc:mysql://localhost:3306/alanglang_db"/>
         <property name="username" value="alanglang"/>
         <property name="password" value="alanglang123"/>
       </dataSource>

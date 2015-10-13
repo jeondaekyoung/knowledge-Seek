@@ -30,12 +30,26 @@ public class AndDaoImpl implements AndDao {
 	}
 
 	@Override
-	public Eng findTodayEng(String eng_seq) {
+	public Eng findTodayEng() {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
 		Eng eng = null;
 		try {
 			AndMapper andMapper = sqlSession.getMapper(AndMapper.class);
-			eng = andMapper.findTodayEng(eng_seq);
+			eng = andMapper.findTodayEng();
+		} finally {
+			sqlSession.close();
+		}
+		
+		return eng;
+	}
+	
+	@Override
+	public Eng findTodayEngByEngSeq(String eng_seq) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		Eng eng = null;
+		try {
+			AndMapper andMapper = sqlSession.getMapper(AndMapper.class);
+			eng = andMapper.findTodayEngByEngSeq(eng_seq);
 		} finally {
 			sqlSession.close();
 		}
@@ -43,6 +57,19 @@ public class AndDaoImpl implements AndDao {
 		return eng;
 	}
 
+	@Override
+	public List<Eng> findThreeEngByEngSeq() {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		List<Eng> engs = null;
+		try{
+			AndMapper andMapper = sqlSession.getMapper(AndMapper.class);
+			engs = andMapper.findThreeEngByEngSeq();
+		} finally {
+			sqlSession.close();
+		}
+		return engs;
+	}
+	
 	@Override
 	public List<Eng> findThreeEng() {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -126,5 +153,4 @@ public class AndDaoImpl implements AndDao {
 		return noEntries;
 	}
 
-	
 }

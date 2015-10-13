@@ -15,12 +15,25 @@ public interface AndDao {
 	public String searchMaxEngSeq();
 
 	/**
-	 * 영어시퀀스로 영어학습찾기
+	 * 오늘의 영어학습찾기
 	 * @param eng_seq
 	 * @return
 	 */
-	public Eng findTodayEng(String eng_seq);
+	public Eng findTodayEng();
+	
+	/**
+	 * 마지막 영어학습찾기
+	 * @param eng_seq
+	 * @return
+	 */
+	public Eng findTodayEngByEngSeq(String eng_seq);
 
+	/**
+	 * 마지막 영어학습 3일치 찾기
+	 * @return
+	 */
+	public List<Eng> findThreeEngByEngSeq();
+	
 	/**
 	 * 최근 영어학습 3일치 찾기
 	 * @return

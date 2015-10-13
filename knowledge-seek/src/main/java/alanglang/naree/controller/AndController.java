@@ -99,15 +99,32 @@ public class AndController {
 		return resultStr;
 	}
 	
+	/**
+	 * 알람 광고시 소리파일을 안드로이드에 알려주기 위한 JSON
+	 * @return
+	 */
 	@RequestMapping(value = "adSound.do")
 	@ResponseBody
 	public Ad adSound(){
-		System.out.println("소리파일이름은?");
+		System.out.println("알람 광고시 소리파일을 안드로이드에 알려주기 위한 JSON");
 		
 		Ad ad = andService.findAd();
 		
 		return ad;
+	}
+	
+	/**
+	 * 알람 영어학습시 소리파일을 안드로이드에 알려주기 위한 JSON
+	 * @return
+	 */
+	@RequestMapping(value = "engSound.do")
+	@ResponseBody
+	public Eng engSound(){
+		System.out.println("알람 영어학습시 소리파일을 안드로이드에 알려주기 위한 JSON");
 		
+		Eng eng = andService.findTodayEng();
+		
+		return eng;
 	}
 	
 }

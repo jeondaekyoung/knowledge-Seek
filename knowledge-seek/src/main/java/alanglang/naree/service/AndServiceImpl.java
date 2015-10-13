@@ -21,16 +21,24 @@ public class AndServiceImpl implements AndService {
 	@Override
 	public Eng findTodayEng() {
 		//오늘의 예문을 eng_seq읽어오기
-		//(오늘의 예문이 없을 수 있으므로 max로 가져온다.
-		String eng_seq = andDao.searchMaxEngSeq();
+		//(오늘의 예문이 없을 수도 있고 미리 입력했을 수도 있다.
+		//String eng_seq = andDao.searchMaxEngSeq();
+		Eng eng = andDao.findTodayEng();
+		if(eng == null){
+			//오늘 날짜의 예문이 없을 경우
+			eng = andDao.findTodayEngByEngSeq(andDao.searchMaxEngSeq());
+		}
 		
-		Eng eng = andDao.findTodayEng(eng_seq);
 		return eng;
 	}
 
 	@Override
 	public List<Eng> findThreeEng() {
-		
+		Eng eng = andDao.findTodayEng();
+		if(eng == null){
+			//오늘 날짜의 예문이 없을 경우
+			return andDao.findThreeEngByEngSeq();
+		}
 		return andDao.findThreeEng();
 	}
 

@@ -10,8 +10,12 @@ public interface AndMapper {
 
 	public String searchMaxEngSeq();
 
-	public Eng findTodayEng(String eng_seq);
+	public Eng findTodayEng();
+	
+	public Eng findTodayEngByEngSeq(String eng_seq);
 
+	public List<Eng> findThreeEngByEngSeq();
+	
 	public List<Eng> findThreeEng();
 
 	public Ad findAd();
@@ -23,4 +27,5 @@ public interface AndMapper {
 	public int insertEntries(Entries entries);
 
 	public int selectEntries(Entries entries);
+
 }

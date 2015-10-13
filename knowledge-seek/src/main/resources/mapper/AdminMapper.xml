@@ -3,7 +3,7 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
-<mapper namespace="gakkoga.naree.db.mapper.AdminMapper">
+<mapper namespace="alanglang.naree.db.mapper.AdminMapper">
 
 	<select id="searchAdmin" parameterType="String" resultType="Admin">
 		SELECT admin_seq, admin_id, admin_pw, admin_name

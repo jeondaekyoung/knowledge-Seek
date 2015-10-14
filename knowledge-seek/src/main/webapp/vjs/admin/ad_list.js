@@ -46,7 +46,7 @@ var sbmHtmlTemplate = {
 		makesbmTr : function(index, item){
 			var sysdate = new Date(item.input_date);
 			var sbmTr = "<tr><td>" + formatDate(sysdate) + "</td><td>" + item.start_date + "</td><td>" + item.end_date + "</td><td>"
-					+ "<input type='button'  class='pop_draw_winners' onclick='winners(" + item.ad_seq + ");' value='" + item.ad_name + "'>" +   "</td><td>" 
+					+ "<input type='button'  class='pop_entries' onclick='winners(" + item.ad_seq + ");' value='" + item.ad_name + "'>" +   "</td><td>" 
 					+ item.company_name + "</td><td>" + item.company_tel + "</td><td>" + item.company_addr1 + "</td></tr>";
 			
 			return sbmTr;

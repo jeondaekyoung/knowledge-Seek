@@ -30,6 +30,11 @@
 </head>
 
 <body>
+<c:choose>
+	<c:when test="${empty sessionScope.adminName }">
+		<c:redirect url="${pageContext.request.contextPath }/admin/index.do" />
+	</c:when>
+</c:choose>
 
     <div id="wrap">
         <div><input type="button" class="btn random" value="랜덤체크"></div>

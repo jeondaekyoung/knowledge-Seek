@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko" class="app">
 <head>
@@ -20,7 +21,7 @@
         .admin th {background-color:#eee; height:41px;}
         .admin th, .admin td{text-align:center; border:1px solid #ccc; padding:5px}
         .admin td input[type="text"] {width:100%; border-radius: 3px; border:1px solid #ccc}
-        a.pop_draw_winners {color:#FB6B5B; font-weight:bold}
+        a.pop_entries {color:#FB6B5B; font-weight:bold}
         div.form-group {min-height:50px; width:100%; border-bottom: 1px dashed #ddd}
         div.form-group .col-lg-2 {padding-left:0; padding-bottom:10px}
         div.form-group .col-lg-2 h4 {font-size: 16px; font-weight: bold; text-align: center; line-height: 37px;}
@@ -40,6 +41,11 @@
   <![endif]-->	
 </head>
 <body>
+<c:choose>
+	<c:when test="${empty sessionScope.adminName }">
+		<c:redirect url="${pageContext.request.contextPath }/admin/index.do" />
+	</c:when>
+</c:choose>
 
   <section class="vbox">
     <header class="bg-black dk header navbar navbar-fixed-top-xs">

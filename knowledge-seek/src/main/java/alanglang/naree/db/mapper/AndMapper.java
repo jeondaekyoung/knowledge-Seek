@@ -5,6 +5,7 @@ import java.util.List;
 import alanglang.naree.db.domain.Ad;
 import alanglang.naree.db.domain.Eng;
 import alanglang.naree.db.domain.Entries;
+import alanglang.naree.db.domain.SqlEntriesAd;
 
 public interface AndMapper {
 
@@ -27,5 +28,7 @@ public interface AndMapper {
 	public int insertEntries(Entries entries);
 
 	public int selectEntries(Entries entries);
+
+	public List<SqlEntriesAd> selectAdEntryResult(Entries entries);
 
 }

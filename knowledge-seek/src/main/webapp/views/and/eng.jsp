@@ -30,6 +30,7 @@
     </style>
     
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/vjs/and/eng.js"></script>
 </head>
 
 <body>
@@ -63,7 +64,8 @@
        	</div> 
     </div>
     
-    <audio src="${pageContext.request.contextPath }/fileupload/sound/${eng.eng_sound_server}" hidden="true" autoplay loop></audio>
+    <%-- <audio src="${pageContext.request.contextPath }/fileupload/sound/${eng.eng_sound_server}" hidden="true" autoplay loop></audio> --%>
+    <input type="text" id="audiofile" value="${pageContext.request.contextPath }/fileupload/sound/${eng.eng_sound_server}" hidden="true" >
     <%-- <audio id="audio" controls="controls" autoplay="autoplay" loop="loop">
     <source src="${pageContext.request.contextPath }/resources/${eng.eng_sound_server}" type="audio/mp3" />
     </audio> --%>

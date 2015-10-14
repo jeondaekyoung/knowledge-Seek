@@ -116,4 +116,15 @@
 		    AND 	phone = #{phone}
 	</select>
 	
+	<select id="selectAdEntryResult" parameterType="Entries" resultType="SqlEntriesAd">
+		SELECT e.name, e.email, e.phone, IFNULL(e.win_sepa, "당첨 결과 전입니다.") as win_sepa, IFNULL(e.coupon_num, "") as coupon_num, e.input_datetime, e.ad_seq
+       		        ,a.ad_seq, a.start_date, a.end_date, a.ad_name
+		   FROM entries_tb e, ad_tb a
+         WHERE e.ad_seq = a.ad_seq
+             AND e.name = #{name} 
+             AND e.email = #{email}
+             AND e.phone = #{phone}
+    ORDER BY a.end_date DESC
+	</select>
+	
 </mapper>

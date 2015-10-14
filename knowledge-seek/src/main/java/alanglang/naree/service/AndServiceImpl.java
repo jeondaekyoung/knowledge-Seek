@@ -10,6 +10,7 @@ import alanglang.naree.dao.AndDao;
 import alanglang.naree.db.domain.Ad;
 import alanglang.naree.db.domain.Eng;
 import alanglang.naree.db.domain.Entries;
+import alanglang.naree.db.domain.SqlEntriesAd;
 
 
 @Service
@@ -120,6 +121,12 @@ public class AndServiceImpl implements AndService {
 		} else {
 			return 0;
 		}
+	}
+
+	@Override
+	public List<SqlEntriesAd> findAdEntryResult(Entries entries) {
+		
+		return andDao.selectAdEntryResult(entries);
 	}
 
 }

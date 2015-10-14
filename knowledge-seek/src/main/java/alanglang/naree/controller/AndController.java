@@ -1,5 +1,6 @@
 package alanglang.naree.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import alanglang.naree.db.domain.Ad;
 import alanglang.naree.db.domain.Eng;
 import alanglang.naree.db.domain.Entries;
+import alanglang.naree.db.domain.SqlEntriesAd;
 import alanglang.naree.service.AndService;
 
 @Controller
@@ -126,5 +128,30 @@ public class AndController {
 		
 		return eng;
 	}
+	
+	/**
+	 * 당첨자 확인 페이지
+	 * @return
+	 */
+	@RequestMapping(value = "adEntry.do")
+	public ModelAndView adEntry(){
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("and/entry");
+		return mv;
+	}
+	
+	@RequestMapping(value = "adEntryResult.do", method=RequestMethod.POST)
+	@ResponseBody
+	public List<SqlEntriesAd> adEntryResult(Entries entries){
+		System.out.println(entries.toString());
+		List<SqlEntriesAd> sqlEntriesAds = new ArrayList<SqlEntriesAd>();
+		
+		sqlEntriesAds = andService.findAdEntryResult(entries);
+		
+		return sqlEntriesAds;
+	}
+	
+	
 	
 }

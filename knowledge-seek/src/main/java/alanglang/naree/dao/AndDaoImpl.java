@@ -1,5 +1,6 @@
 package alanglang.naree.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import alanglang.naree.db.domain.Ad;
 import alanglang.naree.db.domain.Eng;
 import alanglang.naree.db.domain.Entries;
-import alanglang.naree.db.mapper.AdminMapper;
+import alanglang.naree.db.domain.SqlEntriesAd;
 import alanglang.naree.db.mapper.AndMapper;
 import alanglang.naree.util.factory.ConnectionFactory;
 
@@ -151,6 +152,20 @@ public class AndDaoImpl implements AndDao {
 			sqlSession.close();
 		}
 		return noEntries;
+	}
+
+	@Override
+	public List<SqlEntriesAd> selectAdEntryResult(Entries entries) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		List<SqlEntriesAd> sqlEntriesAds = new ArrayList<SqlEntriesAd>();
+		try {
+			AndMapper andMapper = sqlSession.getMapper(AndMapper.class);
+			sqlEntriesAds = andMapper.selectAdEntryResult(entries);
+		}
+		finally {
+			sqlSession.close();
+		}
+		return sqlEntriesAds;
 	}
 
 }

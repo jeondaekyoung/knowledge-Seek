@@ -5,6 +5,7 @@ import java.util.List;
 import alanglang.naree.db.domain.Ad;
 import alanglang.naree.db.domain.Eng;
 import alanglang.naree.db.domain.Entries;
+import alanglang.naree.db.domain.SqlEntriesAd;
 
 public interface AndDao {
 
@@ -72,5 +73,12 @@ public interface AndDao {
 	 * @return
 	 */
 	public int selectEntries(Entries entries);
+
+	/**
+	 * 안드로이드폰에서 당첨자 확인하기
+	 * @param entries
+	 * @return
+	 */
+	public List<SqlEntriesAd> selectAdEntryResult(Entries entries);
 
 }

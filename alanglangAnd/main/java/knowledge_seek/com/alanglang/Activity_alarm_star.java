@@ -6,9 +6,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.TextView;
-
-import java.util.Calendar;
 
 import knowledge_seek.com.Alarm;
 import knowledge_seek.com.receiver.StaticWakeLock;
@@ -32,8 +29,6 @@ public class Activity_alarm_star extends Activity {
                 | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
         setContentView(R.layout.activity_alarm_star);
 
-        Refresh();
-
         Button btnFinish=(Button)findViewById(R.id.btn_finish);
         btnFinish.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
@@ -42,19 +37,6 @@ public class Activity_alarm_star extends Activity {
         });
     }
 
-    void Refresh(){
-        StringBuilder time = new StringBuilder();
-
-        Calendar cal = Calendar.getInstance();
-        final String[] week = { "일", "월", "화", "수", "목", "금", "토" };
-
-        time.append(String.format("%d월 %d일 %s",
-                cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DAY_OF_MONTH),
-                week[cal.get(Calendar.DAY_OF_WEEK) - 1] + "요일"));
-
-        TextView result = (TextView)findViewById(R.id.day);
-        result.setText(time.toString());
-    }
 
     @Override
     protected void onResume() {

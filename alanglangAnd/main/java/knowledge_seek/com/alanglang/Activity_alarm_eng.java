@@ -13,7 +13,6 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
@@ -32,7 +31,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Calendar;
 
 import knowledge_seek.com.Alarm;
 import knowledge_seek.com.receiver.StaticWakeLock;
@@ -86,8 +84,6 @@ public class Activity_alarm_eng extends Activity {
             }
         });
 
-        Refresh();
-
         Button btnFinish=(Button)findViewById(R.id.btn_finish);
         btnFinish.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
@@ -97,19 +93,6 @@ public class Activity_alarm_eng extends Activity {
     }
 
 
-    void Refresh(){
-        StringBuilder time = new StringBuilder();
-
-        Calendar cal = Calendar.getInstance();
-        final String[] week = { "일", "월", "화", "수", "목", "금", "토" };
-
-        time.append(String.format("%d월 %d일 %s",
-                cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DAY_OF_MONTH),
-                week[cal.get(Calendar.DAY_OF_WEEK) - 1] + "요일"));
-
-        TextView result = (TextView)findViewById(R.id.day);
-        result.setText(time.toString());
-    }
 
     final Handler handler = new Handler(){
         @Override

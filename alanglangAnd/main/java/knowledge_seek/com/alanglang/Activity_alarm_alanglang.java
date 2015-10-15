@@ -12,10 +12,7 @@ import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.webkit.WebSettings;
 import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -25,7 +22,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -34,10 +30,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
 
 import knowledge_seek.com.Alarm;
 import knowledge_seek.com.receiver.StaticWakeLock;
@@ -122,7 +114,6 @@ public class Activity_alarm_alanglang extends Activity {
         //webView.loadUrl("http://www.geniusjinu.com/and/ad.do");
 
 
-        Refresh();
 
         Button btnFinish=(Button)findViewById(R.id.btn_finish);
         btnFinish.setOnClickListener(new Button.OnClickListener() {
@@ -132,19 +123,6 @@ public class Activity_alarm_alanglang extends Activity {
         });
     }
 
-    void Refresh(){
-        StringBuilder time = new StringBuilder();
-
-        Calendar cal = Calendar.getInstance();
-        final String[] week = { "일", "월", "화", "수", "목", "금", "토" };
-
-        time.append(String.format("%d월 %d일 %s",
-                cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DAY_OF_MONTH),
-                week[cal.get(Calendar.DAY_OF_WEEK) - 1] + "요일"));
-
-        TextView result = (TextView)findViewById(R.id.day);
-        result.setText(time.toString());
-    }
 
     final Handler handler = new Handler(){
         @Override

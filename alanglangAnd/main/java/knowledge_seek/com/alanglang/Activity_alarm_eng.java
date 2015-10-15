@@ -44,7 +44,7 @@ public class Activity_alarm_eng extends Activity {
     private Alarm alarm;
     private WebView webView;
     final Activity activity = this;
-    private static final String ENG_DO = "http://182.162.143.24/and/eng.do";
+    private static final String ENG_DO = "http://www.knowledge-seek.com/and/eng.do";
 
     private static final int MESSAGE_OK = 1;
 
@@ -65,7 +65,7 @@ public class Activity_alarm_eng extends Activity {
                 | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
         setContentView(R.layout.activity_alarm_eng);
 
-        String st = "http://182.162.143.24/and/engSound.do";
+        String st = "http://www.knowledge-seek.com/and/engSound.do";
         try {
             mThread async = new mThread(st);
             async.start();
@@ -172,7 +172,7 @@ public class Activity_alarm_eng extends Activity {
             try{
                 JSONObject json = new JSONObject(result);
                 Log.d("-진우- eng_sound_server ", json.getString("eng_sound_server"));
-                audio_url = "http://182.162.143.24/fileupload/sound/" + json.getString("eng_sound_server");
+                audio_url = "http://www.knowledge-seek.com/fileupload/sound/" + json.getString("eng_sound_server");
             }catch(JSONException e){
                 Log.d("-진우- JSON", "Error parsing data " + e.toString());
             }

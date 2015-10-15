@@ -49,7 +49,7 @@ public class Activity_alarm_alanglang extends Activity {
     private Alarm alarm;
     private WebView webView;
     final Activity activity = this;
-    private static final String AD_DO = "http://182.162.143.24/and/ad.do";
+    private static final String AD_DO = "http://www.knowledge-seek.com/and/ad.do";
 
     private static final int MESSAGE_OK = 1;
     //List<HashMap<String, String>> mylist = new ArrayList<HashMap<String, String>>();
@@ -77,7 +77,7 @@ public class Activity_alarm_alanglang extends Activity {
         //Bundle bundle = this.getIntent().getExtras();
         //alarm = (Alarm)bundle.getSerializable("alarm");
 
-        String st = "http://182.162.143.24/and/adSound.do";
+        String st = "http://www.knowledge-seek.com/and/adSound.do";
         try {
             mThread async = new mThread(st);
             async.start();
@@ -211,7 +211,7 @@ public class Activity_alarm_alanglang extends Activity {
             try{
                 JSONObject json = new JSONObject(result);
                 Log.d("-진우- ad_sound_server " , json.getString("ad_sound_server"));
-                audio_url = "http://182.162.143.24/fileupload/sound/" + json.getString("ad_sound_server");
+                audio_url = "http://www.knowledge-seek.com/fileupload/sound/" + json.getString("ad_sound_server");
                 /*JSONArray adSound = json.getJSONArray("ad");
                 for(int i=0;i < adSound.length();i++){
                     HashMap<String, String> map = new HashMap<String, String>();

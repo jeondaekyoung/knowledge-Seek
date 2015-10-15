@@ -29,7 +29,7 @@ public class AlarmService extends Service {
 
     @Override
     public void onCreate() {
-        Log.d("-진우- ", "AlarmService.onCreate() ");
+        Log.d("-진우- ", "알람서비스 실행 ");
         super.onCreate();
     }
 
@@ -59,6 +59,7 @@ public class AlarmService extends Service {
         for(Alarm alarm : alarms){
             if(alarm.getAlarmActive()){
                 //알람 활동이 사용으로 된 것만 통과
+                Log.d("-진우- 알람큐에 저장되는 알람 ", alarm.toString());
                 alarmQueue.add(alarm);
             }
         }

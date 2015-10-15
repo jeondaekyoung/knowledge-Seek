@@ -13,7 +13,7 @@
 	<style>
         *{padding:0; margin: 0; border-spacing: 0; border-collapse:collapse; font-size: 12px; font-family: 'malgun gothic', sans-serif; text-decoration: none}
         #wrap {width: 100%; height: 100%; display: table}
-        .alarm_eng {background: url(${pageContext.request.contextPath }/resources/images/bg/bg_eng.jpg); width:100%; height: 280px; overflow:hidden; display: table}
+        .alarm_eng {background: url(${pageContext.request.contextPath }/resources/images/bg/bg_eng.jpg); width:100%; height: 320px; overflow:hidden; display: table}
         .alarm_eng>div {vertical-align: middle; display: table-cell}
         .alarm_eng p.script {font-size: 36px; font-weight: bold; color: #fff; text-align: center;}
         .alarm_eng p.script_mean {font-size: 20px; font-weight: bold;text-align: center;}

@@ -31,10 +31,10 @@
         
 			<div class="form-group">
 	            <div class="col-lg-2-4"><h4>당첨자 검색</h4></div>
-	        	<div class="col-lg-2-4"><input type="text" id="ad_name" class="input-m form-control" placeholder="이름"></div>
-	        	<div class="col-lg-2-4"><input type="text" id="company_name" class="input-m form-control" placeholder="전화번호"></div>
-	        	<div class="col-lg-2-4"><input type="text" id="company_name" class="input-m form-control" placeholder="이메일"></div>
-	        	<div class="col-lg-2-4"><input type="button" id="searchAd" class="btn btn-s-lg btn-info" value="검색"></div>
+	        	<div class="col-lg-2-4"><input type="text" id="name" class="input-m form-control" placeholder="이름"></div>
+	        	<div class="col-lg-2-4"><input type="text" id="phone" class="input-m form-control" placeholder="전화번호"></div>
+	        	<div class="col-lg-2-4"><input type="text" id="email" class="input-m form-control" placeholder="이메일"></div>
+	        	<div class="col-lg-2-4"><input type="button" id="entry" class="btn btn-s-lg btn-info" value="검색"></div>
 	        </div>
         
             <table id="listTable">

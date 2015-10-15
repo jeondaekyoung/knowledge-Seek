@@ -19,7 +19,7 @@
 	*{font-size: 12px}
         .admin {width:100%}
         .admin th {background-color:#eee; height:51px;}
-        .admin th, .admin td{text-align:center; border:1px solid #ccc; padding:5px}
+        .admin th, .admin td{text-align:center; border:1px solid #ccc; padding:5px; overflow:hidden}
         .admin input[type="text"] {width:100%}
     </style>
     
@@ -29,7 +29,7 @@
   <script src="${pageContext.request.contextPath}/resources/js/app.plugin.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/slimscroll/jquery.slimscroll.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/datepicker/bootstrap-datepicker.js"></script>
-  <script src="${pageContext.request.contextPath }/vjs/admin/eng_reg.js"></script>
+  <script src="${pageContext.request.contextPath}/vjs/admin/eng_reg.js"></script>
   
   <!--[if lt IE 9]>
     <script src="${pageContext.request.contextPath}/resources/js/ie/html5shiv.js"></script>
@@ -50,7 +50,7 @@
         <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen,open" data-target="#nav,html">
           <i class="fa fa-bars"></i>
         </a>
-        <a href="index.jsp" class="navbar-brand" data-toggle="fullscreen"><!--img src="images/logo.png" class="m-r-sm"-->가꼬가</a>
+        <a href="index.jsp" class="navbar-brand" data-toggle="fullscreen"><img src="${pageContext.request.contextPath }/resources/images/logo.png" class="m-r-sm">알랑랑</a>
         <a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".nav-user">
           <i class="fa fa-cog"></i>
         </a>

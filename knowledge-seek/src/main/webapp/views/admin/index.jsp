@@ -48,7 +48,7 @@
         <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen,open" data-target="#nav,html">
           <i class="fa fa-bars"></i>
         </a>
-        <a href="index.jsp" class="navbar-brand" data-toggle="fullscreen"><!-- img src="images/logo.png" class="m-r-sm"-->가꼬가</a>
+        <a href="index.jsp" class="navbar-brand" data-toggle="fullscreen"><img src="${pageContext.request.contextPath }/resources/images/logo.png" class="m-r-sm">알랑랑</a>
         <a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".nav-user">
           <i class="fa fa-cog"></i>
         </a>

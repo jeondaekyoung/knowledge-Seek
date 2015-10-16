@@ -39,9 +39,9 @@
         
             <table id="listTable">
                 <thead><tr>
-                        <th>광고이름</th>
-                        <th>시작날짜</th>
-                        <th>종료날짜</th>
+                        <th>광고명</th>
+                        <th>시작일</th>
+                        <th>종료일</th>
                         <th>당첨여부</th>
                         <th>응모실시</th>
                     </tr></thead>

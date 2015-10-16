@@ -14,20 +14,17 @@
 	<style>
         *{padding:0; margin: 0; border-spacing: 0; border-collapse:collapse; font-size: 12px; font-family: 'malgun gothic', sans-serif; text-decoration: none}
         #wrap {width: 100%; height: 100%; display: table}
-        .alarm_eng {background: url(${pageContext.request.contextPath }/resources/images/bg/bg_eng.jpg); width:100%; height: 320px; overflow:hidden; display: table}
+        .alarm_eng {background: url(${pageContext.request.contextPath }/resources/images/bg/bg_eng2.jpg); width:100%; height: 320px; overflow:hidden; display: table; opacity:0.7;}
         .alarm_eng>div {vertical-align: middle; display: table-cell}
-        .alarm_eng p.script {font-size: 36px; font-weight: bold; color: #fff; text-align: center;}
+        .alarm_eng p.script {font-size: 36px; font-weight: bold; color: #fff; text-align: center; text-shadow: 2px 2px 5px #333;}
         .alarm_eng p.script_mean {font-size: 20px; font-weight: bold;text-align: center;}
         .btnPlay {}
-        .lastAlarm {width: 100%; height:20%; display: table}        
+        .lastAlarm {width: 100%; height:100px; display: table}        
         .lastAlarm div {width: 33.3%; vertical-align: middle; text-align: center; display: table-row;}
         .lastAlarm div:first-child p {font-size:20px}
         .lastAlarm div:nth-child(2) p {font-size:12px}
         .lastAlarm div:nth-child(3) p {font-size:12px}
-        .lastAlarm div p {padding: 20px 0; color: #424242; font-weight: bold; display: table-cell;}
-        .lastAlarm div p:first-child {background: #61d2d6;}
-        .lastAlarm div p:nth-child(2) {background: #9bf0e9;}
-        .lastAlarm div p:nth-child(3) {background: #ede5e2;}
+        .lastAlarm div p {padding: 20px 0; color: #424242; font-weight: bold; display: table-cell; background:#f7f7f7;}
     </style>
     
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -38,8 +35,8 @@
     <div id="wrap">
         <div class="alarm_eng">
             <div>
+                <p class="script">ㅡ</p>
                 <p class="script_mean">오늘의 펀펀 영어</p>
-                <p class="script">-</p>
                 <p class="script">${eng.eng_sentence}</p>
                 <p class="script_mean">${eng.eng_mean}</p>
             </div>

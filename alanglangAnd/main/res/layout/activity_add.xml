@@ -2,11 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/bg_common"
+    android:orientation="vertical"
     android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    >
+    android:paddingRight="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,20 +15,19 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center_horizontal"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="알람설정"
             android:textColor="@color/white"
-            android:textSize="9pt"
-            android:gravity="center_horizontal"
-            android:layout_gravity="bottom"/>
+            android:textSize="9pt" />
 
     </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,91 +49,92 @@
                     android:layout_weight="30"
                     android:padding="10dp"
                     android:text="알람 시간"
-                    android:textSize="8pt"/>
+                    android:textSize="8pt" />
 
                 <TimePicker
+                    android:id="@+id/timePicker"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/timePicker"
                     android:layout_gravity="center" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/popType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:id="@+id/popType"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/rounded_box"
-                android:paddingBottom="15dp"
+                android:orientation="horizontal"
+                android:paddingBottom="20dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:paddingTop="15dp">
+                android:paddingTop="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="9"
                     android:text="알람타입"
-                    android:textSize="8pt"/>
+                    android:textSize="8pt" />
 
                 <TextView
+                    android:id="@+id/alarm_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/alarm_type"
                     android:layout_gravity="right"
                     android:text="알랑랑알람"
                     android:textAlignment="gravity"
                     android:textColor="@color/blue_dark"
-                    android:textSize="8pt"/>
+                    android:textSize="8pt" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/popType2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:id="@+id/popType2"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/rounded_box"
-                android:paddingBottom="15dp"
+                android:orientation="horizontal"
+                android:paddingBottom="20dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:paddingTop="15dp">
+                android:paddingTop="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="9"
                     android:text="스타알람"
-                    android:textSize="8pt"/>
+                    android:textSize="8pt" />
 
                 <TextView
+                    android:id="@+id/alarm_type2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/alarm_type2"
                     android:layout_gravity="right"
                     android:text="김영철"
                     android:textAlignment="gravity"
                     android:textColor="@color/blue_dark"
-                    android:textSize="8pt"/>
+                    android:textSize="8pt" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/rounded_box"
+                android:orientation="vertical"
+                android:paddingBottom="20dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:paddingTop="10dp">
+                android:paddingTop="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="알람반복"
-                    android:textSize="8pt"/>
+                    android:textSize="8pt" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -145,53 +144,59 @@
                     android:paddingTop="15dp">
 
                     <ImageView
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
                         android:id="@+id/day_mon"
-                        android:layout_weight="1"
-                        android:src="@drawable/mon_off"/>
-                    <ImageView
                         android:layout_width="36dp"
                         android:layout_height="36dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/mon_off" />
+
+                    <ImageView
                         android:id="@+id/day_tue"
-                        android:layout_marginLeft="8dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/tue_off"/>
-                    <ImageView
                         android:layout_width="36dp"
                         android:layout_height="36dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/tue_off" />
+
+                    <ImageView
                         android:id="@+id/day_wed"
-                        android:layout_marginLeft="8dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/wed_off"/>
-                    <ImageView
                         android:layout_width="36dp"
                         android:layout_height="36dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/wed_off" />
+
+                    <ImageView
                         android:id="@+id/day_thu"
-                        android:layout_marginLeft="8dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/thu_off"/>
-                    <ImageView
                         android:layout_width="36dp"
                         android:layout_height="36dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/thu_off" />
+
+                    <ImageView
                         android:id="@+id/day_fri"
-                        android:layout_marginLeft="8dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/fri_off"/>
-                    <ImageView
                         android:layout_width="36dp"
                         android:layout_height="36dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/fri_off" />
+
+                    <ImageView
                         android:id="@+id/day_sat"
-                        android:layout_marginLeft="8dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/sat_off"/>
-                    <ImageView
                         android:layout_width="36dp"
                         android:layout_height="36dp"
-                        android:id="@+id/day_sun"
                         android:layout_marginLeft="8dp"
                         android:layout_weight="1"
-                        android:src="@drawable/sun_off"/>
+                        android:src="@drawable/sat_off" />
+
+                    <ImageView
+                        android:id="@+id/day_sun"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/sun_off" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -227,9 +232,9 @@
             </LinearLayout>-->
 
             <Button
+                android:id="@+id/alarmRegister"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:id="@+id/alarmRegister"
                 android:layout_marginTop="10dp"
                 android:background="@color/yellow"
                 android:onClick="alarmRegister"
@@ -237,5 +242,11 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right" />
 
 </LinearLayout>

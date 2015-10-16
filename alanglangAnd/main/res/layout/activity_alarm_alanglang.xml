@@ -3,46 +3,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_main2"
+    android:background="@color/blue_dark"
     android:orientation="vertical"
     android:weightSum="10">
 
-    <TextClock
-        android:id="@+id/textClock"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:alpha="0.5"
-        android:background="#000"
-        android:gravity="center"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp"
-        android:textColor="#fff"
-        android:textSize="24pt"
-        tools:targetApi="jelly_bean_mr1" />
+        android:layout_weight="0"
+        android:orientation="vertical"
+        android:paddingTop="10dp">
+
+        <TextClock
+            android:id="@+id/textClock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingBottom="10dp"
+            android:textColor="#fff"
+            android:textSize="24pt"
+            tools:targetApi="jelly_bean_mr1" />
+
+    </LinearLayout>
 
     <WebView
         android:id="@+id/webView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="9">
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="10.12">
 
     </WebView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ffffff"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#f7f7f7"
         android:orientation="horizontal"
         android:weightSum="10">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="7"
-            android:orientation="vertical"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="3dp">
+            android:layout_marginTop="3dp"
+            android:layout_weight="8"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -80,11 +90,13 @@
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
+            android:layout_height="110dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:layout_weight="1.45"
             android:background="@drawable/circle_box"
-            android:text="응모하기"
-            android:layout_margin="10dp"/>
+            android:gravity="center"
+            android:text="응모하기" />
 
     </LinearLayout>
 
@@ -92,10 +104,8 @@
         android:id="@+id/btn_finish"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="#424242"
+        android:background="@color/yellow"
         android:padding="5dp"
-        android:text="알람 끄기"
-        android:textColor="@color/white" />
+        android:text="알람 끄기" />
 
 </LinearLayout>

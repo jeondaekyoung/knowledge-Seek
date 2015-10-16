@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_main2">
+    android:background="@color/blue_dark"
+    android:orientation="vertical"
+    android:weightSum="10">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:alpha="0.5"
-        android:background="#000"
         android:orientation="vertical"
         android:paddingTop="10dp">
 
@@ -30,6 +29,9 @@
     <WebView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_weight="10"
         android:id="@+id/webView">
     </WebView>
@@ -38,9 +40,8 @@
         android:id="@+id/btn_finish"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#424242"
+        android:background="@color/yellow"
         android:padding="5dp"
-        android:text="알람 끄기"
-        android:textColor="@color/white" />
+        android:text="알람 끄기" />
 
 </LinearLayout>

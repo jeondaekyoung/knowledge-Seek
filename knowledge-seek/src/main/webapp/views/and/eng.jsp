@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -46,19 +47,23 @@
         <div class="btnPlay"></div>
         
        	<div class="lastAlarm">
+      	<c:set var="engsLength" value="${fn:length(engs) }"></c:set>
        		<div>
-       			<c:forEach var="engs" items="${engs }">
-       				<p>${engs.today_date }</p>
+       			<c:forEach var="i" begin="0" end="${engsLength-1 }" varStatus="status">
+       				<c:set var="eng" value="${engs[engsLength-i-1 ]}" />
+       				<p>${eng.today_date }<p>
        			</c:forEach>
        		</div>
        		<div>
-       			<c:forEach var="engs" items="${engs }">
-       				<p>${engs.eng_sentence }</p>
+       			<c:forEach var="i" begin="0" end="${engsLength-1 }" varStatus="status">
+       				<c:set var="eng" value="${engs[engsLength-i-1 ]}" />
+       				<p>${eng.eng_sentence }<p>
        			</c:forEach>
        		</div>
        		<div>
-       			<c:forEach var="engs" items="${engs }">
-       				<p>${engs.eng_mean }</p>
+       			<c:forEach var="i" begin="0" end="${engsLength-1 }" varStatus="status">
+       				<c:set var="eng" value="${engs[engsLength-i-1 ]}" />
+       				<p>${eng.eng_mean }<p>
        			</c:forEach>
        		</div>
        	</div> 

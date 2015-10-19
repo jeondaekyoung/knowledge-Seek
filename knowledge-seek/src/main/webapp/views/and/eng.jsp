@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -48,19 +49,21 @@
        		<div>
        			<c:forEach var="i" begin="0" end="${engsLength-1 }" varStatus="status">
        				<c:set var="eng" value="${engs[engsLength-i-1 ]}" />
-       				<p>${eng.today_date }<p>
+       				<p><fmt:formatDate value="${eng.today_date }" pattern="MM/dd" /></p>
        			</c:forEach>
        		</div>
        		<div>
        			<c:forEach var="i" begin="0" end="${engsLength-1 }" varStatus="status">
        				<c:set var="eng" value="${engs[engsLength-i-1 ]}" />
-       				<p>${eng.eng_sentence }<p>
+       				<p>${fn:substring(eng.eng_sentence, 0, 10) }~</p>
+       				<%-- <p>${eng.eng_sentence }</p> --%>
        			</c:forEach>
        		</div>
        		<div>
        			<c:forEach var="i" begin="0" end="${engsLength-1 }" varStatus="status">
        				<c:set var="eng" value="${engs[engsLength-i-1 ]}" />
-       				<p>${eng.eng_mean }<p>
+       				<p>${fn:substring(eng.eng_mean, 0, 8) }~</p>
+       				<%-- <p>${eng.eng_mean }</p> --%>
        			</c:forEach>
        		</div>
        	</div> 

@@ -14,7 +14,7 @@
         .tbl {display: table; width:100%}
         .tbl-cell {display: table-cell; vertical-align: middle; text-align: center; }
         .eventImg {}
-        .eventImg .tbl-cell img {height:200px}
+        .eventImg .tbl-cell img {height:380px}
         .outIframe iframe {width:100%; height:600px}
         .uTube {height:20%; overflow: hidden}
         .inputTxt {height:10%; overflow: hidden}

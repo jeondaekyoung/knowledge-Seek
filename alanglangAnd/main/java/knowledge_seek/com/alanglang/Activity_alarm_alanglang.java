@@ -13,6 +13,9 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -41,10 +44,20 @@ public class Activity_alarm_alanglang extends Activity {
     private Alarm alarm;
     private WebView webView;
     final Activity activity = this;
-    private static final String AD_DO = "http://182.162.143.24/and/ad.do";
+    private static final String httpAddr = "http://182.162.143.24";
+    private String ad_seq;          //광고 시퀀스
+    //private static final String AD_DO = "http://182.162.143.24/and/ad.do";
 
     private static final int MESSAGE_OK = 1;
-    //List<HashMap<String, String>> mylist = new ArrayList<HashMap<String, String>>();
+    private static final int ENTRY_SUCCESS = 2;
+    private static final int ENTRY_FAIL = 3;
+
+    //응모하기
+    private LinearLayout entryLinearLayout;
+    private EditText name_txt;
+    private EditText phone_txt;
+    private EditText email_txt;
+    private Button entry_btn;
 
 
     private String audio_url ;                     //미디어파일위치
@@ -69,7 +82,7 @@ public class Activity_alarm_alanglang extends Activity {
         //Bundle bundle = this.getIntent().getExtras();
         //alarm = (Alarm)bundle.getSerializable("alarm");
 
-        String st = "http://182.162.143.24/and/adSound.do";
+        String st = httpAddr + "/and/adSound.do";
         try {
             mThread async = new mThread(st);
             async.start();
@@ -79,40 +92,49 @@ public class Activity_alarm_alanglang extends Activity {
 
         webView = (WebView)findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl(AD_DO);
+        webView.loadUrl(httpAddr + "/and/ad.do");
         webView.setWebViewClient(new AdWebViewClient());
-        webView.setWebChromeClient(new WebChromeClient(){
+        webView.setWebChromeClient(new WebChromeClient() {
             @Override
-            public void onProgressChanged(WebView view, int progress){
+            public void onProgressChanged(WebView view, int progress) {
                 //매개변수로 제공되는 progress의 범위는 0부터 10,000까지 사용한다.
                 //웹 페이지가 100% 출력될때까지 화면 출력을 지연한다.
                 activity.setProgress(progress * 100);
             }
         });
 
+        //응모하기 리니어레이아웃
+        entryLinearLayout = (LinearLayout)findViewById(R.id.entryLinearLayout);
+        name_txt = (EditText)findViewById(R.id.name_txt);
+        phone_txt = (EditText)findViewById(R.id.phone_txt);
+        email_txt = (EditText)findViewById(R.id.email_txt);
+        entry_btn = (Button)findViewById(R.id.entry_btn);
+        entry_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Log.d("-진우- 이름 " ,name_txt.getText().toString());
+                String name = name_txt.getText().toString();
+                String phone = phone_txt.getText().toString();
+                String email = email_txt.getText().toString();
+                int name_length = name_txt.getText().length();
+                int phone_length = phone_txt.getText().length();
+                int email_length = email_txt.getText().length();
+                //Log.d("-진우- 크기 ", name_length + " " + phone_length + " " + email_length);
+                if(name_length <= 0 || phone_length <= 0 || email_length <= 0){
+                    Toast.makeText(getApplicationContext(), " 이름, 전화번호, 이메일을 입력하세요", Toast.LENGTH_SHORT).show();
+                    return ;
+                }
+                //Toast.makeText(getApplicationContext(), "응모하기", Toast.LENGTH_SHORT).show();
 
-        /*webView.setWebChromeClient(new WebChromeClient());
-        webView.getSettings().setJavaScriptEnabled(true);*/
-        //webView.addJavascriptInterface(new AudioInterface(this), "Android");
-        //WebViewClient 지정
-        /*webView.setWebChromeClient(new WebChromeClient());
-        WebSettings set = webView.getSettings();
-        //웹뷰에서 자바스크립트 실행가능
-        set.setJavaScriptEnabled(true); // javascript를 실행할 수 있도록 설정
-        set.setJavaScriptCanOpenWindowsAutomatically(true);  // javascript가 window.open()을 사용할 수 있도록 설정
-        set.setBuiltInZoomControls(true);   // 안드로이드에서 제공하는 줌 아이콘을 사용할 수 있도록 설정
-        set.setPluginState(WebSettings.PluginState.ON_DEMAND); // 플러그인을 사용할 수 있도록 설정
-        set.setSupportMultipleWindows(true); // 여러개의 윈도우를 사용할 수 있도록 설정
-        set.setSupportZoom(true); // 확대,축소 기능을 사용할 수 있도록 설정
-        set.setBlockNetworkImage(false); // 네트워크의 이미지의 리소스를 로드하지않음
-        set.setLoadsImagesAutomatically(true); // 웹뷰가 앱에 등록되어 있는 이미지 리소스를 자동으로 로드하도록 설정
-        set.setUseWideViewPort(true); // wide viewport를 사용하도록 설정
-        set.setCacheMode(WebSettings.LOAD_NO_CACHE); // 웹뷰가 캐시를 사용하지 않도록 설정*/
-
-
-        //홈페이지 저장
-        //webView.loadUrl("http://www.geniusjinu.com/and/ad.do");
-
+                String entry_do = httpAddr + "/and/entry.do?name=" + name + "&phone=" + phone + "&email=" + email + "&ad_seq=" + ad_seq;
+                try {
+                    eThread async = new eThread(entry_do);
+                    async.start();
+                } catch (URISyntaxException e1){
+                    e1.printStackTrace();
+                }
+            }
+        });
 
 
         Button btnFinish=(Button)findViewById(R.id.btn_finish);
@@ -140,6 +162,12 @@ public class Activity_alarm_alanglang extends Activity {
                         e.printStackTrace();
                     }
                     //끝
+                    break;
+                case ENTRY_SUCCESS:
+                    Toast.makeText(getApplicationContext(), "응모하였습니다.", Toast.LENGTH_SHORT).show();
+                    break;
+                case ENTRY_FAIL:
+                    Toast.makeText(getApplicationContext(), "응모한 이벤트입니다.", Toast.LENGTH_SHORT).show();
                     break;
             }
         }
@@ -188,8 +216,19 @@ public class Activity_alarm_alanglang extends Activity {
             Log.d("-진우- 광고정보 ", result);
             try{
                 JSONObject json = new JSONObject(result);
-                Log.d("-진우- ad_sound_server " , json.getString("ad_sound_server"));
-                audio_url = "http://182.162.143.24/fileupload/sound/" + json.getString("ad_sound_server");
+                String ad_sound_server = json.getString("ad_sound_server");
+                String entry_or = json.getString("entry_or");
+                ad_seq = json.getString("ad_seq");
+
+                //Log.d("-진우- ad_sound_server " , json.getString("ad_sound_server"));
+                //Log.d("-진우- ad_seq", json.getString("ad_seq"));
+
+                if(entry_or.equals("N")){
+                    entryLinearLayout.setVisibility(View.GONE);
+                }
+
+
+                audio_url = httpAddr + "/fileupload/sound/" + ad_sound_server;
                 /*JSONArray adSound = json.getJSONArray("ad");
                 for(int i=0;i < adSound.length();i++){
                     HashMap<String, String> map = new HashMap<String, String>();
@@ -213,6 +252,57 @@ public class Activity_alarm_alanglang extends Activity {
             handler.sendEmptyMessage(MESSAGE_OK);
         }
 
+    }
+
+    private class eThread extends Thread {
+        String result = "";
+        URI uri;
+
+        public eThread(String url) throws URISyntaxException {
+            uri = new URI(url);
+        }
+
+        @Override
+        public void run() {
+            Log.d("-진우- 응모하기", "run() 실행");
+            try{
+                HttpClient httpclient = new DefaultHttpClient();
+                HttpPost httppost = new HttpPost(uri);
+
+                HttpParams params = httpclient.getParams();
+                HttpConnectionParams.setConnectionTimeout(params, 10000);
+                HttpConnectionParams.setSoTimeout(params, 10000);
+
+                HttpResponse response = httpclient.execute(httppost);
+                StatusLine status = response.getStatusLine();
+
+                Log.d("-진우- ", String.valueOf(status.getStatusCode()));
+                if(status.getStatusCode() == 200){
+                    HttpEntity entity = response.getEntity();
+                    InputStream is = entity.getContent();
+
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"), 64);
+                    StringBuilder sb = new StringBuilder();
+                    String line = null;
+                    while((line = reader.readLine()) != null){
+                        sb.append(line + "\n");
+                    }
+                    is.close();
+                    result = sb.toString();
+                }
+            }catch(Exception e){
+                Log.d("log_tag", "Error in http connection " + e.toString());
+            }
+
+            Log.d("-진우- 응모결과 ", "-" + result + "-");
+            if(result.contains("success")){
+                Log.d("-진우- ", "응모하였습니다.");
+                handler.sendEmptyMessage(ENTRY_SUCCESS);
+            } else {
+                Log.d("-진우- ", "응모한 이벤트입니다.");
+                handler.sendEmptyMessage(ENTRY_FAIL);
+            }
+        }
     }
 
 

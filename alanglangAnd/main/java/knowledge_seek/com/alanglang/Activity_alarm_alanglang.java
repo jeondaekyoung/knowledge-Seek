@@ -59,6 +59,7 @@ public class Activity_alarm_alanglang extends Activity {
     private EditText email_txt;
     private Button entry_btn;
 
+    private Button btn_media;
 
     private String audio_url ;                     //미디어파일위치
     private MediaPlayer mediaPlayer;        //MediaPlayer
@@ -141,6 +142,14 @@ public class Activity_alarm_alanglang extends Activity {
         btnFinish.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        btn_media = (Button)findViewById(R.id.btn_media);
+        btn_media.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                killMediaPlayer();
             }
         });
     }

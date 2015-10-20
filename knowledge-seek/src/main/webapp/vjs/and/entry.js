@@ -38,7 +38,10 @@ var entrySuccess = function(resultData){
 var sbmHtmlTemplate = {
 		makesbmTr : function(index, item){
 			var sysdate = new Date(item.input_datetime);
-			var sbmTr = "<tr><td>" + item.ad_name + "</td><td>" + item.start_date + "</td><td>" + item.end_date + "</td><td>"
+			var sysdate_start_date = new Date(item.start_date);
+			var sysdate_end_date = new Date(item.end_date);
+			var sbmTr = "<tr><td>" + item.ad_name + "</td><td>" + formatDateMMdd(sysdate_start_date)
+			+ "</td><td>" + formatDateMMdd(sysdate_end_date) + "</td><td>"
 			+ item.win_sepa +   "</td><td>"	+ formatDate(sysdate) + "</td></tr>";
 	return sbmTr;
 		}
@@ -99,4 +102,26 @@ var formatDate = function(dateObj){
 	}
 	
 	return curr_year + "-"+ curr_month + "-" + curr_date + "  " + curr_hr + ":" + curr_min;
+}
+var formatDateMMdd = function(dateObj){
+	var curr_year = dateObj.getFullYear();
+	var curr_month = dateObj.getMonth() + 1;
+	var curr_date = dateObj.getDate();
+	var curr_hr = dateObj.getHours();
+	var curr_min = dateObj.getMinutes();
+	
+	if(curr_month.toString().length == 1) {
+		curr_month = '0' + curr_month;
+	}
+	if(curr_date.toString().length == 1){
+		curr_date = '0' + curr_date;
+	}
+	if(curr_hr.toString().length == 1){
+		curr_hr = '0' + curr_hr;
+	}
+	if(curr_min.toString().length == 1){
+		curr_min = '0' + curr_min;
+	}
+	
+	return curr_month + "/" + curr_date;
 }

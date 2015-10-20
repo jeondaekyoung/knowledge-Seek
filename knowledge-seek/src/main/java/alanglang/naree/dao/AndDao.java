@@ -16,18 +16,18 @@ public interface AndDao {
 	public String searchMaxEngSeq();
 
 	/**
-	 * 오늘의 영어학습찾기
+	 * 오늘날짜로 영어학습찾기
 	 * @param eng_seq
 	 * @return
 	 */
-	public Eng findTodayEng();
+	public Eng findTodayEngByToday();
 	
 	/**
-	 * 마지막 영어학습찾기
+	 * eng시퀀스로 영어학습찾기
 	 * @param eng_seq
 	 * @return
 	 */
-	public Eng findTodayEngByEngSeq(String eng_seq);
+	public Eng findEngByEngSeq(String eng_seq);
 
 	/**
 	 * 마지막 영어학습 3일치 찾기
@@ -36,10 +36,10 @@ public interface AndDao {
 	public List<Eng> findThreeEngByEngSeq();
 	
 	/**
-	 * 최근 영어학습 3일치 찾기
+	 * 최근 영어학습 9일치 찾기
 	 * @return
 	 */
-	public List<Eng> findThreeEng();
+	public List<Eng> selectNineEng();
 
 	/**
 	 * 광고화면에 출력할 광고정보 찾기
@@ -80,5 +80,25 @@ public interface AndDao {
 	 * @return
 	 */
 	public List<SqlEntriesAd> selectAdEntryResult(Entries entries);
+
+	/**
+	 * 알람시 오늘의 영어학습찾기
+	 * @return
+	 */
+	public Eng selectTodayEng();
+
+	/**
+	 * eng_seq로 영어학습찾기
+	 * @param eng_seq
+	 * @return
+	 */
+	public Eng selectEngByEngSeq(String eng_seq);
+
+	/**
+	 * eng를 기준으로  전 9일치 예문과 뜻 읽어오기
+	 * @param eng
+	 * @return
+	 */
+	public List<Eng> selectNineEngByEng(Eng eng);
 
 }

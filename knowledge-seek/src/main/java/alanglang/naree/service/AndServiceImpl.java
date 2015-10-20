@@ -21,26 +21,15 @@ public class AndServiceImpl implements AndService {
 
 	@Override
 	public Eng findTodayEng() {
-		//오늘의 예문을 eng_seq읽어오기
-		//(오늘의 예문이 없을 수도 있고 미리 입력했을 수도 있다.
-		//String eng_seq = andDao.searchMaxEngSeq();
-		Eng eng = andDao.findTodayEng();
-		if(eng == null){
-			//오늘 날짜의 예문이 없을 경우
-			eng = andDao.findTodayEngByEngSeq(andDao.searchMaxEngSeq());
-		}
-		
-		return eng;
+		//오늘의 예문이 없을 수도 있고 미리 입력했을 수도 있다.
+		//오늘의 예문 읽어오기 - 오늘 날짜를 기준으로 최근 것을 읽어오자
+		return andDao.selectTodayEng();
 	}
 
 	@Override
-	public List<Eng> findThreeEng() {
-		Eng eng = andDao.findTodayEng();
-		if(eng == null){
-			//오늘 날짜의 예문이 없을 경우
-			return andDao.findThreeEngByEngSeq();
-		}
-		return andDao.findThreeEng();
+	public List<Eng> findNineEng() {
+		
+		return andDao.selectNineEng();
 	}
 
 	@Override
@@ -127,6 +116,18 @@ public class AndServiceImpl implements AndService {
 	public List<SqlEntriesAd> findAdEntryResult(Entries entries) {
 		
 		return andDao.selectAdEntryResult(entries);
+	}
+
+	@Override
+	public Eng findEngByEngSeq(String eng_seq) {
+		
+		return andDao.selectEngByEngSeq(eng_seq);
+	}
+
+	@Override
+	public List<Eng> findNineEngByEng(Eng eng) {
+		
+		return andDao.selectNineEngByEng(eng);
 	}
 
 }

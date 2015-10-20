@@ -31,12 +31,12 @@ public class AndDaoImpl implements AndDao {
 	}
 
 	@Override
-	public Eng findTodayEng() {
+	public Eng findTodayEngByToday() {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
 		Eng eng = null;
 		try {
 			AndMapper andMapper = sqlSession.getMapper(AndMapper.class);
-			eng = andMapper.findTodayEng();
+			eng = andMapper.findTodayEngByToday();
 		} finally {
 			sqlSession.close();
 		}
@@ -45,12 +45,12 @@ public class AndDaoImpl implements AndDao {
 	}
 	
 	@Override
-	public Eng findTodayEngByEngSeq(String eng_seq) {
+	public Eng findEngByEngSeq(String eng_seq) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
 		Eng eng = null;
 		try {
 			AndMapper andMapper = sqlSession.getMapper(AndMapper.class);
-			eng = andMapper.findTodayEngByEngSeq(eng_seq);
+			eng = andMapper.findEngByEngSeq(eng_seq);
 		} finally {
 			sqlSession.close();
 		}
@@ -72,12 +72,12 @@ public class AndDaoImpl implements AndDao {
 	}
 	
 	@Override
-	public List<Eng> findThreeEng() {
+	public List<Eng> selectNineEng() {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
 		List<Eng> engs = null;
 		try{
 			AndMapper andMapper = sqlSession.getMapper(AndMapper.class);
-			engs = andMapper.findThreeEng();
+			engs = andMapper.selectNineEng();
 		} finally {
 			sqlSession.close();
 		}
@@ -166,6 +166,47 @@ public class AndDaoImpl implements AndDao {
 			sqlSession.close();
 		}
 		return sqlEntriesAds;
+	}
+
+	@Override
+	public Eng selectTodayEng() {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		Eng eng = null;
+		try {
+			AndMapper andMapper = sqlSession.getMapper(AndMapper.class);
+			eng = andMapper.selectTodayEng();
+		} finally {
+			sqlSession.close();
+		}
+		
+		return eng;
+	}
+
+	@Override
+	public Eng selectEngByEngSeq(String eng_seq) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		Eng eng = null;
+		try {
+			AndMapper andMapper = sqlSession.getMapper(AndMapper.class);
+			eng = andMapper.selectEngByEngSeq(eng_seq);
+		} finally {
+			sqlSession.close();
+		}
+		
+		return eng;
+	}
+
+	@Override
+	public List<Eng> selectNineEngByEng(Eng eng) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		List<Eng> engs = null;
+		try{
+			AndMapper andMapper = sqlSession.getMapper(AndMapper.class);
+			engs = andMapper.selectNineEngByEng(eng);
+		} finally {
+			sqlSession.close();
+		}
+		return engs;
 	}
 
 }

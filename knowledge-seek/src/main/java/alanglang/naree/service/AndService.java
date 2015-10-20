@@ -19,7 +19,7 @@ public interface AndService {
 	 * 3일치 영어학습 찾기
 	 * @return
 	 */
-	public List<Eng> findThreeEng();
+	public List<Eng> findNineEng();
 
 	/**
 	 * 광고정보 찾기
@@ -53,5 +53,19 @@ public interface AndService {
 	 * @return
 	 */
 	public List<SqlEntriesAd> findAdEntryResult(Entries entries);
+
+	/**
+	 * eng_seq로 영어학습 찾기
+	 * @param eng_seq
+	 * @return
+	 */
+	public Eng findEngByEngSeq(String eng_seq);
+
+	/**
+	 * eng를 기준으로  전 9일치 예문과 뜻 읽어오기
+	 * @param eng
+	 * @return
+	 */
+	public List<Eng> findNineEngByEng(Eng eng);
 
 }

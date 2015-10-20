@@ -35,11 +35,34 @@ public class AndController {
 		System.out.println("============== 오늘의 예문 찾기==============");
 		Eng eng = andService.findTodayEng();
 		
-		//2.  3일치 예문과 뜻 읽어오기
-		List<Eng> engs = andService.findThreeEng();
+		//2.  9일치 예문과 뜻 읽어오기
+		List<Eng> engs = andService.findNineEng();
 		
 		//3. 소리파일 재생
+		mv.addObject("eng", eng);
+		mv.addObject("engs", engs);
 		
+		mv.setViewName("and/eng");
+		return mv;
+	}
+	
+	/**
+	 * 영어학습알람화면 - 다른 날짜 기준
+	 * @param eng_seq
+	 * @return
+	 */
+	@RequestMapping(value = "engByEngSeq.do")
+	public ModelAndView engByEngSeq(String eng_seq){
+		ModelAndView mv = new ModelAndView();
+		
+		//지난 예문과 뜻
+		System.out.println("============= "  + eng_seq + " 예문 찾기 =============");
+		Eng eng = andService.findEngByEngSeq(eng_seq);
+		
+		//2.  eng를 기준으로 전 9일치 예문과 뜻 읽어오기
+		List<Eng> engs = andService.findNineEngByEng(eng);
+		
+		//3. 소리파일 재생
 		mv.addObject("eng", eng);
 		mv.addObject("engs", engs);
 		
@@ -141,6 +164,11 @@ public class AndController {
 		return mv;
 	}
 	
+	/**
+	 * 이름,전화번호,이메일로 당첨자 확인하기
+	 * @param entries
+	 * @return
+	 */
 	@RequestMapping(value = "adEntryResult.do", method=RequestMethod.POST)
 	@ResponseBody
 	public List<SqlEntriesAd> adEntryResult(Entries entries){

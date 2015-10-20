@@ -11,13 +11,13 @@ public interface AndMapper {
 
 	public String searchMaxEngSeq();
 
-	public Eng findTodayEng();
+	public Eng findTodayEngByToday();
 	
-	public Eng findTodayEngByEngSeq(String eng_seq);
+	public Eng findEngByEngSeq(String eng_seq);
 
 	public List<Eng> findThreeEngByEngSeq();
 	
-	public List<Eng> findThreeEng();
+	public List<Eng> selectNineEng();
 
 	public Ad findAd();
 
@@ -30,5 +30,11 @@ public interface AndMapper {
 	public int selectEntries(Entries entries);
 
 	public List<SqlEntriesAd> selectAdEntryResult(Entries entries);
+
+	public Eng selectTodayEng();
+
+	public Eng selectEngByEngSeq(String eng_seq);
+
+	public List<Eng> selectNineEngByEng(Eng eng);
 
 }

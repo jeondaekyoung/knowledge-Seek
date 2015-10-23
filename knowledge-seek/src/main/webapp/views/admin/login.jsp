@@ -28,7 +28,7 @@
         <div id="wrap">
             <div id="container">
                 <div id="header">
-                    <h1>로그인</h1>
+                    <h1>알랑랑 관리자 로그인</h1>
                 </div>
                 
                 <form action="${pageContext.request.contextPath }/admin/login.do" method="POST">

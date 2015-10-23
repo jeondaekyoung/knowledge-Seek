@@ -172,6 +172,7 @@ public class Activity_alarm_eng extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
+        killMediaPlayer();
         StaticWakeLock.lockOff(this);
     }
 
@@ -190,7 +191,7 @@ public class Activity_alarm_eng extends Activity {
         }
         @Override
         public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-            Toast.makeText(activity, "Oh no", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(activity, "Oh no", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -56,6 +56,7 @@ public class Activity_alarm_star extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
+        killMediaPlayer();
         StaticWakeLock.lockOff(this);
     }
 

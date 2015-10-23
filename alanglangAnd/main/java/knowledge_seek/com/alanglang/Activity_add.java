@@ -484,7 +484,7 @@ public class Activity_add extends BaseActivity{
         }
 
         callAlarmScheduleService();
-        Toast.makeText(this, getAlarm().getTimeUntilNextAlarmMessage(), Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, getAlarm().getTimeUntilNextAlarmMessage(), Toast.LENGTH_LONG).show();
         finish();
     }
 

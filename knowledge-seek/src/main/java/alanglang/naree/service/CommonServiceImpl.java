@@ -28,7 +28,7 @@ public class CommonServiceImpl implements CommonService {
 				serverPath = "C:\\alanglang\\workspace\\knowledge-seek\\src\\main\\webapp\\fileupload\\image\\" + fileserver;
 			}
 		} else {
-			tempPath = "/usr/local/server/tomcat/webapps/ROOT/fileupload/temp/" + filename;
+			tempPath = "/usr/local/server/temp/" + filename;
 			if(gubun.equals("sound")){
 				serverPath = "/usr/local/server/tomcat/webapps/ROOT/fileupload/sound/" + fileserver;
 			} else if(gubun.equals("image")){
@@ -69,7 +69,7 @@ public class CommonServiceImpl implements CommonService {
 		}
 
 		//원본파일 삭제
-		File file2 = new File(tempPath);
+		/*File file2 = new File(tempPath);
 		if(file2.exists()){
 			//System.out.println("삭제중");
 			boolean deleteFlag = file2.delete();
@@ -80,7 +80,7 @@ public class CommonServiceImpl implements CommonService {
 			}
 		} else {
 			//System.out.println("파일이 존재하지 않습니다.");
-		}
+		}*/
 		
 	}
 

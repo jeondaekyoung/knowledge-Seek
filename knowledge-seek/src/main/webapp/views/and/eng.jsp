@@ -38,7 +38,6 @@
     <div id="wrap">
         <div class="alarm_eng">
             <div>
-                <p class="script">ㅡ</p>
                 <p class="script_mean">오늘의 펀펀 영어</p>
                 <p class="script">${eng.eng_sentence}</p>
                 <p class="script_mean">${eng.eng_mean}</p>
@@ -47,17 +46,22 @@
         
         <div class="lastAlarm">
       	 	<c:set var="engsLength" value="${fn:length(engs) }"></c:set>
-       		<div class="slide">	<!-- 9일치 영어 알람 목록 슬라이드 -->
-       			<c:forEach var="i" begin="0" end="${engsLength-1 }" varStatus="status">
-      				<c:set var="eng" value="${engs[engsLength-i-1 ]}" />
-      				<div class="slideContent">
-                   		 <ul><li><div><fmt:formatDate value="${eng.today_date }" pattern="MM/dd" /></div>
-	                   		 <div>${fn:substring(eng.eng_sentence, 0, 10) }~</div>
-	                   		 <div>${fn:substring(eng.eng_mean, 0, 8) }~</div>
-	                   	 </li></ul>
-                   </div>
-      			</c:forEach>
-      		</div>
+      	 	<c:choose>
+      	 		<c:when test="${engsLength > 0 }">
+      	 			<div class="slide">	<!-- 9일치 영어 알람 목록 슬라이드 -->
+		       			<c:forEach var="i" begin="0" end="${engsLength-1 }" varStatus="status">
+		      				<c:set var="eng" value="${engs[engsLength-i-1 ]}" />
+		      				<div class="slideContent" onclick="engByEngSeq(${eng.eng_seq})">
+		                   		 <ul><li><div><fmt:formatDate value="${eng.today_date }" pattern="MM/dd" /></div>
+			                   		 <div>${fn:substring(eng.eng_sentence, 0, 10) }~</div>
+			                   		 <div>${fn:substring(eng.eng_mean, 0, 8) }~</div>
+			                   	 </li></ul>
+		                   </div>
+		      			</c:forEach>
+		      		</div>	
+      	 		</c:when>
+      	 	</c:choose>
+       		
       	</div>
     </div>
     

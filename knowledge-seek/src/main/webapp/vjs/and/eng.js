@@ -10,23 +10,11 @@ $(document).ready(function(){
 	audioElement.play();
 	console.log(audioElement);
 	
-	/* 버튼 클릭시 페이지 이동 자바스크립트 */
-	$("#btnPrev").click(function() {
-		alert("눌러");
-        //현재 left값 구하기
-        var left = parseInt($(".imgContent").css("left"));
-        if(left >= 0) return;
-        left += 300;
-        var movePos = Math.floor(left/300.0)*300; 
-        $(".imgContent").animate({left : movePos}, 1000);
-    });
-    $("#btnNext").click(function() {
-        var left = parseInt($(".imgContent").css("left"));
-        if(left <= -1000) return;
-        left -= 300;
-        var movePos = Math.ceil(left/300.0)*300;
-        $(".imgContent").animate({left : movePos}, 1000);
-    });
 		
 });
+
+var engByEngSeq = function(data){
+	console.log(data);
+	location.replace("/and/engByEngSeq.do?eng_seq=" + data);
+}
 

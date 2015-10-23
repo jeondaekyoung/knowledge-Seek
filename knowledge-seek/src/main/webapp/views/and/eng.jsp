@@ -19,17 +19,43 @@
         .alarm_eng>div {vertical-align: middle; display: table-cell}
         .alarm_eng p.script {font-size: 36px; font-weight: bold; color: #fff; text-align: center; text-shadow: 2px 2px 5px #333;}
         .alarm_eng p.script_mean {font-size: 20px; font-weight: bold;text-align: center;}
-        .btnPlay {}
-        .lastAlarm {width: 100%; height:100px; display: table}        
-        .lastAlarm div {width: 33.3%; vertical-align: middle; text-align: center; display: table-row;}
-        .lastAlarm div:first-child p {font-size:20px}
-        .lastAlarm div:nth-child(2) p {font-size:12px}
-        .lastAlarm div:nth-child(3) p {font-size:12px}
-        .lastAlarm div p {padding: 20px 0; color: #424242; font-weight: bold; display: table-cell; background:#f7f7f7;}
+        
+        .lastAlarm {position:relative;left:0px;overflow:hidden;}
+        .lastAlarm .slide {width: 80%; height: 90px; position: relative; left: 0; overflow-x: scroll; float: left}
+        .lastAlarm .slideContent {width: 100%; position: relative; left: 0;}
+        .lastAlarm .slideContent ul{width: 300%}
+        .lastAlarm .slideContent ul li {float:left;width:11%;}
+        .lastAlarm .slideContent ul li div {background: #F3E66D; color:#444; padding: 20px 0; margin-right: 1%; text-align: center; font-size: 20px; font-weight: bold}
+        .lastAlarm .fl,
+        .lastAlarm .fr {width: 10%; margin-top: 15px; cursor:pointer}        
+        .lastAlarm .fl {float: left;}
+        .lastAlarm .fr {float: right;}
+        .productImg .fl img,
+        .productImg .fr img {width: 100%}
     </style>
     
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/vjs/and/eng.js"></script>
+	<script type="text/javascript">
+		/* 버튼 클릭시 페이지 이동 자바스크립트 */
+		$(document).ready(function(){
+	        $("#btnPrev").click(function() {
+	            //현재 left값 구하기
+	            var left = parseInt($(".imgContent").css("left"));
+	            if(left >= 0) return;
+	            left += 300;
+	            var movePos = Math.floor(left/300.0)*300; 
+	            $(".imgContent").animate({left : movePos}, 1000);
+	        });
+	        $("#btnNext").click(function() {
+	            var left = parseInt($(".imgContent").css("left"));
+	            if(left <= -1000) return;
+	            left -= 300;
+	            var movePos = Math.ceil(left/300.0)*300;
+	            $(".imgContent").animate({left : movePos}, 1000);
+	        });
+	    });
+    </script>
 </head>
 
 <body>
@@ -42,30 +68,45 @@
                 <p class="script_mean">${eng.eng_mean}</p>
             </div>
         </div>
-        <div class="btnPlay"></div>
+        
         
        	<div class="lastAlarm">
-      	<c:set var="engsLength" value="${fn:length(engs) }"></c:set>
-       		<div>
-       			<c:forEach var="i" begin="0" end="${engsLength-1 }" varStatus="status">
+	       	<div class="fl" id="btnPrev">	<!-- 이전 페이지로 -->
+	             <img src="${pageContext.request.contextPath}/resources/images/icon/arrow_left.png" alt="Prev">
+	        </div>
+	        
+	      	<c:set var="engsLength" value="${fn:length(engs) }"></c:set>
+	       		<div class="slide">	<!-- 9일치 영어 알람 목록 슬라이드 -->
+	       			<c:forEach var="i" begin="0" end="${engsLength-1 }" varStatus="status">
        				<c:set var="eng" value="${engs[engsLength-i-1 ]}" />
-       				<p><fmt:formatDate value="${eng.today_date }" pattern="MM/dd" /></p>
+       				<div class="slideContent">
+	                    <ul>
+	                        <li><div><fmt:formatDate value="${eng.today_date }" pattern="MM/dd" /></div></li>
+                        </ul>
+                    </div>
        			</c:forEach>
        		</div>
-       		<div>
+       		
+            <div class="fr" id="btnNext">	<!-- 다음 페이지로 -->
+                <img src="${pageContext.request.contextPath}/resources/images/icon/arrow_right.png" alt="Next">
+            </div>
+       		
+       		<%-- <div>
        			<c:forEach var="i" begin="0" end="${engsLength-1 }" varStatus="status">
        				<c:set var="eng" value="${engs[engsLength-i-1 ]}" />
        				<p>${fn:substring(eng.eng_sentence, 0, 10) }~</p>
-       				<%-- <p>${eng.eng_sentence }</p> --%>
+       				<p>${eng.eng_sentence }</p>
        			</c:forEach>
        		</div>
        		<div>
        			<c:forEach var="i" begin="0" end="${engsLength-1 }" varStatus="status">
        				<c:set var="eng" value="${engs[engsLength-i-1 ]}" />
        				<p>${fn:substring(eng.eng_mean, 0, 8) }~</p>
-       				<%-- <p>${eng.eng_mean }</p> --%>
+       				<p>${eng.eng_mean }</p>
        			</c:forEach>
-       		</div>
+       		</div> --%>
+       		
+       		
        	</div> 
     </div>
     

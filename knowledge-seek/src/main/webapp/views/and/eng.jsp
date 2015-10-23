@@ -13,7 +13,7 @@
 	<title>영어학습알람</title>
 	
 	<style>
-        *{padding:0; margin: 0; border-spacing: 0; border-collapse:collapse; font-size: 12px; font-family: 'malgun gothic', sans-serif; text-decoration: none}
+        *{padding:0; margin: 0; border-spacing: 0; border-collapse:collapse; font-size: 12px; font-family: 'malgun gothic', sans-serif; text-decoration: none; list-style:none}
         #wrap {width: 100%; height: 100%; display: table}
         .alarm_eng {background: url(${pageContext.request.contextPath }/resources/images/bg/bg_eng2.jpg); width:100%; height: 320px; overflow:hidden; display: table; opacity:0.7;}
         .alarm_eng>div {vertical-align: middle; display: table-cell}

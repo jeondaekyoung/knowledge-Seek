@@ -5,6 +5,7 @@
 <html lang="ko" class="app">
 <head>
 	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta name="description" content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
 	<title>관리자 | 영어등록</title>

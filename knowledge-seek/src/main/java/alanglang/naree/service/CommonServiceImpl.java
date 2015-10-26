@@ -17,10 +17,11 @@ public class CommonServiceImpl implements CommonService {
 
 	@Override
 	public void writeFile(MultipartFile multipartFile, String gubun, String filename, String fileserver) {
-		System.out.println("운영체제 이름 : " + System.getProperty("os.name") + ", " +  filename + " 저장하기");
+		System.out.println(filename + "(" + fileserver + ") 저장하기");
 		String tempPath = null;
 		String serverPath = null;
 		if(System.getProperty("os.name").contains("Windows")){
+			System.out.println("현재 운영체제 : " + System.getProperty("os.name"));
 			tempPath = "C:\\alanglang\\workspace\\knowledge-seek\\src\\main\\webapp\\fileupload\\temp\\" + filename;
 			if(gubun.equals("sound")){
 				serverPath = "C:\\alanglang\\workspace\\knowledge-seek\\src\\main\\webapp\\fileupload\\sound\\" + fileserver;
@@ -28,13 +29,16 @@ public class CommonServiceImpl implements CommonService {
 				serverPath = "C:\\alanglang\\workspace\\knowledge-seek\\src\\main\\webapp\\fileupload\\image\\" + fileserver;
 			}
 		} else {
-			tempPath = "/usr/local/server/temp/" + filename;
+			System.out.println("현재 운영체제 : " + System.getProperty("os.name"));
+			
+			tempPath = "/usr/local/server/tomcat/webapps/ROOT/fileupload/temp/" + filename;
 			if(gubun.equals("sound")){
 				serverPath = "/usr/local/server/tomcat/webapps/ROOT/fileupload/sound/" + fileserver;
 			} else if(gubun.equals("image")){
 				serverPath = "/usr/local/server/tomcat/webapps/ROOT/fileupload/image/" + fileserver;
 			}
 		}
+		System.out.println("파일경로 : " + serverPath);
 		//String tempPath = "C:\\alanglang\\workspace\\knowledge-seek\\src\\main\\webapp\\fileupload\\temp\\" + filename;
 		//String tempPath = "/usr/local/server/tomcat/webapps/ROOT/fileupload/temp/" + filename;
 		//String serverPath = null;
@@ -69,7 +73,7 @@ public class CommonServiceImpl implements CommonService {
 		}
 
 		//원본파일 삭제
-		/*File file2 = new File(tempPath);
+		File file2 = new File(tempPath);
 		if(file2.exists()){
 			//System.out.println("삭제중");
 			boolean deleteFlag = file2.delete();
@@ -80,7 +84,7 @@ public class CommonServiceImpl implements CommonService {
 			}
 		} else {
 			//System.out.println("파일이 존재하지 않습니다.");
-		}*/
+		}
 		
 	}
 

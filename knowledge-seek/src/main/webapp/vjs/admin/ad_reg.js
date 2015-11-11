@@ -8,7 +8,7 @@ $(document).ready(function(){
 	
 	//console.log("열렸다");
 	$("#adRegister").click(function(){
-		console.log("저장클릭");
+		//console.log("저장클릭");
 		if(checkValue() == true){
 			console.log("폼태그 전송");
 			$("#adForm").submit();
@@ -99,23 +99,27 @@ var checkValue = function(){
 		}
 	}
 	if($("input[name=ad_gubun]:checked").val() == "I"){
-		if($("#youtube_addr").val() == ""	){
-			alert("유튜브 url를 입력해주세요");
-			$("#youtube_addr").focus();
+		if($("#youtube_addr").val().length <= 0 && 
+				$("#ad_sound_file").val().length <= 0 && $("#ad_image_file").val().length <= 0){
+			alert("광고 컨턴츠(유튜브url 또는 소리 및 이미지파일)를 등록해주세요");
 			return false;
 		}
-		if($("#ad_sound_file").val() == ""){
-			alert("소리파일을 선택해주세요");
-			$("#ad_sound_file").focus();
+		if($("#youtube_addr").val().length <= 0){
+			if($("#ad_sound_file").val().length <= 0 || $("#ad_image_file").val().length <= 0){
+				alert("소리 및 이미지파일을 확인해주세요");
+				return false;
+			}
+		} 
+		/*if($("#youtube_addr").val().length <= 0 && 
+				$("#ad_sound_file").val().length <= 0 && $("#ad_image_file").val().length <= 0){
+			alert("광고 컨턴츠(유튜브url 또는 소리 및 이미지파일)를 등록해주세요");
 			return false;
-		}
-		if($("#ad_image_file").val() == ""){
-			alert("이미지파일을 선택해주세요");
-			$("#ad_image_file").focus();
+		} 
+		if($("#ad_sound_file").val().length <= 0 || $("#ad_image_file").val().length <= 0){
+			alert("소리 및 이미지파일을 확인해주세요");
 			return false;
-		}
+		}*/
 	}
-	
 	
 	return true;
 }

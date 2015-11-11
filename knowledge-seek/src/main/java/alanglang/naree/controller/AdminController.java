@@ -109,11 +109,15 @@ public class AdminController {
 		}
 
 		//빈문자열 체크
-		if(ad.getAd_url().length() == 0){
-			ad.setAd_url(null);
+		if(ad.getAd_url() != null){
+			if(ad.getAd_url().length() == 0){
+				ad.setAd_url(null);
+			}
 		}
-		if(ad.getYoutube_addr().length() == 0){
-			ad.setYoutube_addr(null);
+		if(ad.getYoutube_addr() != null){
+			if(ad.getYoutube_addr().length() == 0){
+				ad.setYoutube_addr(null);
+			}	
 		}
 		
 		//4. 테이블 저장

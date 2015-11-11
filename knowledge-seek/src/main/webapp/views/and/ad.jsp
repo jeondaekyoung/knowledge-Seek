@@ -39,7 +39,7 @@
 		
 		<div class="tbl uTube">
 		    <div class="tbl-cell">
-		        <iframe width="100%" height="100%" src="${ad.youtube_addr }" frameborder="0" allowfullscreen></iframe>
+		        <iframe width="100%" height="100%" src="${ad.youtube_addr }?autoplay=1" frameborder="0" allowfullscreen ></iframe>
 		    </div>
 		</div>
 	</div>

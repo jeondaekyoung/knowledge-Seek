@@ -30,6 +30,32 @@ $(document).ready(function(){
 		}
 	});
 	
+	//유튜브와 이미지파일 중 하나만 등록하도록 입력이 되었는지 확인한다.
+	$("#youtube_addr").change(function(){
+		if($(this).val().length > 0){
+			$("#ad_sound_file").attr("disabled", true);
+			$("#ad_image_file").attr("disabled", true);
+		} else {
+			$("#ad_sound_file").attr("disabled", false);
+			$("#ad_image_file").attr("disabled", false);
+		}
+	});
+	$("#ad_sound_file").change(function(){
+		if($(this).val().length > 0 || $("#ad_image_file").val().length > 0){
+			$("#youtube_addr").attr("disabled", true);
+		} else {
+			$("#youtube_addr").attr("disabled", false);
+		}
+	});
+	$("#ad_image_file").change(function(){
+		if($(this).val().length > 0 || $("#ad_sound_file").val().length > 0){
+			$("#youtube_addr").attr("disabled", true);
+		} else {
+			$("#youtube_addr").attr("disabled", false);
+		}
+	});
+	
+	
 });
 
 //필수항목 저장 전 체크

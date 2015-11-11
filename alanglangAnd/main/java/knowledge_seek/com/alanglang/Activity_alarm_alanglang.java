@@ -1,6 +1,8 @@
 package knowledge_seek.com.alanglang;
 
 import android.app.Activity;
+import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +17,7 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
@@ -44,7 +47,7 @@ public class Activity_alarm_alanglang extends Activity {
     private Alarm alarm;
     private WebView webView;
     final Activity activity = this;
-    private static final String httpAddr = "http://182.162.143.24";
+    private static final String httpAddr = "http://www.knowledge-seek.com";
     private String ad_seq;          //광고 시퀀스
     //private static final String AD_DO = "http://182.162.143.24/and/ad.do";
 
@@ -64,6 +67,7 @@ public class Activity_alarm_alanglang extends Activity {
     private String audio_url ;                     //미디어파일위치
     private MediaPlayer mediaPlayer;        //MediaPlayer
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,10 +83,13 @@ public class Activity_alarm_alanglang extends Activity {
                 | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
         setContentView(R.layout.activity_alarm_alanglang);
 
-        //넘어온 데이터받기
-        //Bundle bundle = this.getIntent().getExtras();
-        //alarm = (Alarm)bundle.getSerializable("alarm");
+        //액티비티실행시 넘어온 Alarm객체가 있는지 확인하여 받아들인다.(볼륨땜시)
+        Bundle bundle = this.getIntent().getExtras();
+        if(bundle != null) {
+            alarm = (Alarm)bundle.getSerializable("alarm");
+        }
 
+        //서버와 통신하여 서버에 있는 소리파일을 찾는다.
         String st = httpAddr + "/and/adSound.do";
         try {
             mThread async = new mThread(st);
@@ -160,10 +167,7 @@ public class Activity_alarm_alanglang extends Activity {
         public void handleMessage(Message msg) {
             switch(msg.what) {
                 case MESSAGE_OK:
-                    //Toast.makeText(getApplicationContext(), "끝", Toast.LENGTH_SHORT).show();
-                    //MediaPlayer
-                    //audio_url = "http://www.geniusjinu.com/fileupload/sound/201510AS0001.mp3";
-                    Log.d("-진우- 소리파일 전달잘되? ", audio_url);
+                    Log.d("-진우- 소리파일  ", audio_url);
                     try{
                         playAudio(audio_url);
 
@@ -229,7 +233,7 @@ public class Activity_alarm_alanglang extends Activity {
                 String entry_or = json.getString("entry_or");
                 ad_seq = json.getString("ad_seq");
 
-                //Log.d("-진우- ad_sound_server " , json.getString("ad_sound_server"));
+                Log.d("-진우- ad_sound_server " , json.getString("ad_sound_server"));
                 //Log.d("-진우- ad_seq", json.getString("ad_seq"));
 
                 if(entry_or.equals("N")){
@@ -274,9 +278,13 @@ public class Activity_alarm_alanglang extends Activity {
         @Override
         public void run() {
             Log.d("-진우- 응모하기", "run() 실행");
+
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httppost = new HttpPost(uri);
             try{
-                HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost(uri);
+                //자원반납으로 인하여 위로 옮긴다?
+                //HttpClient httpclient = new DefaultHttpClient();
+                //HttpPost httppost = new HttpPost(uri);
 
                 HttpParams params = httpclient.getParams();
                 HttpConnectionParams.setConnectionTimeout(params, 10000);
@@ -302,6 +310,11 @@ public class Activity_alarm_alanglang extends Activity {
             }catch(Exception e){
                 Log.d("log_tag", "Error in http connection " + e.toString());
             }
+            //자원 반환이 이루어지지않은건가?
+            finally {
+                httpclient.getConnectionManager().shutdown();
+            }
+
 
             Log.d("-진우- 응모결과 ", "-" + result + "-");
             if(result.contains("success")){
@@ -342,7 +355,7 @@ public class Activity_alarm_alanglang extends Activity {
         }
         @Override
         public void onReceivedError(WebView view, int errorCode, String description, String failingUrl){
-            Log.d("Error ", "Oh no");
+            //Log.d("Error ", "Oh no");
         }
     }
 
@@ -350,7 +363,17 @@ public class Activity_alarm_alanglang extends Activity {
         killMediaPlayer();
 
         mediaPlayer = new MediaPlayer();
+        //mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mediaPlayer.setDataSource(url);
+        AudioManager am = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+        if(alarm == null){
+            Log.d("-진우- 알람 ", "널이다");
+            //am.setStreamVolume(AudioManager.STREAM_MUSIC, 8, 0);
+        } else {
+            Log.d("-진우- 알람 ", alarm.toString());
+            am.setStreamVolume(AudioManager.STREAM_MUSIC, alarm.getVolume(), 0);
+        }
+
         mediaPlayer.prepare();
         mediaPlayer.start();
     }

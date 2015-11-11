@@ -7,36 +7,6 @@
     android:orientation="vertical"
     android:weightSum="10">
 
-    <!--<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:orientation="horizontal"
-        android:paddingTop="10dp">
-
-        <TextClock
-            android:id="@+id/textClock"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:textColor="#fff"
-            android:textSize="24pt"
-            tools:targetApi="jelly_bean_mr1" />
-        <Button
-            android:id="@+id/btn_media"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:background="@color/yellow"
-            android:text="소리 끄기"
-            />
-
-    </LinearLayout>-->
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

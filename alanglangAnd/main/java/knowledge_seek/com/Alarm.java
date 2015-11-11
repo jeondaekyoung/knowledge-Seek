@@ -131,6 +131,7 @@ public class Alarm implements Serializable {
     private Type type = Type.ALANGLANG;
     private Star star = Star.KYC;
     private Repeat repeat = Repeat.MIN_0;
+    private int volume = 7;            //볼륨
 
 
     public Alarm(){
@@ -356,6 +357,17 @@ public class Alarm implements Serializable {
         this.active = active;
     }
 
+    public void setVolume(int volume) {
+        this.volume = volume;
+    }
+
+    public int  getVolume() {
+        return volume;
+    }
+
+
+
+
     //요일을 문자열로 반환 (화면에 출력)
     public String getRepeatDaysString(){
         StringBuilder daysStringBuilder = new StringBuilder();
@@ -412,37 +424,7 @@ public class Alarm implements Serializable {
         //AlarmManager.RTC_WAKEUP : UTC표준 시간을 기준으로 알람 시간을 설정하며 안드로이드가 절전 모드(슬립 모드)로
         //          되어 있을 때, 알람 시점에 PowerManager를 이용하여 안드로이드를 깨운다.
 
-        //다시알람에 따라서 알람등록하기
         alarmManager.set(AlarmManager.RTC_WAKEUP, getAlarmTime().getTimeInMillis(), pendingIntent);
-        /*if(this.getRepeat() == Alarm.Repeat.MIN_0){
-            Log.d("-진우- 다시알림", "해제");
-            pendingIntent = PendingIntent.getBroadcast(context, this.getId(), myIntent, PendingIntent.FLAG_CANCEL_CURRENT);
-            alarmManager.set(AlarmManager.RTC_WAKEUP, getAlarmTime().getTimeInMillis(), pendingIntent);
-        } else if(this.getRepeat() == Alarm.Repeat.MIN_5){
-            Log.d("-진우- 다시알림", "2분");
-            pendingIntent = PendingIntent.getBroadcast(context, this.getId(), myIntent, PendingIntent.FLAG_CANCEL_CURRENT);
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, getAlarmTime().getTimeInMillis(), 2*60*1000, pendingIntent);
-        } else if(this.getRepeat() == Alarm.Repeat.MIN_10){
-            Log.d("-진우- 다시알림", "10분");
-            pendingIntent = PendingIntent.getBroadcast(context, this.getId(), myIntent, PendingIntent.FLAG_CANCEL_CURRENT);
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, getAlarmTime().getTimeInMillis(), 10*60*1000, pendingIntent);
-        } else if(this.getRepeat() == Alarm.Repeat.MIN_15){
-            Log.d("-진우- 다시알림", "15분");
-            pendingIntent = PendingIntent.getBroadcast(context, this.getId(), myIntent, PendingIntent.FLAG_CANCEL_CURRENT);
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, getAlarmTime().getTimeInMillis(), 15*60*1000, pendingIntent);
-        } else if(this.getRepeat() == Alarm.Repeat.MIN_20){
-            Log.d("-진우- 다시알림", "20분");
-            pendingIntent = PendingIntent.getBroadcast(context, this.getId(), myIntent, PendingIntent.FLAG_CANCEL_CURRENT);
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, getAlarmTime().getTimeInMillis(), 20*60*1000, pendingIntent);
-        } else if(this.getRepeat() == Alarm.Repeat.MIN_30){
-            Log.d("-진우- 다시알림", "30분");
-            pendingIntent = PendingIntent.getBroadcast(context, this.getId(), myIntent, PendingIntent.FLAG_CANCEL_CURRENT);
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, getAlarmTime().getTimeInMillis(), 30*60*1000, pendingIntent);
-        } else if(this.getRepeat() == Alarm.Repeat.MIN_60){
-            Log.d("-진우- 다시알림", "1시간");
-            pendingIntent = PendingIntent.getBroadcast(context, this.getId(), myIntent, PendingIntent.FLAG_CANCEL_CURRENT);
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, getAlarmTime().getTimeInMillis(), 60*60*1000, pendingIntent);
-        }*/
 
 
     }
@@ -481,7 +463,7 @@ public class Alarm implements Serializable {
                 ", days=" + getRepeatDaysString() +
                 ", type=" + type +
                 ", star=" + star +
-                ", repeat=" + repeat +
+                ", volume=" + volume +
                 '}';
     }
 }

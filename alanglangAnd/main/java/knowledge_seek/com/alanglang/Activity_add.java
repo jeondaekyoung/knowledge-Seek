@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -39,6 +40,9 @@ public class Activity_add extends BaseActivity{
     boolean day5_image = false;
     boolean day6_image = false;
     boolean day7_image = false;
+
+    //볼륨
+    private SeekBar volume;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,13 +86,13 @@ public class Activity_add extends BaseActivity{
             }
         });*/
 
-        //알람타입 설정설정
+        //알람타입 셋팅
         popType = (LinearLayout)findViewById(R.id.popType);
         Log.d("-진우- 알람타입 : ", String.valueOf(alarm.getType()));
         TextView alarm_type = (TextView)findViewById(R.id.alarm_type);
         alarm_type.setText(String.valueOf(alarm.getType()).concat(" 알람"));
 
-        //스타알람 View설정
+        //스타알람 View셋팅
         popType2 = (LinearLayout)findViewById(R.id.popType2);
         if(alarm.getType() == Alarm.Type.STAR){
             popType2.setVisibility(View.VISIBLE);
@@ -167,9 +171,7 @@ public class Activity_add extends BaseActivity{
             }
         });
 
-        /*
-        * 알람반복
-        * */
+        //알람반복 셋팅
         day1 = (ImageView) findViewById(R.id.day_mon);
         day2 = (ImageView) findViewById(R.id.day_tue);
         day3 = (ImageView) findViewById(R.id.day_wed);
@@ -326,6 +328,30 @@ public class Activity_add extends BaseActivity{
                     day7_image = true;
                     alarm.addDay(thisDay);
                 }
+            }
+        });
+
+        //볼륨 셋팅
+        volume = (SeekBar)findViewById(R.id.volume);
+        volume.setProgress(alarm.getVolume());
+
+        //볼륨 설정
+        volume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                Log.d("-진우- 볼륨크기 ", String.valueOf(i));
+                alarm.setVolume(i);
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
             }
         });
 

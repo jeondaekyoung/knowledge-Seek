@@ -1,8 +1,11 @@
 package knowledge_seek.com.alanglang;
 
 import android.app.Activity;
+import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -31,6 +34,12 @@ public class Activity_alarm_star extends Activity {
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
                 | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
         setContentView(R.layout.activity_alarm_star);
+
+        //액티비티실행시 넘어온 Alarm객체가 있는지 확인하여 받아들인다.(볼륨땜시)
+        Bundle bundle = this.getIntent().getExtras();
+        if(bundle != null) {
+            alarm = (Alarm)bundle.getSerializable("alarm");
+        }
 
         Button btnFinish=(Button)findViewById(R.id.btn_finish);
         btnFinish.setOnClickListener(new Button.OnClickListener() {
@@ -71,6 +80,16 @@ public class Activity_alarm_star extends Activity {
 
         mediaPlayer = new MediaPlayer();
         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.kyc_sp1);
+
+        AudioManager am = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+        if(alarm == null){
+            Log.d("-진우- 알람 ", "널이다");
+            //am.setStreamVolume(AudioManager.STREAM_MUSIC, 8, 0);
+        } else {
+            Log.d("-진우- 알람 ", alarm.toString());
+            am.setStreamVolume(AudioManager.STREAM_MUSIC, alarm.getVolume(), 0);
+        }
+
         mediaPlayer.start();
     }
 

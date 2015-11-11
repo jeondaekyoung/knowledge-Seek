@@ -1,6 +1,8 @@
 package knowledge_seek.com.alanglang;
 
 import android.app.Activity;
+import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -42,7 +44,8 @@ public class Activity_alarm_eng extends Activity {
     private Alarm alarm;
     private WebView webView;
     final Activity activity = this;
-    private static final String ENG_DO = "http://182.162.143.24/and/eng.do";
+    private static final String httpAddr = "http://www.knowledge-seek.com";
+    //private static final String ENG_DO = "http://182.162.143.24/and/eng.do";
 
     private static final int MESSAGE_OK = 1;
 
@@ -63,7 +66,14 @@ public class Activity_alarm_eng extends Activity {
                 | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
         setContentView(R.layout.activity_alarm_eng);
 
-        String st = "http://182.162.143.24/and/engSound.do";
+        //액티비티실행시 넘어온 Alarm객체가 있는지 확인하여 받아들인다.(볼륨땜시)
+        Bundle bundle = this.getIntent().getExtras();
+        if(bundle != null) {
+            alarm = (Alarm)bundle.getSerializable("alarm");
+        }
+
+        //서버와 통신하여 서버에 있는 소리파일을 찾는다.
+        String st = httpAddr + "/and/engSound.do";
         try {
             mThread async = new mThread(st);
             async.start();
@@ -73,7 +83,7 @@ public class Activity_alarm_eng extends Activity {
 
         webView = (WebView)findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl(ENG_DO);
+        webView.loadUrl(httpAddr + "/and/eng.do");
         webView.setWebViewClient(new EngWebViewClient());
         webView.setWebChromeClient(new WebChromeClient(){
             @Override
@@ -99,7 +109,7 @@ public class Activity_alarm_eng extends Activity {
         public void handleMessage(Message msg){
             switch(msg.what){
                 case MESSAGE_OK:
-                    Log.d("-진우- 소리파일 전달잘되?", audio_url);
+                    Log.d("-진우- 소리파일 ", audio_url);
                     try{
                         playAudio(audio_url);
                     }catch (Exception e){
@@ -122,9 +132,12 @@ public class Activity_alarm_eng extends Activity {
         @Override
         public void run() {
             Log.d("-진우- ", "run() 실행");
+
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httppost = new HttpPost(uri);
             try{
-                HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost(uri);
+                //HttpClient httpclient = new DefaultHttpClient();
+                //HttpPost httppost = new HttpPost(uri);
 
                 HttpParams params = httpclient.getParams();
                 HttpConnectionParams.setConnectionTimeout(params, 10000);
@@ -150,12 +163,16 @@ public class Activity_alarm_eng extends Activity {
             }catch(Exception e){
                 Log.d("log_tag", "Error in http connection " + e.toString());
             }
+            //자원 반환이 이루어지지않은건가?
+            finally {
+                httpclient.getConnectionManager().shutdown();
+            }
 
             Log.d("-진우- 광고정보 ", result);
             try{
                 JSONObject json = new JSONObject(result);
                 Log.d("-진우- eng_sound_server ", json.getString("eng_sound_server"));
-                audio_url = "http://182.162.143.24/fileupload/sound/" + json.getString("eng_sound_server");
+                audio_url = httpAddr + "/fileupload/sound/" + json.getString("eng_sound_server");
             }catch(JSONException e){
                 Log.d("-진우- JSON", "Error parsing data " + e.toString());
             }
@@ -199,7 +216,18 @@ public class Activity_alarm_eng extends Activity {
         killMediaPlayer();
 
         mediaPlayer = new MediaPlayer();
+        //mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mediaPlayer.setDataSource(url);
+        //mediaPlayer.setVolume(100f, 100f);
+        AudioManager am = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+        if(alarm == null){
+            Log.d("-진우- 알람 ", "널이다");
+            //am.setStreamVolume(AudioManager.STREAM_MUSIC, 8, 0);
+        } else {
+            Log.d("-진우- 알람 ", alarm.toString());
+            am.setStreamVolume(AudioManager.STREAM_MUSIC, alarm.getVolume(), 0);
+        }
+
         mediaPlayer.prepare();
         mediaPlayer.start();
     }

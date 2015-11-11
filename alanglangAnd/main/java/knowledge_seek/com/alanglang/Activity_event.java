@@ -18,7 +18,8 @@ public class Activity_event extends Activity {
     private Alarm alarm;
     private WebView webView;
     final Activity activity = this;
-    private static final String AD_ENTRY = "http://182.162.143.24/and/adEntry.do";
+    private static final String AD_ENTRY = "http://www.knowledge-seek.com/and/adEntry.do";
+    //private static final String AD_ENTRY = "http://182.162.143.24/and/adEntry.do";
 
     private static final int MESSAGE_OK = 1;
 

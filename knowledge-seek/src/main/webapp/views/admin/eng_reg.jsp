@@ -135,7 +135,8 @@
 		                        <th>날짜</th>
 		                        <td><input type="text" id="today_date" name="today_date" class="input-sm input-s datepicker-input form-control" size="16" data-date-format="yyyy-mm-dd" ></td>
 		                        <th>소리파일</th>
-	                        	<td><input type="file" id="eng_sound_file" name="eng_sound_file"></td>
+	                        	<td><input type="file" id="eng_sound_file" name="eng_sound_file">
+	                        	mp3파일만 업로드해주세요. 파일크기는 20MB이하만 가능합니다.</td>
 	                        </tr>
 	                        <tr>
 		                        <th>예문</th>

@@ -71,25 +71,25 @@
                 <nav class="nav-primary hidden-xs">
                   <ul class="nav">
                     <li >
-                      <a href="${pageContext.request.contextPath}/views/admin/ad_reg.jsp"  >
+                      <a href="${pageContext.request.contextPath }/views/admin/ad_reg.jsp"  >
                         <i class="fa fa-clock-o icon">
-                          <b class="bg-primary"></b>
+                          <b class="bg-success"></b>
                         </i>
                         <span>광고등록</span>
                       </a>
                       
                     <li >
-                      <a href="${pageContext.request.contextPath}/views/admin/eng_reg.jsp"  >
+                      <a href="${pageContext.request.contextPath }/views/admin/eng_reg.jsp"  >
                         <i class="fa fa-clock-o icon">
-                          <b class="bg-warning dker"></b>
+                          <b class="bg-primary dker"></b>
                         </i>
                         <span>영어등록</span>
                       </a>
                     </li>
                     <li >
-                      <a href="${pageContext.request.contextPath}/views/admin/ad_list.jsp"  >
+                      <a href="${pageContext.request.contextPath }/views/admin/ad_list.jsp"  >
                         <i class="fa fa-clock-o icon">
-                          <b class="bg-danger"></b>
+                          <b class="bg-warning"></b>
                         </i>
                         <span>광고목록</span>
                       </a>

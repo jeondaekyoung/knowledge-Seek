@@ -22,7 +22,9 @@
         .admin {width:100%}
         .admin th {background-color:#eee; height:51px;}
         .admin th, .admin td{text-align:center; border:1px solid #ccc; padding:5px; overflow:hidden}
+        .admin td {text-align:left;}
         .admin input[type="text"] {width:100%}
+        #gubunI span {color:red}
         @media (max-width: 520px) {
         	.radio label {display:block;}
         	.radio .radio2 {margin:25px!important}
@@ -189,8 +191,8 @@
 	                        <td></td>
 	                        </tr><tr id="gubunI">
 	                        <th>유튜브 url</th>
-	                        <td><input type="text" id="youtub_addr" name="youtube_addr" class="input-sm input-s  form-control">
-	                        		v의 값만 입력합니다. 유튜브주소가 https://www.youtube.com/watch?v=4OrCA1OInoo 일경우 예) 4OrCA1OInoo 
+	                        <td><input type="text" id="youtube_addr" name="youtube_addr" class="input-sm input-s  form-control">
+	                        		예) 유튜브 주소가 https://www.youtube.com/watch?v=4OrCA1OInoo일 때, <span>4OrCA1OInoo</span>
 	                        		</td>
 	                        <th>이미지파일</th>
 	                        <td><input type="file" id="ad_image_file" name="ad_image_file">

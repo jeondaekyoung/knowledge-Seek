@@ -175,22 +175,26 @@
 	                        <td><input type="text" id="company_addr1" name="company_addr1" class="input-sm input-s  form-control"></td>
 	                        <th>광고명</th>
 	                        <td><input type="text" id="ad_name" name="ad_name" class="input-sm input-s  form-control"></td>
+	                        </tr><tr>
+	                        <th>소리파일</th>
+	                        <td><input type="file" id="ad_sound_file" name="ad_sound_file">
+	                        		mp3파일만 업로드해주세요. 파일크기는 20MB이하만 가능합니다.</td>
+	                        <th></th>
+	                        <td></td>
 	                        </tr><tr id="gubunO">
 	                        <th >광고 url</th>
-	                        <td><input type="text" id="ad_url" name="ad_url" class="input-sm input-s  form-control"></td>
+	                        <td><input type="text" id="ad_url" name="ad_url" class="input-sm input-s  form-control">
+	                        		도메인주소만 입력합니다. 예) www.knowledge-seek.com</td>
 	                        <th></th>
 	                        <td></td>
-	                        </tr><tr id="gubunI1">
+	                        </tr><tr id="gubunI">
 	                        <th>유튜브 url</th>
-	                        <td><input type="text" id="youtube_addr" name="youtube_addr" class="input-sm input-s  form-control"></td>
-	                        <th></th>
-	                        <td></td>
-	                        </tr><tr id="gubunI2">
-	                        <th>소리파일</th>
-	                        <td><input type="file" id="ad_sound_file" name="ad_sound_file"></td>
+	                        <td><input type="text" id="youtub_addr" name="youtube_addr" class="input-sm input-s  form-control">
+	                        		v의 값만 입력합니다. 유튜브주소가 https://www.youtube.com/watch?v=4OrCA1OInoo 일경우 예) 4OrCA1OInoo 
+	                        		</td>
 	                        <th>이미지파일</th>
-	                        <td><input type="file" id="ad_image_file" name="ad_image_file"></td>
-	                        
+	                        <td><input type="file" id="ad_image_file" name="ad_image_file">
+	                        		png파일만 업로드해주세요. 파일크기는 20MB이하만 가능합니다.</td>
 	                        </tr></tbody>
 	                </table>                
                 	<input type="button" id="adRegister" class="btn btn-primary" value="등록" style="margin-top:20px">

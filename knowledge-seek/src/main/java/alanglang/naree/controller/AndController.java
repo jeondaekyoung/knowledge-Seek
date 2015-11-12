@@ -126,6 +126,7 @@ public class AndController {
 	
 	/**
 	 * 알람 광고시 소리파일을 안드로이드에 알려주기 위한 JSON
+	 * (사용안함)
 	 * @return
 	 */
 	@RequestMapping(value = "adSound.do")
@@ -137,6 +138,29 @@ public class AndController {
 		
 		return ad;
 	}
+	/**
+	 * 알람 광고시 광고정보를 안드로이드에 알려주기 위한 JSON
+	 * (위의 adSound()를 adInfo()로 바뀜)
+	 * @return
+	 */
+	@RequestMapping(value = "adInfo.do")
+	@ResponseBody
+	public Ad adInfo(){
+		System.out.println("알람 광고시 광고정보를 안드로이드에 알려주기 위한 JSON");
+		
+		//출력해야될 광고들 중에서 가장 출력횟수가 작은 광고를 리턴한다.
+		Ad ad = andService.findAd();
+		System.out.println("광고알람 : " + ad.toString());
+		
+		//출력횟수를 카운트한다.
+		int result = andService.countCallNum(ad);
+		if(result == 1){
+			System.out.println("출력횟수 카운트성공");
+		}
+				
+		return ad;
+	}
+	
 	
 	/**
 	 * 알람 영어학습시 소리파일을 안드로이드에 알려주기 위한 JSON

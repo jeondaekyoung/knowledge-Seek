@@ -70,16 +70,45 @@ public class AdminController {
 	@RequestMapping(value = "adRegister.do", method=RequestMethod.POST)
 	public ModelAndView adRegister(Ad ad){
 		System.out.println("광고 등록 하기");
-		System.out.println(ad.toString());
+		//System.out.println(ad.toString());
 		ModelAndView mv = new ModelAndView();
 		
 		//1. 광고시퀀스 생성
 		String ad_seq = adminService.nextAdSeq();
-		System.out.println(ad_seq);
 		ad.setAd_seq(ad_seq);
+		//빈문자열 체크
+		if(ad.getAd_url() != null){
+			if(ad.getAd_url().length() == 0){
+				ad.setAd_url(null);
+			}
+		}
+		if(ad.getYoutube_addr() != null){
+			if(ad.getYoutube_addr().length() == 0){
+				ad.setYoutube_addr(null);
+			}	
+		}
+		System.out.println(ad.toString());
 		
-		if(ad.getAd_gubun().equals("I")){
-			//2. 광고소리파일 저장
+		
+		if(ad.getAd_gubun().equals("O")){
+			//외부광고시
+			//1. 광고소리파일 저장
+			MultipartFile adSoundFile = ad.getAd_sound_file();
+			if(adSoundFile != null){
+				String fileName = adSoundFile.getOriginalFilename();
+				//업로드 파일이름
+				ad.setAd_sound_name(fileName);
+				String fileNameExt = fileName.substring(fileName.indexOf("."), fileName.length());
+				//서버에 저장된 파일이름
+				ad.setAd_sound_server(new StringBuilder(ad_seq).insert(6, "AS").append(fileNameExt).toString());
+				
+				//서버에 저장
+				commonService.writeFile(adSoundFile, "sound", ad.getAd_sound_name(), ad.getAd_sound_server());
+			}
+		}
+		if(ad.getAd_gubun().equals("I") && ad.getYoutube_addr() == null){
+			//내부광고이며 이미지,소리 광고 일때(내부광고이며 유튜브광고가 아닐때)
+			//1. 광고소리파일 저장
 			MultipartFile adSoundFile = ad.getAd_sound_file();
 			if(adSoundFile != null){
 				String fileName = adSoundFile.getOriginalFilename();
@@ -93,7 +122,7 @@ public class AdminController {
 				commonService.writeFile(adSoundFile, "sound", ad.getAd_sound_name(), ad.getAd_sound_server());
 			}
 			
-			//3. 광고이미지파일 저장
+			//2. 광고이미지파일 저장
 			MultipartFile adImageFile = ad.getAd_image_file();
 			if(adImageFile != null){
 				String fileName = adImageFile.getOriginalFilename();
@@ -108,20 +137,9 @@ public class AdminController {
 			}
 		}
 
-		//빈문자열 체크
-		if(ad.getAd_url() != null){
-			if(ad.getAd_url().length() == 0){
-				ad.setAd_url(null);
-			}
-		}
-		if(ad.getYoutube_addr() != null){
-			if(ad.getYoutube_addr().length() == 0){
-				ad.setYoutube_addr(null);
-			}	
-		}
 		
-		//4. 테이블 저장
-		System.out.println(ad.toString());
+		
+		//테이블 저장
 		int result = adminService.adRegister(ad);
 		if(result == 1){
 			System.out.println("광고등록에 성공하였습니다.");

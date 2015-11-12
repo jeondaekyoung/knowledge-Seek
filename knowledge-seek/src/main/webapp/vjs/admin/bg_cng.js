@@ -13,6 +13,7 @@ $(document).ready(function(){
 
 var checkValue = function(){
 	
+	//확장자 체크
 	if( $("#bg_main_file").val() != "" ){
 		var ext = $('#bg_main_file').val().split('.').pop().toLowerCase();
 		      if($.inArray(ext, ['png']) == -1) {

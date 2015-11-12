@@ -9,7 +9,10 @@ $(document).ready(function(){
 	audioElement.setAttribute("loop", true);
 	audioElement.play();
 	console.log(audioElement);
-	
+
+	//스크롤바 우측으로 고정
+	$( "div.slide" ).scrollLeft( 30000 );
+
 		
 });
 

@@ -100,6 +100,13 @@
                         </i>
                         <span>광고목록</span>
                       </a>
+                    </li><li >
+                      <a href="${pageContext.request.contextPath }/views/admin/bg_cng.jsp"  >
+                        <i class="fa fa-clock-o icon">
+                          <b class="bg-danger"></b>
+                        </i>
+                        <span>배경화면</span>
+                      </a>
                     </li>
                   </ul>
                 </nav>

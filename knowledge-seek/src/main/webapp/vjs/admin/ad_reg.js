@@ -98,6 +98,13 @@ var checkValue = function(){
 			$("#ad_sound_file").focus();
 			return false;
 		}
+		if( $("#ad_sound_file").val() != "" ){
+			var ext = $('#ad_sound_file').val().split('.').pop().toLowerCase();
+			      if($.inArray(ext, ['mp3']) == -1) {
+				 alert('mp3 파일만 업로드 할수 있습니다.');
+				 return;
+			      }
+			}
 	}
 	
 	if($("input[name=ad_gubun]:checked").val() == "I"){
@@ -113,11 +120,17 @@ var checkValue = function(){
 			}
 		} 
 
+		if( $("#ad_image_file").val() != "" ){
+			var ext = $('#ad_image_file').val().split('.').pop().toLowerCase();
+			      if($.inArray(ext, ['png']) == -1) {
+				 alert('png 파일만 업로드 할수 있습니다.');
+				 return;
+			      }
+			}
 	}
 	
 	return true;
 }
-
 
 
 

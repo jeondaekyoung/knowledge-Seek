@@ -1,7 +1,6 @@
 $(document).ready(function(){
-	//console.log("열렸다.");
 	
-	$("#engRegister").click(function(){
+	$("#bgRegister").click(function(){
 		console.log("저장클릭");
 		if(checkValue() == true){
 			//폼태크전송
@@ -11,3 +10,29 @@ $(document).ready(function(){
 		
 	});
 });
+
+var checkValue = function(){
+	
+	if( $("#bg_main_file").val() != "" ){
+		var ext = $('#bg_main_file').val().split('.').pop().toLowerCase();
+		      if($.inArray(ext, ['png']) == -1) {
+			 alert('png 파일만 업로드 할수 있습니다.');
+			 return;
+		      }
+		}
+	if( $("#bg_star_file").val() != "" ){
+		var ext = $('#bg_star_file').val().split('.').pop().toLowerCase();
+		      if($.inArray(ext, ['png']) == -1) {
+			 alert('png 파일만 업로드 할수 있습니다.');
+			 return;
+		      }
+		}
+	if( $("#bg_eng_file").val() != "" ){
+		var ext = $('#bg_eng_file').val().split('.').pop().toLowerCase();
+		      if($.inArray(ext, ['png']) == -1) {
+			 alert('png 파일만 업로드 할수 있습니다.');
+			 return;
+		      }
+		}
+	return true;
+}

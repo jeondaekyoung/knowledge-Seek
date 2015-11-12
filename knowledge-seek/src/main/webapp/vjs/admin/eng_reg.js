@@ -25,21 +25,14 @@ var checkValue = function(){
 		$("#eng_sound_file").focus();
 		return false;
 	} else {
-		//소리파일 확장자 검사
-		/*var ext = $("#eng_sound_file").val().split('.').pop().toLowerCase();
-		console.log(ext);
-		if($.inArray(ext, ['mp3']) == -1){
-			alert("mp3 파일만 업로드 할 수 있습니다.");
-			return false;
-		}*/
+		if( $("#eng_sound_file").val() != "" ){
+			var ext = $('#eng_sound_file').val().split('.').pop().toLowerCase();
+			      if($.inArray(ext, ['mp3']) == -1) {
+				 alert('mp3 파일만 업로드 할수 있습니다.');
+				 return;
+			      }
+			}
 	}
-	/*if($("#eng_image_file").val() == ""){
-		alert("이미지파일을 선택해주세요");
-		$("#eng_image_file").focus();
-		return false;
-	} else {
-		//이미지파일 확장자 검사
-	}*/
 	if($("#eng_sentence").val() == ""){
 		alert("예문을 입력해주세요");
 		$("#eng_image_file").focus();

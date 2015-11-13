@@ -22,12 +22,17 @@ public class CommonServiceImpl implements CommonService {
 		String serverPath = null;
 		if(System.getProperty("os.name").contains("Windows")){
 			System.out.println("현재 운영체제 : " + System.getProperty("os.name"));
+			
 			tempPath = "C:\\alanglang\\workspace\\knowledge-seek\\src\\main\\webapp\\fileupload\\temp\\" + filename;
 			if(gubun.equals("sound")){
 				serverPath = "C:\\alanglang\\workspace\\knowledge-seek\\src\\main\\webapp\\fileupload\\sound\\" + fileserver;
 			} else if(gubun.equals("image")){
 				serverPath = "C:\\alanglang\\workspace\\knowledge-seek\\src\\main\\webapp\\fileupload\\image\\" + fileserver;
-			}
+			} else if(gubun.equals("main") || gubun.equals("star") || gubun.equals("eng")){
+				serverPath = "C:\\alanglang\\workspace\\knowledge-seek\\src\\main\\webapp\\fileupload\\bg\\" + fileserver;
+			} 
+			
+			
 		} else {
 			System.out.println("현재 운영체제 : " + System.getProperty("os.name"));
 			
@@ -36,21 +41,12 @@ public class CommonServiceImpl implements CommonService {
 				serverPath = "/usr/local/server/tomcat/webapps/ROOT/fileupload/sound/" + fileserver;
 			} else if(gubun.equals("image")){
 				serverPath = "/usr/local/server/tomcat/webapps/ROOT/fileupload/image/" + fileserver;
-			}
+			} else if(gubun.equals("main") || gubun.equals("star") || gubun.equals("eng")){
+				serverPath = "/usr/local/server/tomcat/webapps/ROOT/fileupload/bg/" + fileserver;
+			} 
+			
 		}
 		System.out.println("파일경로 : " + serverPath);
-		//String tempPath = "C:\\alanglang\\workspace\\knowledge-seek\\src\\main\\webapp\\fileupload\\temp\\" + filename;
-		//String tempPath = "/usr/local/server/tomcat/webapps/ROOT/fileupload/temp/" + filename;
-		//String serverPath = null;
-		
-		/*if(gubun.equals("sound")){
-			//serverPath = "C:\\alanglang\\workspace\\knowledge-seek\\src\\main\\webapp\\fileupload\\sound\\" + fileserver;
-			serverPath = "/usr/local/server/tomcat/webapps/ROOT/fileupload/sound/" + fileserver;
-		} else if(gubun.equals("image")){
-			//serverPath = "C:\\alanglang\\workspace\\knowledge-seek\\src\\main\\webapp\\fileupload\\image\\" + fileserver;
-			serverPath = "/usr/local/server/tomcat/webapps/ROOT/fileupload/image/" + fileserver;
-		}*/
-		//System.out.println(tempPath + ", " + serverPath);
 		
 		OutputStream out = null;
 		try{

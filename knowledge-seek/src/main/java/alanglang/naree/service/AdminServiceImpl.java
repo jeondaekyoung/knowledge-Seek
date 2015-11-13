@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import alanglang.naree.dao.AdminDao;
 import alanglang.naree.db.domain.Ad;
 import alanglang.naree.db.domain.Admin;
+import alanglang.naree.db.domain.Bg;
 import alanglang.naree.db.domain.Eng;
 import alanglang.naree.db.domain.Entries;
 import alanglang.naree.util.exception.AlanglangWebException;
@@ -152,6 +153,12 @@ public class AdminServiceImpl implements AdminService {
 	public int registerWinSepa(Entries entries) {
 		
 		return adminDao.updateWinSepa(entries);
+	}
+
+	@Override
+	public int bgRegister(Bg bg) {
+		
+		return adminDao.insertBg(bg);
 	}
 
 

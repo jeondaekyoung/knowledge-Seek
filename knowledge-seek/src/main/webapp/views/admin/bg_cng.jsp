@@ -33,7 +33,7 @@
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/app.plugin.js"></script>
-   <script src="${pageContext.request.contextPath}/resources/js/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/slimscroll/jquery.slimscroll.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/fuelux/fuelux.js"></script>
   	<script src="${pageContext.request.contextPath}/resources/js/datepicker/bootstrap-datepicker.js"></script>
 	<script src="${pageContext.request.contextPath}/vjs/admin/bg_cng.js"></script>
@@ -127,23 +127,23 @@
         <section id="content">
           <section class="vbox">
             <header class="header bg-white b-b b-light">
-              <p>Home > bg변경</p>
+              <p>Home > 배경화면 변경</p>
             </header>
             
             <section class="scrollable wrapper w-f">
-                <form action="" method="post" id="bgForm" enctype="multipart/form-data">
+                <form action="${pageContext.request.contextPath }/admin/bgRegister.do" method="post" id="bgForm" enctype="multipart/form-data">
                 	<b>png파일만 업로드해주세요. 파일크기는 20MB이하만 가능합니다.</b><br><br>
                 	<table class="admin">
 	                    <colgroup><col style="width:15%"><col style="width:35%"><col style="width:15%"><col style="width:35%"></colgroup>
 	                    <tbody><tr>
 	                        <th>메인</th>
-	                        <td><input type="file" id="bg_main_file" name="bg_image_file"></td>
+	                        <td><input type="file" id="main_bg_file" name="main_bg_file"></td>
 	                        </tr>
 	                        <tr>
 		                        <th>스타알람</th>
-		                        <td><input type="file" id="bg_star_file" name="bg_image_file"></td>
+		                        <td><input type="file" id="star_bg_file" name="star_bg_file"></td>
 		                        <th>영어알람</th>
-		                        <td><input type="file" id="bg_eng_file" name="bg_image_file"></td>
+		                        <td><input type="file" id="eng_bg_file" name="eng_bg_file"></td>
 	                        </tr></tbody>
 	                </table>                
                 	<input type="button" id="bgRegister" class="btn btn-primary" value="등록" style="margin-top:20px">

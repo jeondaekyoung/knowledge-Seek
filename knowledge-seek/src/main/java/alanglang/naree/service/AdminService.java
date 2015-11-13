@@ -4,9 +4,14 @@ import java.util.List;
 
 import alanglang.naree.db.domain.Ad;
 import alanglang.naree.db.domain.Admin;
+import alanglang.naree.db.domain.Bg;
 import alanglang.naree.db.domain.Eng;
 import alanglang.naree.db.domain.Entries;
 
+/**
+ * @author Administrator
+ *
+ */
 public interface AdminService {
 
 	/**
@@ -70,5 +75,12 @@ public interface AdminService {
 	 * @return
 	 */
 	public int registerWinSepa(Entries entries);
+
+	/**
+	 * 배경화면 등록하기
+	 * @param bg
+	 * @return
+	 */
+	public int bgRegister(Bg bg);
 
 }

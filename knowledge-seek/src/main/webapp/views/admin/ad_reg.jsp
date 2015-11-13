@@ -35,7 +35,7 @@
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/app.plugin.js"></script>
-   <script src="${pageContext.request.contextPath}/resources/js/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/slimscroll/jquery.slimscroll.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/fuelux/fuelux.js"></script>
   	<script src="${pageContext.request.contextPath}/resources/js/datepicker/bootstrap-datepicker.js"></script>
 	<script src="${pageContext.request.contextPath}/vjs/admin/ad_reg.js"></script>

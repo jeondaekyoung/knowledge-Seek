@@ -4,6 +4,7 @@ import java.util.List;
 
 import alanglang.naree.db.domain.Ad;
 import alanglang.naree.db.domain.Admin;
+import alanglang.naree.db.domain.Bg;
 import alanglang.naree.db.domain.Eng;
 import alanglang.naree.db.domain.Entries;
 
@@ -27,6 +28,8 @@ public interface AdminMapper {
 	public String selectWinSepa(String entry_seq);
 
 	public int updateWinSepa(Entries entries);
+
+	public int insertBg(Bg bg);
 
 }
 

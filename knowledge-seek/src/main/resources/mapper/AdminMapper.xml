@@ -117,5 +117,27 @@
 		            <if test="coupon_num != null">,coupon_num = #{coupon_num}</if>
          WHERE entry_seq = #{entry_seq}
 	</update>
+	
+	<insert id="insertBg" parameterType="Bg">
+		<selectKey keyProperty="id" resultType="Integer" order="BEFORE">
+			select MAX(bg_seq)+1 from bg_tb
+		</selectKey>
+		INSERT INTO bg_tb (
+							bg_seq
+							<if test></if>
+							,main_bg_name
+							,main_bg_server
+							,star_bg_name
+							,star_bg_server
+							,eng_bg_name
+							,eng_bg_server) VALUES (
+							#{id}
+							,#{main_bg_name}
+							,#{main_bg_server}
+							,#{star_bg_name}
+							,#{star_bg_server}
+							,#{eng_bg_name}
+							,#{eng_bg_server} )
+	</insert>
 
 </mapper>

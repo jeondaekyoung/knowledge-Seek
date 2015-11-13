@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import alanglang.naree.db.domain.Ad;
 import alanglang.naree.db.domain.Admin;
+import alanglang.naree.db.domain.Bg;
 import alanglang.naree.db.domain.Eng;
 import alanglang.naree.db.domain.Entries;
 import alanglang.naree.db.mapper.AdminMapper;
@@ -137,6 +138,21 @@ public class AdminDaoImpl implements AdminDao {
 		try {
 			AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
 			result = adminMapper.updateWinSepa(entries);
+		}
+		finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		return result;
+	}
+
+	@Override
+	public int insertBg(Bg bg) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result;
+		try {
+			AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+			result = adminMapper.insertBg(bg);
 		}
 		finally {
 			sqlSession.commit();

@@ -39,22 +39,22 @@ var checkValue = function(){
 	//확장자 체크
 	if( $("#main_bg_file").val() != ""){
 		var ext = $('#main_bg_file').val().split('.').pop().toLowerCase();
-	    if($.inArray(ext, ['png']) == -1) {
-	    	alert('png 파일만 업로드 할수 있습니다.');
+	    if($.inArray(ext, ['png', 'jpg']) == -1) {
+	    	alert('png파일와 jpg파일만 업로드 할수 있습니다.');
 			return false;
 	    }
 	}
 	if( $("#star_bg_file").val() != ""){
 		var ext = $('#star_bg_file').val().split('.').pop().toLowerCase();
-	    if($.inArray(ext, ['png']) == -1) {
-	    	alert('png 파일만 업로드 할수 있습니다.');
+	    if($.inArray(ext, ['png', 'jpg']) == -1) {
+	    	alert('png파일와 jpg파일만 업로드 할수 있습니다.');
 	    	return false;
 	    }
 	}
 	if( $("#eng_bg_file").val() != ""){
 		var ext = $('#eng_bg_file').val().split('.').pop().toLowerCase();
-	    if($.inArray(ext, ['png']) == -1) {
-	    	 alert('png 파일만 업로드 할수 있습니다.');
+	    if($.inArray(ext, ['png', 'jpg']) == -1) {
+	    	 alert('png파일와 jpg파일만 업로드 할수 있습니다.');
 	    	 return false;
 	    }
 	}

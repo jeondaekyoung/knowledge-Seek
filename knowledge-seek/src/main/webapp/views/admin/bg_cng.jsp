@@ -132,7 +132,7 @@
             
             <section class="scrollable wrapper w-f">
                 <form action="${pageContext.request.contextPath }/admin/bgRegister.do" method="post" id="bgForm" enctype="multipart/form-data">
-                	<b>png파일만 업로드해주세요. 파일크기는 20MB이하만 가능합니다.</b><br><br>
+                	<b>png파일와 jpg파일만 업로드해주세요. 파일크기는 20MB이하만 가능합니다.</b><br><br>
                 	<table class="admin">
 	                    <colgroup><col style="width:15%"><col style="width:35%"><col style="width:15%"><col style="width:35%"></colgroup>
 	                    <tbody><tr>

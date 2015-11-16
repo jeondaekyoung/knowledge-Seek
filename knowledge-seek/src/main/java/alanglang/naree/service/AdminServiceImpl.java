@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 import alanglang.naree.dao.AdminDao;
 import alanglang.naree.db.domain.Ad;
 import alanglang.naree.db.domain.Admin;
-import alanglang.naree.db.domain.Bg;
 import alanglang.naree.db.domain.Eng;
+import alanglang.naree.db.domain.EngBg;
 import alanglang.naree.db.domain.Entries;
+import alanglang.naree.db.domain.MainBg;
+import alanglang.naree.db.domain.StarBg;
 import alanglang.naree.util.exception.AlanglangWebException;
 
 @Service
@@ -156,10 +158,42 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int bgRegister(Bg bg) {
+	public int nextMainBgSeq() {
 		
-		return adminDao.insertBg(bg);
+		return adminDao.selectMainBgSeq()+1;
 	}
+
+	@Override
+	public int registerMainBg(MainBg mainbg) {
+		
+		return adminDao.insertMainBg(mainbg);
+	}
+
+	@Override
+	public int nextStarBgSeq() {
+		
+		return adminDao.selectStarBgSeq()+1;
+	}
+
+	@Override
+	public int registerStarBg(StarBg starbg) {
+		
+		return adminDao.insertStarBg(starbg);
+	}
+
+	@Override
+	public int nextEngBgSeq() {
+		
+		return adminDao.selectEngBgSeq()+1;
+	}
+
+	@Override
+	public int registerEngBg(EngBg engbg) {
+		
+		return adminDao.insertEngBg(engbg);
+	}
+
+
 
 
 

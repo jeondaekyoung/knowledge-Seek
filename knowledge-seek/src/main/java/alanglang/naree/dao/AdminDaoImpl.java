@@ -8,9 +8,11 @@ import org.springframework.stereotype.Repository;
 
 import alanglang.naree.db.domain.Ad;
 import alanglang.naree.db.domain.Admin;
-import alanglang.naree.db.domain.Bg;
 import alanglang.naree.db.domain.Eng;
+import alanglang.naree.db.domain.EngBg;
 import alanglang.naree.db.domain.Entries;
+import alanglang.naree.db.domain.MainBg;
+import alanglang.naree.db.domain.StarBg;
 import alanglang.naree.db.mapper.AdminMapper;
 import alanglang.naree.util.factory.ConnectionFactory;
 
@@ -147,12 +149,26 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public int insertBg(Bg bg) {
+	public int selectMainBgSeq() {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result_main_bg_seq = 0;
+		try {
+			AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+			result_main_bg_seq = adminMapper.selectMainBgSeq();
+		}
+		finally {
+			sqlSession.close();
+		}
+		return result_main_bg_seq;
+	}
+
+	@Override
+	public int insertMainBg(MainBg mainbg) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
 		int result;
 		try {
 			AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
-			result = adminMapper.insertBg(bg);
+			result = adminMapper.insertMainBg(mainbg);
 		}
 		finally {
 			sqlSession.commit();
@@ -160,5 +176,65 @@ public class AdminDaoImpl implements AdminDao {
 		}
 		return result;
 	}
+
+	@Override
+	public int selectStarBgSeq() {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result_star_bg_seq = 0;
+		try {
+			AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+			result_star_bg_seq = adminMapper.selectStarBgSeq();
+		}
+		finally {
+			sqlSession.close();
+		}
+		return result_star_bg_seq;
+	}
+
+	@Override
+	public int insertStarBg(StarBg starbg) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result;
+		try {
+			AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+			result = adminMapper.insertStarBg(starbg);
+		}
+		finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		return result;
+	}
+
+	@Override
+	public int selectEngBgSeq() {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result_eng_bg_seq = 0;
+		try {
+			AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+			result_eng_bg_seq = adminMapper.selectEngBgSeq();
+		}
+		finally {
+			sqlSession.close();
+		}
+		return result_eng_bg_seq;
+	}
+
+	@Override
+	public int insertEngBg(EngBg engbg) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result;
+		try {
+			AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+			result = adminMapper.insertEngBg(engbg);
+		}
+		finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		return result;
+	}
+
+
 
 }

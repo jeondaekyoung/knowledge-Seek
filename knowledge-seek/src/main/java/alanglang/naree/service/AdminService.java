@@ -4,9 +4,11 @@ import java.util.List;
 
 import alanglang.naree.db.domain.Ad;
 import alanglang.naree.db.domain.Admin;
-import alanglang.naree.db.domain.Bg;
 import alanglang.naree.db.domain.Eng;
+import alanglang.naree.db.domain.EngBg;
 import alanglang.naree.db.domain.Entries;
+import alanglang.naree.db.domain.MainBg;
+import alanglang.naree.db.domain.StarBg;
 
 /**
  * @author Administrator
@@ -77,10 +79,42 @@ public interface AdminService {
 	public int registerWinSepa(Entries entries);
 
 	/**
-	 * 배경화면 등록하기
-	 * @param bg
+	 * 메인배경 시퀀스 생성
 	 * @return
 	 */
-	public int bgRegister(Bg bg);
+	public int nextMainBgSeq();
+
+	/**
+	 * 메인배경화면 등록하기
+	 * @param mainbg
+	 * @return 
+	 */
+	public int registerMainBg(MainBg mainbg);
+
+	/**
+	 * 스타배경 시퀀스 생성
+	 * @return
+	 */
+	public int nextStarBgSeq();
+
+	/**
+	 * 스타배경화면 등록하기
+	 * @param starbg
+	 * @return
+	 */
+	public int registerStarBg(StarBg starbg);
+
+	/**
+	 * 영어배경 시퀀스 생성
+	 * @return
+	 */
+	public int nextEngBgSeq();
+
+	/**
+	 * 영어배경화면 등록하기
+	 * @param engbg
+	 * @return
+	 */
+	public int registerEngBg(EngBg engbg);
 
 }

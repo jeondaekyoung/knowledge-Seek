@@ -118,7 +118,7 @@
          WHERE entry_seq = #{entry_seq}
 	</update>
 	
-	<insert id="insertBg" parameterType="Bg">
+<!-- 	<insert id="insertBg" parameterType="Bg">
 		<selectKey keyProperty="id" resultType="Integer" order="BEFORE">
 			select MAX(bg_seq)+1 from bg_tb
 		</selectKey>
@@ -138,6 +138,48 @@
 							,#{star_bg_server}
 							,#{eng_bg_name}
 							,#{eng_bg_server} )
+	</insert> -->
+	
+	<select id="selectMainBgSeq" resultType="Integer">
+		SELECT IFNULL(max(main_bg_seq), 0) 
+		  FROM main_bg_tb
+	</select>
+	<insert id="insertMainBg" parameterType="MainBg">
+		INSERT INTO main_bg_tb (
+							main_bg_seq
+							,main_bg_name
+							,main_bg_server ) VALUES (
+							#{main_bg_seq}
+							,#{main_bg_name}
+							,#{main_bg_server} )
+	</insert>
+	
+	<select id="selectStarBgSeq" resultType="Integer">
+		SELECT IFNULL(max(star_bg_seq), 0) 
+		  FROM star_bg_tb
+	</select>
+	<insert id="insertStarBg" parameterType="StarBg">
+		INSERT INTO star_bg_tb (
+							star_bg_seq
+							,star_bg_name
+							,star_bg_server ) VALUES (
+							#{star_bg_seq}
+							,#{star_bg_name}
+							,#{star_bg_server} )
+	</insert>
+	
+	<select id="selectEngBgSeq" resultType="Integer">
+		SELECT IFNULL(max(eng_bg_seq), 0) 
+		  FROM eng_bg_tb
+	</select>
+	<insert id="insertEngBg" parameterType="EngBg">
+		INSERT INTO eng_bg_tb (
+							eng_bg_seq
+							,eng_bg_name
+							,eng_bg_server ) VALUES (
+							#{eng_bg_seq}
+							,#{eng_bg_name}
+							,#{eng_bg_server} )	
 	</insert>
 
 </mapper>

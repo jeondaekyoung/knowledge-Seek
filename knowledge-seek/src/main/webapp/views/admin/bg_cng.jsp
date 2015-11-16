@@ -142,6 +142,8 @@
 	                        <tr>
 		                        <th>스타알람</th>
 		                        <td><input type="file" id="star_bg_file" name="star_bg_file"></td>
+		                    </tr>
+		                    <tr>
 		                        <th>영어알람</th>
 		                        <td><input type="file" id="eng_bg_file" name="eng_bg_file"></td>
 	                        </tr></tbody>

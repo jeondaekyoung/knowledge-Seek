@@ -15,7 +15,10 @@
 		<typeAlias type="alanglang.naree.db.domain.Eng" alias="Eng"/>
 		<typeAlias type="alanglang.naree.db.domain.Entries" alias="Entries"/>
 		<typeAlias type="alanglang.naree.db.domain.SqlEntriesAd" alias="SqlEntriesAd"/>
-		<typeAlias type="alanglang.naree.db.domain.Bg" alias="Bg"/>
+		<typeAlias type="alanglang.naree.db.domain.MainBg" alias="MainBg"/>
+		<typeAlias type="alanglang.naree.db.domain.StarBg" alias="StarBg"/>
+		<typeAlias type="alanglang.naree.db.domain.EngBg" alias="EngBg"/>
+		
 		
 	</typeAliases>
 

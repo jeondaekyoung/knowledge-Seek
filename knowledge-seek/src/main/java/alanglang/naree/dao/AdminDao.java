@@ -4,9 +4,11 @@ import java.util.List;
 
 import alanglang.naree.db.domain.Ad;
 import alanglang.naree.db.domain.Admin;
-import alanglang.naree.db.domain.Bg;
 import alanglang.naree.db.domain.Eng;
+import alanglang.naree.db.domain.EngBg;
 import alanglang.naree.db.domain.Entries;
+import alanglang.naree.db.domain.MainBg;
+import alanglang.naree.db.domain.StarBg;
 
 
 public interface AdminDao {
@@ -74,11 +76,42 @@ public interface AdminDao {
 	public int updateWinSepa(Entries entries);
 
 	/**
-	 * 배경화면 삽입하기
-	 * @param bg
+	 * 메인배경 시퀀스 생성
 	 * @return
 	 */
-	public int insertBg(Bg bg);
+	public int selectMainBgSeq();
 
+	/**
+	 * 메인배경 등록하기
+	 * @param mainbg
+	 * @return
+	 */
+	public int insertMainBg(MainBg mainbg);
+
+	/**
+	 * 스타배경 시퀀스 생성
+	 * @return
+	 */
+	public int selectStarBgSeq();
+
+	/**
+	 * 스타배경 등록하기
+	 * @param starbg
+	 * @return
+	 */
+	public int insertStarBg(StarBg starbg);
+
+	/**
+	 * 영어배경 시퀀스 생성
+	 * @return
+	 */
+	public int selectEngBgSeq();
+
+	/**
+	 * 영어배경 등록하기
+	 * @param engbg
+	 * @return
+	 */
+	public int insertEngBg(EngBg engbg);
 	
 }

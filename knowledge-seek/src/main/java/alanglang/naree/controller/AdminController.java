@@ -16,12 +16,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import alanglang.naree.db.domain.Ad;
 import alanglang.naree.db.domain.Admin;
-import alanglang.naree.db.domain.Bg;
 import alanglang.naree.db.domain.Eng;
+import alanglang.naree.db.domain.EngBg;
 import alanglang.naree.db.domain.Entries;
+import alanglang.naree.db.domain.MainBg;
+import alanglang.naree.db.domain.StarBg;
 import alanglang.naree.service.AdminService;
 import alanglang.naree.service.CommonService;
-import alanglang.naree.util.exception.AlanglangWebException;
 
 @Controller
 @RequestMapping("admin")
@@ -217,68 +218,91 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping(value = "bgRegister.do", method=RequestMethod.POST)
-	public ModelAndView adRegister(Bg bg){
+	public ModelAndView adRegister(MultipartFile main_bg_file, MultipartFile star_bg_file, MultipartFile eng_bg_file){
 		System.out.println("배경화면 변경하기");
-		System.out.println(bg.toString());
+		
 		ModelAndView mv = new ModelAndView();
 		
 		//1.메인배경
-		MultipartFile mainImageFile = bg.getMain_bg_file();
-		String mainImageName = mainImageFile.getOriginalFilename();
+		String mainImageName = main_bg_file.getOriginalFilename();
 		if(mainImageName.length() > 0){
 			System.out.println("메인배경 변경");
+			MainBg mainbg = new MainBg();
+			//메인배경 시퀀스 생성
+			int main_bg_seq = adminService.nextMainBgSeq();
+			mainbg.setMain_bg_seq(main_bg_seq);
 			//업로드 파일이름
 			//System.out.println("업로드 파일 정보 : " + mainImageName + ", " + mainImageName.length());
+			mainbg.setMain_bg_name(mainImageName);
 			String fileNameExt = mainImageName.substring(mainImageName.indexOf("."), mainImageName.length());
-			//서버에 저장된 파일이름
-			bg.setMain_bg_name(mainImageName);
-			bg.setMain_bg_server(new StringBuilder("main_bg_server").append(fileNameExt).toString());
+			mainbg.setMain_bg_server(new StringBuilder("main").append(mainbg.getMain_bg_seq()).append(fileNameExt).toString());
 			
+			System.out.println(mainbg.toString());
 			//서버에 저장
-			commonService.writeFile(mainImageFile, "main", bg.getMain_bg_name(), bg.getMain_bg_server());
-			//commonService.writeFile(engSoundFile, "sound", eng.getEng_sound_name(), eng.getEng_sound_server());
-			//System.out.println("서버에 소리파일을 저장하였습니다.");
+			commonService.writeFile(main_bg_file, "main", mainbg.getMain_bg_name(), mainbg.getMain_bg_server());
+			System.out.println("서버에 메인배경을 저장하였습니다.");
+			//테이블에 저장
+			int result = adminService.registerMainBg(mainbg);
+			if(result == 1){
+				System.out.println("메인배경 등록에 성공하였습니다.");
+			} else {
+				System.out.println("메인배경 등록에 실패하였습니다.");
+			}
 		}
 		
 		//2.스타배경
-		MultipartFile starImageFile = bg.getStar_bg_file();
-		String starImageName = starImageFile.getOriginalFilename();
+		String starImageName = star_bg_file.getOriginalFilename();
 		if(starImageName.length() > 0){
 			System.out.println("스타배경 변경");
+			StarBg starbg = new StarBg();
+			//스타배경 시퀀스 생성
+			int star_bg_seq = adminService.nextStarBgSeq();
+			starbg.setStar_bg_seq(star_bg_seq);
 			//업로드 파일이름
 			//System.out.println(starImageName + ", " + starImageName.length());
+			starbg.setStar_bg_name(starImageName);
 			String fileNameExt = starImageName.substring(starImageName.indexOf("."), starImageName.length());
-			//서버에 저장된 파일이름
-			bg.setStar_bg_name(starImageName);
-			bg.setStar_bg_server(new StringBuilder("star_bg_server").append(fileNameExt).toString());
+			starbg.setStar_bg_server(new StringBuilder("star").append(starbg.getStar_bg_seq()).append(fileNameExt).toString());
 			
+			System.out.println(starbg.toString());
 			//서버에 저장
-			commonService.writeFile(starImageFile, "star", bg.getStar_bg_name(), bg.getStar_bg_server());
+			commonService.writeFile(star_bg_file, "star", starbg.getStar_bg_name(), starbg.getStar_bg_server());
+			System.out.println("서버에 스타배경을 저장하였습니다.");
+			//테이블에 저장
+			int result = adminService.registerStarBg(starbg);
+			if(result == 1){
+				System.out.println("메인배경 등록에 성공하였습니다.");
+			} else {
+				System.out.println("메인배경 등록에 실패하였습니다.");
+			}
 		}
+		
 		//3.영어배경
-		MultipartFile engImageFile = bg.getEng_bg_file();
-		String engImageName = engImageFile.getOriginalFilename();
+		String engImageName = eng_bg_file.getOriginalFilename();
 		if(engImageName.length() > 0){
 			System.out.println("영어배경 변경");
+			EngBg engbg = new EngBg();
+			//영어배경 시퀀스 생성
+			int eng_bg_seq = adminService.nextEngBgSeq();
+			engbg.setEng_bg_seq(eng_bg_seq);
 			//업로드 파일이름
+			engbg.setEng_bg_name(engImageName);
 			String fileNameExt = engImageName.substring(engImageName.indexOf("."), engImageName.length());
-			//서버에 저장된 파일이름
-			bg.setEng_bg_name(engImageName);
-			bg.setEng_bg_server(new StringBuilder("eng_bg_server").append(fileNameExt).toString());
+			engbg.setEng_bg_server(new StringBuilder("eng").append(engbg.getEng_bg_seq()).append(fileNameExt).toString());
 			
+			System.out.println(engbg.toString());
 			//서버에 저장
-			commonService.writeFile(engImageFile, "eng", bg.getEng_bg_name(), bg.getEng_bg_server());
+			commonService.writeFile(eng_bg_file, "eng", engbg.getEng_bg_name(), engbg.getEng_bg_server());
+			System.out.println("서버에 영어배경을 저장하였습니다.");
+			//테이블에 저장
+			int result = adminService.registerEngBg(engbg);
+			if(result == 1){
+				System.out.println("메인배경 등록에 성공하였습니다.");
+			} else {
+				System.out.println("메인배경 등록에 실패하였습니다.");
+			}
 		}
 		
-		System.out.println(bg.toString());
-		
-		//테이블 저장
-		int result = adminService.bgRegister(bg);
-		if(result == 1){
-			System.out.println("배경변경에 성공하였습니다.");
-		} else {
-			System.out.println("배경변경에 실패하였습니다.");
-		}
 		
 		mv.setViewName("admin/bg_cng");
 		return mv;

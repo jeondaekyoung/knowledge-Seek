@@ -4,9 +4,11 @@ import java.util.List;
 
 import alanglang.naree.db.domain.Ad;
 import alanglang.naree.db.domain.Admin;
-import alanglang.naree.db.domain.Bg;
 import alanglang.naree.db.domain.Eng;
+import alanglang.naree.db.domain.EngBg;
 import alanglang.naree.db.domain.Entries;
+import alanglang.naree.db.domain.MainBg;
+import alanglang.naree.db.domain.StarBg;
 
 
 public interface AdminMapper {
@@ -29,7 +31,19 @@ public interface AdminMapper {
 
 	public int updateWinSepa(Entries entries);
 
-	public int insertBg(Bg bg);
+	public int selectMainBgSeq();
+
+	public int insertMainBg(MainBg mainbg);
+
+	public int selectStarBgSeq();
+
+	public int insertStarBg(StarBg starbg);
+
+	public int selectEngBgSeq();
+
+	public int insertEngBg(EngBg engbg);
+
+	
 
 }
 

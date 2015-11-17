@@ -10,7 +10,9 @@ import alanglang.naree.dao.AndDao;
 import alanglang.naree.db.domain.Ad;
 import alanglang.naree.db.domain.Eng;
 import alanglang.naree.db.domain.Entries;
+import alanglang.naree.db.domain.MainBg;
 import alanglang.naree.db.domain.SqlEntriesAd;
+import alanglang.naree.db.domain.StarBg;
 
 
 @Service
@@ -128,6 +130,18 @@ public class AndServiceImpl implements AndService {
 	public List<Eng> findNineEngByEng(Eng eng) {
 		
 		return andDao.selectNineEngByEng(eng);
+	}
+
+	@Override
+	public MainBg findMaxMainBg() {
+		
+		return andDao.selectMaxMainBg();
+	}
+
+	@Override
+	public StarBg findMaxStarBg() {
+		
+		return andDao.selectMaxStarBg();
 	}
 
 }

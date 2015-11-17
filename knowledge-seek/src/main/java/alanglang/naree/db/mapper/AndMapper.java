@@ -5,7 +5,9 @@ import java.util.List;
 import alanglang.naree.db.domain.Ad;
 import alanglang.naree.db.domain.Eng;
 import alanglang.naree.db.domain.Entries;
+import alanglang.naree.db.domain.MainBg;
 import alanglang.naree.db.domain.SqlEntriesAd;
+import alanglang.naree.db.domain.StarBg;
 
 public interface AndMapper {
 
@@ -36,5 +38,9 @@ public interface AndMapper {
 	public Eng selectEngByEngSeq(String eng_seq);
 
 	public List<Eng> selectNineEngByEng(Eng eng);
+
+	public MainBg selectMaxMainBg();
+
+	public StarBg selectMaxStarBg();
 
 }

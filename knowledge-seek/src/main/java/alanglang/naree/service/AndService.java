@@ -5,7 +5,9 @@ import java.util.List;
 import alanglang.naree.db.domain.Ad;
 import alanglang.naree.db.domain.Eng;
 import alanglang.naree.db.domain.Entries;
+import alanglang.naree.db.domain.MainBg;
 import alanglang.naree.db.domain.SqlEntriesAd;
+import alanglang.naree.db.domain.StarBg;
 
 public interface AndService {
 
@@ -67,5 +69,17 @@ public interface AndService {
 	 * @return
 	 */
 	public List<Eng> findNineEngByEng(Eng eng);
+
+	/**
+	 * 메인배경 이미지 찾기
+	 * @return
+	 */
+	public MainBg findMaxMainBg();
+
+	/**
+	 * 스타배경 이미지 찾기
+	 * @return
+	 */
+	public StarBg findMaxStarBg();
 
 }

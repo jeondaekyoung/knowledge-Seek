@@ -13,7 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 import alanglang.naree.db.domain.Ad;
 import alanglang.naree.db.domain.Eng;
 import alanglang.naree.db.domain.Entries;
+import alanglang.naree.db.domain.MainBg;
 import alanglang.naree.db.domain.SqlEntriesAd;
+import alanglang.naree.db.domain.StarBg;
 import alanglang.naree.service.AndService;
 
 @Controller
@@ -205,5 +207,30 @@ public class AndController {
 	}
 	
 	
+	/**
+	 * 메인배경 이미지파일을 안드로이드에 알려주기 위한 JSON
+	 * @return
+	 */
+	@RequestMapping(value = "mainbg.do")
+	@ResponseBody
+	public MainBg mainbg(){
+		System.out.println("메인배경 이미지파일을 안드로이드에 알려주기 위한 JSON");
+		
+		MainBg mainbg = andService.findMaxMainBg();
+		return mainbg;
+	}
+	
+	/**
+	 * 스타배경 이미지파일을 안드로이드에 알려주기 위한 JSON
+	 * @return
+	 */
+	@RequestMapping(value = "starbg.do")
+	@ResponseBody
+	public StarBg starbg(){
+		System.out.println("스타배경 이미지파일을 안드로이드에 알려주기 위한 JSON");
+		
+		StarBg starbg = andService.findMaxStarBg();
+		return starbg;
+	}
 	
 }

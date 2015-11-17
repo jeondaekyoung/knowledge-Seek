@@ -9,7 +9,9 @@ import org.springframework.stereotype.Repository;
 import alanglang.naree.db.domain.Ad;
 import alanglang.naree.db.domain.Eng;
 import alanglang.naree.db.domain.Entries;
+import alanglang.naree.db.domain.MainBg;
 import alanglang.naree.db.domain.SqlEntriesAd;
+import alanglang.naree.db.domain.StarBg;
 import alanglang.naree.db.mapper.AndMapper;
 import alanglang.naree.util.factory.ConnectionFactory;
 
@@ -207,6 +209,34 @@ public class AndDaoImpl implements AndDao {
 			sqlSession.close();
 		}
 		return engs;
+	}
+
+	@Override
+	public MainBg selectMaxMainBg() {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		MainBg mainbg = null;
+		try {
+			AndMapper andMapper = sqlSession.getMapper(AndMapper.class);
+			mainbg = andMapper.selectMaxMainBg();
+		} finally {
+			sqlSession.close();
+		}
+		
+		return mainbg;
+	}
+
+	@Override
+	public StarBg selectMaxStarBg() {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		StarBg starbg = null;
+		try {
+			AndMapper andMapper = sqlSession.getMapper(AndMapper.class);
+			starbg = andMapper.selectMaxStarBg();
+		} finally {
+			sqlSession.close();
+		}
+		
+		return starbg;
 	}
 
 }

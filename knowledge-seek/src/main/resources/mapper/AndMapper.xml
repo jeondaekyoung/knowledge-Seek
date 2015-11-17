@@ -153,4 +153,16 @@
            LIMIT 9
 	</select>
 	
+	<select id="selectMaxMainBg" resultType="MainBg">
+		SELECT main_bg_seq, main_bg_name, main_bg_server, input_date 
+	      FROM main_bg_tb
+		WHERE main_bg_seq = (SELECT max(main_bg_seq) FROM main_bg_tb)
+	</select>
+	
+	<select id="selectMaxStarBg" resultType="StarBg">
+		SELECT star_bg_seq, star_bg_name, star_bg_server, input_date 
+	      FROM star_bg_tb
+		WHERE star_bg_seq = (SELECT max(star_bg_seq) FROM star_bg_tb)
+	</select>
+	
 </mapper>

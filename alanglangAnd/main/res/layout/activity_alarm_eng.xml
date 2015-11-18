@@ -31,31 +31,56 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="10">
+        android:layout_weight="10"
+        android:orientation="vertical">
 
         <!-- 윗 부분 -->
         <LinearLayout
             android:id="@+id/engTodayLinear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="7">
+            android:layout_weight="7"
+            android:gravity="center"
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/engTodayDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="날짜"/>
+                android:gravity="center"
+                android:shadowColor="#FF464646"
+                android:shadowDx="1.0"
+                android:shadowDy="1.0"
+                android:shadowRadius="1.0"
+                android:text="날짜"
+                android:textColor="#ffffff"
+                android:textSize="36dp" />
+
             <TextView
                 android:id="@+id/engTodaySentence"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="예문"/>
+                android:gravity="center"
+                android:shadowColor="#FF464646"
+                android:shadowDx="1.0"
+                android:shadowDy="1.0"
+                android:shadowRadius="1.0"
+                android:text="예문"
+                android:textColor="#ffffff"
+                android:textSize="28dp" />
+
             <TextView
                 android:id="@+id/engTodayMean"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="뜻"/>
+                android:gravity="center"
+                android:shadowColor="#FF464646"
+                android:shadowDx="1.0"
+                android:shadowDy="1.0"
+                android:shadowRadius="1.0"
+                android:text="뜻"
+                android:textColor="#ffffff"
+                android:textSize="28dp" />
         </LinearLayout>
 
         <!-- 아랫 부분 -->
@@ -63,92 +88,129 @@
             android:id="@+id/engthreelinear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="3">
+            android:layout_weight="3"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:id="@+id/eng1linear"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:background="@drawable/border_right"
+                android:gravity="center"
+                android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/eng1t1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
+                    android:gravity="center"
                     android:maxLines="1"
-                    android:text="날짜"/>
+                    android:text="날짜"
+                    android:textColor="#ffffff"
+                    android:textSize="24dp" />
+
                 <TextView
                     android:id="@+id/eng1t2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
+                    android:gravity="center"
                     android:maxLines="1"
-                    android:text="예문"/>
+                    android:text="예문"
+                    android:textColor="#ffffff" />
+
                 <TextView
                     android:id="@+id/eng1t3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
+                    android:gravity="center"
                     android:maxLines="1"
-                    android:text="날짜"/>
+                    android:text="뜻"
+                    android:textColor="#ffffff" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/eng2linear"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:background="@drawable/border_right"
+                android:gravity="center"
+                android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/eng2t1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
+                    android:gravity="center"
                     android:maxLines="1"
-                    android:text="날짜"/>
+                    android:text="날짜"
+                    android:textColor="#ffffff"
+                    android:textSize="24dp" />
+
                 <TextView
                     android:id="@+id/eng2t2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
+                    android:gravity="center"
                     android:maxLines="1"
-                    android:text="예문"/>
+                    android:text="예문"
+                    android:textColor="#ffffff" />
+
                 <TextView
                     android:id="@+id/eng2t3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
+                    android:gravity="center"
                     android:maxLines="1"
-                    android:text="날짜"/>
+                    android:text="뜻"
+                    android:textColor="#ffffff" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/eng3linear"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/eng3t1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
+                    android:gravity="center"
                     android:maxLines="1"
-                    android:text="날짜"/>
+                    android:text="날짜"
+                    android:textColor="#ffffff"
+                    android:textSize="24dp" />
+
                 <TextView
                     android:id="@+id/eng3t2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
+                    android:gravity="center"
                     android:maxLines="1"
-                    android:text="예문"/>
+                    android:text="예문"
+                    android:textColor="#ffffff" />
+
                 <TextView
                     android:id="@+id/eng3t3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
+                    android:gravity="center"
                     android:maxLines="1"
-                    android:text="날짜"/>
+                    android:text="뜻"
+                    android:textColor="#ffffff" />
             </LinearLayout>
         </LinearLayout>
 
@@ -161,9 +223,6 @@
         android:layout_marginRight="10dp"
         android:id="@+id/webView">
     </WebView>-->
-
-
-
 
 
     <Button

@@ -60,8 +60,8 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
     private Ad ad;                                    //광고정보
     private WebView webView;
     final Activity activity = this;
-    //private static final String HTTPADDR = "http://www.knowledge-seek.com";
-    private static final String HTTPADDR = "http://182.162.143.24";
+    private static final String HTTPADDR = "http://www.knowledge-seek.com";
+    //private static final String HTTPADDR = "http://182.162.143.24";
     private String ad_seq;                           //광고 시퀀스
 
     //통신 결과
@@ -77,6 +77,9 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
     private Button entry_btn;
 
     private ImageButton btn_media;                   //소리끄기
+    private boolean sound_act = true;               //소리 on, off
+    private int nCurrentVolumn;                     //현재 볼륨
+
 
     private MediaPlayer mediaPlayer;        //MediaPlayer
     private YouTubePlayerView youTubeView;  //유뷰브
@@ -85,8 +88,8 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         Log.d("-진우- ", "알랑랑 시작");
+
         //폰의 상태를 깨운다.
         final Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
@@ -119,22 +122,6 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
         } catch (URISyntaxException e1){
             e1.printStackTrace();
         }
-
-
-        //외부광고시 필요
-        /*webView = (WebView)findViewById(R.id.webView);
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl(httpAddr + "/and/ad.do");
-        webView.setWebViewClient(new AdWebViewClient());
-        webView.setWebChromeClient(new WebChromeClient() {
-            @Override
-            public void onProgressChanged(WebView view, int progress) {
-                //매개변수로 제공되는 progress의 범위는 0부터 10,000까지 사용한다.
-                //웹 페이지가 100% 출력될때까지 화면 출력을 지연한다.
-                activity.setProgress(progress * 100);
-            }
-        });*/
-
 
         //응모하기(리니어레이아웃)있을시 필요
         entryLinearLayout = (LinearLayout)findViewById(R.id.entryLinearLayout);
@@ -170,6 +157,38 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
         });
 
 
+        //소리끄기
+        btn_media = (ImageButton)findViewById(R.id.btn_media);
+        btn_media.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(sound_act == true){
+                    sound_act = false;
+                    ((ImageButton)view).setImageResource(R.drawable.btn_sound_off);
+                    if(ad.getYoutube_addr() != null){
+                        AudioManager am = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+                        nCurrentVolumn = am.getStreamVolume(AudioManager.STREAM_MUSIC);
+                        am.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
+                    }
+                    killMediaPlayer();
+                } else {
+                    sound_act = true;
+                    ((ImageButton)view).setImageResource(R.drawable.btn_sound_on);
+                    if(ad.getYoutube_addr() != null){
+                        AudioManager am = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+                        am.setStreamVolume(AudioManager.STREAM_MUSIC, nCurrentVolumn, 0);
+                    } else {
+                        String st = HTTPADDR + "/fileupload/sound/" + ad.getAd_sound_server();
+                        Log.d("-진우- 소리파일 ", st);
+                        try{
+                            playAudio(st);
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        });
 
         //알람끄기
         Button btnFinish=(Button)findViewById(R.id.btn_finish);
@@ -179,16 +198,6 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
             }
         });
 
-        //소리끄기
-        btn_media = (ImageButton)findViewById(R.id.btn_media);
-        btn_media.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                killMediaPlayer();
-            }
-        });
-
-        Log.d("-진우- ", "onCreate() 끝");
     }
 
 
@@ -197,7 +206,7 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
         public void handleMessage(Message msg) {
             switch(msg.what) {
                 case MESSAGE_OK:
-                    Log.d("-진우- ", "handler MESSAGE_OK 실행");
+                    //Log.d("-진우- ", "handler MESSAGE_OK 실행");
                     //유뷰트광고
                     if(ad.getYoutube_addr() != null){
                         youTubeView.setVisibility(View.VISIBLE);
@@ -206,7 +215,7 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
                             AudioManager am = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
                             am.setStreamVolume(AudioManager.STREAM_MUSIC, alarm.getVolume(), 0);
                         } else {
-                            Log.d("-진우- 유뷰브소리 " , "월래 소리냄");
+                            //Log.d("-진우- 유뷰브소리 " , "월래 소리냄");
                         }
                     }
                     //이미지,소리광고
@@ -214,7 +223,7 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
                         imageView.setVisibility(View.VISIBLE);
 
                         String st = HTTPADDR + "/fileupload/image/" + ad.getAd_image_server();
-                        Log.d("-진우- 이미지", st);
+                        //Log.d("-진우- 이미지", st);
                         BitmapFactory.Options bmOptions;
                         bmOptions = new BitmapFactory.Options();
                         bmOptions.inSampleSize = 1;
@@ -240,6 +249,7 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
 
                     //소리재생
                     if(ad.getAd_sound_server() != null){
+                        sound_act = true;
                         try{
                             String st = HTTPADDR + "/fileupload/sound/" + ad.getAd_sound_server();
                             Log.d("-진우- 소리재생 ", st);
@@ -293,7 +303,7 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
 
         @Override
         public void run() {
-            Log.d("-진우- ", "run() 실행");
+            //Log.d("-진우- ", "run() 실행");
             HttpClient httpclient =  null;
             HttpPost httppost = null;
             try{
@@ -307,7 +317,7 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
                 HttpResponse response = httpclient.execute(httppost);
                 StatusLine status = response.getStatusLine();
 
-                Log.d("-진우- ", String.valueOf(status.getStatusCode()));
+                //Log.d("-진우- ", String.valueOf(status.getStatusCode()));
                 if (status.getStatusCode() == 200) {
                     HttpEntity entity = response.getEntity();
                     InputStream is = entity.getContent();
@@ -327,7 +337,7 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
                 httpclient.getConnectionManager().shutdown();
             }
 
-            Log.d("-진우- 광고정보 ", result);
+            //Log.d("-진우- 광고정보 ", result);
             try{
                 JSONObject json = new JSONObject(result);
 
@@ -354,26 +364,7 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
                 if(!json.getString("entry_or").equals("null")){
                     ad.setEntry_or(json.getString("entry_or"));
                 }
-                Log.d("-진우- 광고정보 ", ad.toString());
-                //null이 넘어온것은 저장을 하지 않았을 때는 true가 된다(아래)
-                //Log.d("-진우1-  ", String.valueOf(ad.getYoutube_addr() == null));
-
-                /*JSONArray adSound = json.getJSONArray("ad");
-                for(int i=0;i < adSound.length();i++){
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    JSONObject e = adSound.getJSONObject(i);
-
-                    map.put("id",  String.valueOf(i));
-                    map.put("ad_seq", e.getString("ad_seq"));
-                    map.put("ad_sound_server", e.getString("ad_sound_server"));
-                    map.put("ad_image_server", e.getString("ad_image_server"));
-                    *//*map.put("name", "지진명 :" + e.getString("eqid"));
-                    map.put("magnitude", "강도 : " + e.getString("magnitude"));
-                    map.put("datetime", "일자 :" + e.getString("datetime"));
-                    map.put("lng", "경도 : " + e.getDouble("lng"));
-                    map.put("lat", "위도 : " + e.getDouble("lat"));*//*
-                    mylist.add(map);
-                }*/
+                //Log.d("-진우- 광고정보 ", ad.toString());
             }catch(JSONException e){
                 Log.e("-진우- JSON", "Error parsing data "+e.toString());
             }
@@ -392,7 +383,7 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
 
         @Override
         public void run() {
-            Log.d("-진우- 응모하기", "run() 실행");
+            //Log.d("-진우- 응모하기", "run() 실행");
 
             HttpClient httpclient = null;
             HttpPost httppost = null;
@@ -408,7 +399,7 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
                 HttpResponse response = httpclient.execute(httppost);
                 StatusLine status = response.getStatusLine();
 
-                Log.d("-진우- ", String.valueOf(status.getStatusCode()));
+                //Log.d("-진우- ", String.valueOf(status.getStatusCode()));
                 if(status.getStatusCode() == 200){
                     HttpEntity entity = response.getEntity();
                     InputStream is = entity.getContent();
@@ -431,12 +422,12 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
             }
 
 
-            Log.d("-진우- 응모결과 ", "-" + result + "-");
+            //Log.d("-진우- 응모결과 ", "-" + result + "-");
             if(result.contains("success")){
-                Log.d("-진우- ", "응모하였습니다.");
+                //Log.d("-진우- ", "응모하였습니다.");
                 handler.sendEmptyMessage(ENTRY_SUCCESS);
             } else {
-                Log.d("-진우- ", "응모한 이벤트입니다.");
+                //Log.d("-진우- ", "응모한 이벤트입니다.");
                 handler.sendEmptyMessage(ENTRY_FAIL);
             }
         }

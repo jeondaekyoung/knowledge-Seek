@@ -45,7 +45,7 @@ public class AlarmView extends LinearLayout {
         alarm_set = (LinearLayout)findViewById(R.id.alarm_set);
         set_active = (ImageView) findViewById(R.id.img_active);
         activeImage = alarm.getAlarmActive();
-        Log.d("-진우- 알람활동 : ", String.valueOf(activeImage));
+        //Log.d("-진우- 알람활동 : ", String.valueOf(activeImage));
         if(activeImage){
             //Log.d("-진우- 알람활동1 : ", "켜져있음");
             set_active.setImageResource(R.drawable.ic_alarm_active);

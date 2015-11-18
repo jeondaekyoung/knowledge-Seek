@@ -50,8 +50,8 @@ public class MainActivity extends BaseActivity {
     ListView alarmListView;
     AlarmListAdapter alarmListAdapter;
 
-    //private static final String HTTPADDR = "http://www.knowledge-seek.com";
-    private static final String HTTPADDR = "http://182.162.143.24";
+    private static final String HTTPADDR = "http://www.knowledge-seek.com";
+    //private static final String HTTPADDR = "http://182.162.143.24";
     LinearLayout main_linearLayout;         //메인 리니어아웃
     String mainbg_name;                         //메인배경 이미지 이름
 
@@ -209,7 +209,7 @@ public class MainActivity extends BaseActivity {
         public void handleMessage(Message msg) {
             switch(msg.what){
                 case MESSAGE_OK:
-                    Log.d("-진우- ", "handler MESSAGE_OK 실행");
+                    //Log.d("-진우- ", "handler MESSAGE_OK 실행");
                     String st = HTTPADDR + "/fileupload/bg/" + mainbg_name;
                     Log.d("-진우- 배경이미지", st);
                     BitmapFactory.Options bmOptions;
@@ -233,7 +233,7 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public void run() {
-            Log.d("-진우- ", "run() 실행");
+            //Log.d("-진우- ", "run() 실행");
             HttpClient httpclient = null;
             HttpPost httppost = null;
             try {
@@ -247,7 +247,7 @@ public class MainActivity extends BaseActivity {
                 HttpResponse response = httpclient.execute(httppost);
                 StatusLine status = response.getStatusLine();
 
-                Log.d("-진우- ", String.valueOf(status.getStatusCode()));
+                //Log.d("-진우- ", String.valueOf(status.getStatusCode()));
                 if (status.getStatusCode() == 200) {
                     HttpEntity entity = response.getEntity();
                     InputStream is = entity.getContent();

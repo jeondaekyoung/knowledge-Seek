@@ -33,7 +33,7 @@
             android:background="#00ffffff"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:src="@drawable/btn_sound_off" />
+            android:src="@drawable/btn_sound_on" />
     </RelativeLayout>
 
 

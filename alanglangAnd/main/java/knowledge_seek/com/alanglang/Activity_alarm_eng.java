@@ -21,6 +21,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -61,8 +62,8 @@ public class Activity_alarm_eng extends Activity {
     private Alarm alarm;
     private Eng engToday;           //오늘의 예문
     private List<Eng> engThrees;    //3일 영어 예문
-    //private static final String HTTPADDR = "http://www.knowledge-seek.com";
-    private static final String HTTPADDR = "http://182.162.143.24";
+    private static final String HTTPADDR = "http://www.knowledge-seek.com";
+    //private static final String HTTPADDR = "http://182.162.143.24";
     //private static final String HTTPADDR = "http://192.168.123.103:8080";
 
     private static final int MESSAGE_OK = 1;
@@ -71,6 +72,8 @@ public class Activity_alarm_eng extends Activity {
 
     private String audio_url;       //미디어파일위치
     private MediaPlayer mediaPlayer;    //MediaPlayer
+    private ImageButton btn_media;       //소리끄기
+    private boolean sound_act = true;   //소리 on, off
 
     //컨텐츠
     private LinearLayout engTodayLinear;
@@ -152,7 +155,31 @@ public class Activity_alarm_eng extends Activity {
             e1.printStackTrace();
         }
 
-       Button btnFinish=(Button)findViewById(R.id.btn_finish);
+        //소리끄기
+        btn_media = (ImageButton)findViewById(R.id.btn_media);
+        btn_media.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(sound_act == true){
+                    sound_act = false;
+                    ((ImageButton)view).setImageResource(R.drawable.btn_sound_off);
+                    killMediaPlayer();
+                } else {
+                    sound_act = true;
+                    ((ImageButton)view).setImageResource(R.drawable.btn_sound_on);
+                    audio_url = HTTPADDR + "/fileupload/sound/" + engToday.getEng_sound_server();
+                    Log.d("-진우- 소리파일 ", audio_url);
+                    try{
+                        playAudio(audio_url);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+        });
+
+        Button btnFinish=(Button)findViewById(R.id.btn_finish);
         btnFinish.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 finish();
@@ -173,6 +200,7 @@ public class Activity_alarm_eng extends Activity {
                     engTodayMean.setText(engToday.getEng_mean());
                     audio_url = HTTPADDR + "/fileupload/sound/" + engToday.getEng_sound_server();
                     Log.d("-진우- 소리파일 ", audio_url);
+                    sound_act = true;
                     try{
                         playAudio(audio_url);
                     }catch (Exception e){
@@ -544,15 +572,18 @@ public class Activity_alarm_eng extends Activity {
                         }
                         if(startX == endX || Math.abs(endX-startX) <= 30){
                             //Log.d("-진우- eng1", "이동1");
-                            engTodayDate.setText(engThrees.get(2).getToday_date());
-                            engTodaySentence.setText(engThrees.get(2).getEng_sentence());
-                            engTodayMean.setText(engThrees.get(2).getEng_mean());
-                            audio_url = HTTPADDR + "/fileupload/sound/" + engThrees.get(2).getEng_sound_server();
+                            engToday = engThrees.get(2);
+                            engTodayDate.setText(engToday.getToday_date());
+                            engTodaySentence.setText(engToday.getEng_sentence());
+                            engTodayMean.setText(engToday.getEng_mean());
+                            audio_url = HTTPADDR + "/fileupload/sound/" + engToday.getEng_sound_server();
                             Log.d("-진우- 소리파일 ", audio_url);
-                            try{
-                                playAudio(audio_url);
-                            }catch (Exception e){
-                                e.printStackTrace();
+                            if(sound_act == true){
+                                try{
+                                    playAudio(audio_url);
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
                             }
                         }
                     }
@@ -603,15 +634,18 @@ public class Activity_alarm_eng extends Activity {
                         }
                         if(startX == endX || Math.abs(endX-startX) <= 30){
                             //Log.d("-진우- eng1", "이동2");
-                            engTodayDate.setText(engThrees.get(1).getToday_date());
-                            engTodaySentence.setText(engThrees.get(1).getEng_sentence());
-                            engTodayMean.setText(engThrees.get(1).getEng_mean());
-                            audio_url = HTTPADDR + "/fileupload/sound/" + engThrees.get(1).getEng_sound_server();
+                            engToday = engThrees.get(1);
+                            engTodayDate.setText(engToday.getToday_date());
+                            engTodaySentence.setText(engToday.getEng_sentence());
+                            engTodayMean.setText(engToday.getEng_mean());
+                            audio_url = HTTPADDR + "/fileupload/sound/" + engToday.getEng_sound_server();
                             Log.d("-진우- 소리파일 ", audio_url);
-                            try{
-                                playAudio(audio_url);
-                            }catch (Exception e){
-                                e.printStackTrace();
+                            if(sound_act == true){
+                                try{
+                                    playAudio(audio_url);
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
                             }
                         }
                     }
@@ -661,15 +695,18 @@ public class Activity_alarm_eng extends Activity {
                         }
                         if(startX == endX || Math.abs(endX-startX) <= 30){
                             //Log.d("-진우- eng1", "이동3");
-                            engTodayDate.setText(engThrees.get(0).getToday_date());
-                            engTodaySentence.setText(engThrees.get(0).getEng_sentence());
-                            engTodayMean.setText(engThrees.get(0).getEng_mean());
-                            audio_url = HTTPADDR + "/fileupload/sound/" + engThrees.get(0).getEng_sound_server();
+                            engToday = engThrees.get(0);
+                            engTodayDate.setText(engToday.getToday_date());
+                            engTodaySentence.setText(engToday.getEng_sentence());
+                            engTodayMean.setText(engToday.getEng_mean());
+                            audio_url = HTTPADDR + "/fileupload/sound/" + engToday.getEng_sound_server();
                             Log.d("-진우- 소리파일 ", audio_url);
-                            try{
-                                playAudio(audio_url);
-                            }catch (Exception e){
-                                e.printStackTrace();
+                            if(sound_act == true){
+                                try{
+                                    playAudio(audio_url);
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
                             }
                         }
                     }

@@ -29,7 +29,7 @@ public class AlarmService extends Service {
 
     @Override
     public void onCreate() {
-        Log.d("-진우- ", "알람서비스 실행 ");
+        //Log.d("-진우- ", "알람서비스 실행 ");
         super.onCreate();
     }
 
@@ -83,7 +83,7 @@ public class AlarmService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d("-진우- ", "AlarmService.onStartCommand()");
+        //Log.d("-진우- ", "AlarmService.onStartCommand()");
 
         //데이터베이스에 저장된 알람리스트 중에서 알람활동이 사용인 것을 불러온다.
         Alarm alarm = getNext();

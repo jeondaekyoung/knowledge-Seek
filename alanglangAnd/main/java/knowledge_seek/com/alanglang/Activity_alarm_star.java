@@ -48,8 +48,8 @@ public class Activity_alarm_star extends Activity {
     private Alarm alarm;
     private MediaPlayer mediaPlayer;
 
-    //private static final String HTTPADDR = "http://www.knowledge-seek.com";
-    private static final String HTTPADDR = "http://182.162.143.24";
+    private static final String HTTPADDR = "http://www.knowledge-seek.com";
+    //private static final String HTTPADDR = "http://182.162.143.24";
     private ImageView star_imageview;       //스타 이미지뷰
     String starbg_name;             //스타배경 이미지 이름
 
@@ -124,9 +124,9 @@ public class Activity_alarm_star extends Activity {
         public void handleMessage(Message msg) {
             switch(msg.what){
                 case MESSAGE_OK:
-                    Log.d("-진우- ", "handler MESSAGE_OK 실행");
+                    //Log.d("-진우- ", "handler MESSAGE_OK 실행");
                     String st = HTTPADDR + "/fileupload/bg/" + starbg_name;
-                    Log.d("-진우- 배경이미지", st);
+                    //Log.d("-진우- 배경이미지", st);
                     BitmapFactory.Options bmOptions;
                     bmOptions = new BitmapFactory.Options();
                     bmOptions.inSampleSize = 1;
@@ -148,7 +148,7 @@ public class Activity_alarm_star extends Activity {
 
         @Override
         public void run() {
-            Log.d("-진우-", "run() 실행");
+            //Log.d("-진우-", "run() 실행");
             HttpClient httpclient = null;
             HttpPost httppost = null;
             try {
@@ -162,7 +162,7 @@ public class Activity_alarm_star extends Activity {
                 HttpResponse response = httpclient.execute(httppost);
                 StatusLine status = response.getStatusLine();
 
-                Log.d("-진우- ", String.valueOf(status.getStatusCode()));
+                //Log.d("-진우- ", String.valueOf(status.getStatusCode()));
                 if (status.getStatusCode() == 200) {
                     HttpEntity entity = response.getEntity();
                     InputStream is = entity.getContent();
@@ -196,9 +196,7 @@ public class Activity_alarm_star extends Activity {
 
     //이미지광고시 이미지불러오기
     private class OpenHttpConnection extends AsyncTask<Object, Void, Bitmap> {
-
         private ImageView bmImage;
-
         @Override
         protected Bitmap doInBackground(Object... objects) {
             Bitmap mBitmap = null;
@@ -212,7 +210,6 @@ public class Activity_alarm_star extends Activity {
             }catch (Exception e){
                 e.printStackTrace();
             }
-
             return mBitmap;
         }
 
@@ -229,7 +226,6 @@ public class Activity_alarm_star extends Activity {
 
         mediaPlayer = new MediaPlayer();
         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.kyc_sp1);
-
         AudioManager am = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
         if(alarm == null){
             Log.d("-진우- 알람 ", "널이다");
@@ -238,7 +234,6 @@ public class Activity_alarm_star extends Activity {
             Log.d("-진우- 알람 ", alarm.toString());
             am.setStreamVolume(AudioManager.STREAM_MUSIC, alarm.getVolume(), 0);
         }
-
         mediaPlayer.start();
     }
 

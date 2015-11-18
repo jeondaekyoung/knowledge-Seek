@@ -21,7 +21,7 @@ public class Activity_event extends Activity {
     private static final String AD_ENTRY = "http://www.knowledge-seek.com/and/adEntry.do";
     //private static final String AD_ENTRY = "http://182.162.143.24/and/adEntry.do";
 
-    private static final int MESSAGE_OK = 1;
+    //private static final int MESSAGE_OK = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,18 +47,15 @@ public class Activity_event extends Activity {
 
 
     class AdEntryWebViewClient extends WebViewClient {
-
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             view.loadUrl(url);   //HTML문서 내 존재하는 새로운 URL는 웹뷰에서 로드한다.
             return true;
         }
-
         @Override
         public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
             Log.d("Error ", "Oh no");
         }
     }
-
 
 }

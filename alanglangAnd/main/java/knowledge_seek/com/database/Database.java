@@ -96,7 +96,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
     public static int update(Alarm alarm){
-        Log.d("-진우- 업데이트 : ", alarm.toString());
+        //Log.d("-진우- 업데이트 : ", alarm.toString());
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_ALARM_ACTIVE, alarm.getAlarmActive());
         cv.put(COLUMN_ALARM_TIME, alarm.getAlarmTimeString());
@@ -126,7 +126,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
     public static int deleteEntry(Alarm alarm){
-        Log.d("-진우- 알람삭제 ", alarm.toString());
+        //Log.d("-진우- 알람삭제 ", alarm.toString());
         return deleteEntry(alarm.getId());
     }
 

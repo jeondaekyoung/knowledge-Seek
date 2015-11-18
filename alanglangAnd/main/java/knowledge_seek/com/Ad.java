@@ -2,6 +2,7 @@ package knowledge_seek.com;
 
 /**
  * Created by sjw on 2015-11-12.
+ * 광고
  */
 public class Ad {
     private String ad_sound_server;

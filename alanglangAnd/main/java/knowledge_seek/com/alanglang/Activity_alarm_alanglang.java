@@ -6,10 +6,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -19,6 +19,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -75,7 +76,7 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
     private EditText email_txt;
     private Button entry_btn;
 
-    private Button btn_media;                   //소리끄기
+    private ImageButton btn_media;                   //소리끄기
 
     private MediaPlayer mediaPlayer;        //MediaPlayer
     private YouTubePlayerView youTubeView;  //유뷰브
@@ -179,7 +180,7 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
         });
 
         //소리끄기
-        btn_media = (Button)findViewById(R.id.btn_media);
+        btn_media = (ImageButton)findViewById(R.id.btn_media);
         btn_media.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

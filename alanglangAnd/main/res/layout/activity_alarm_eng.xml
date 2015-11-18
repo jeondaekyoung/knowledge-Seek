@@ -7,25 +7,34 @@
     android:orientation="vertical"
     android:weightSum="10">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:orientation="horizontal"
         android:paddingTop="10dp">
 
         <TextClock
             android:id="@+id/textClock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingBottom="10dp"
+            android:layout_marginLeft="30dp"
             android:textColor="#fff"
             android:textSize="24pt"
             tools:targetApi="jelly_bean_mr1" />
 
-
-    </LinearLayout>
+        <ImageButton
+            android:id="@+id/btn_media"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textClock"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:background="#00ffffff"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:src="@drawable/btn_sound_off" />
+    </RelativeLayout>
 
     <!-- 컨텐츠 -->
     <LinearLayout
@@ -90,8 +99,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3"
-            android:weightSum="3"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="3">
 
             <LinearLayout
                 android:id="@+id/eng1linear"

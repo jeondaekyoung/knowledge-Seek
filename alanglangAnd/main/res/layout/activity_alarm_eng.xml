@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:paddingTop="10dp">
 
         <TextClock
@@ -23,6 +23,7 @@
             android:textColor="#fff"
             android:textSize="24pt"
             tools:targetApi="jelly_bean_mr1" />
+
 
     </LinearLayout>
 

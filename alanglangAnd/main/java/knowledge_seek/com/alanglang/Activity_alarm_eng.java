@@ -61,9 +61,6 @@ public class Activity_alarm_eng extends Activity {
     private Alarm alarm;
     private Eng engToday;           //오늘의 예문
     private List<Eng> engThrees;    //3일 영어 예문
-    private String engThreesEndEngSeq;
-    //private WebView webView;
-    //final Activity activity = this;
     //private static final String HTTPADDR = "http://www.knowledge-seek.com";
     private static final String HTTPADDR = "http://182.162.143.24";
     //private static final String HTTPADDR = "http://192.168.123.103:8080";
@@ -82,7 +79,6 @@ public class Activity_alarm_eng extends Activity {
     private TextView engTodayDate;              //오늘의 예문 날짜
     private TextView engTodaySentence;      //오늘의 예문 예뮨
     private TextView engTodayMean;            //오늘의 예문 뜻
-    //private GestureDetector mGestures = null;       //제스처
     // 아랫 부분
     private LinearLayout eng1linear;
     private LinearLayout eng2linear;
@@ -171,7 +167,7 @@ public class Activity_alarm_eng extends Activity {
         public void handleMessage(Message msg){
             switch(msg.what){
                 case MESSAGE_OK:
-                    Log.d("-진우- ", "handler MESSAGE_OK 실행");
+                    //Log.d("-진우- ", "handler MESSAGE_OK 실행");
                     engTodayDate.setText(engToday.getToday_date());
                     engTodaySentence.setText(engToday.getEng_sentence());
                     engTodayMean.setText(engToday.getEng_mean());
@@ -194,7 +190,7 @@ public class Activity_alarm_eng extends Activity {
 
                     break;
                 case ENGBG_OK:
-                    Log.d("-진우- ", "handler ENGBG_OK 실행");
+                    //Log.d("-진우- ", "handler ENGBG_OK 실행");
                     String st = HTTPADDR + "/fileupload/bg/" + engbg_name;
                     Log.d("-진우- 배경이미지", st);
                     BitmapFactory.Options bmOptions;
@@ -204,7 +200,7 @@ public class Activity_alarm_eng extends Activity {
                     opHttpCon.execute(engTodayLinear, st);
                     break;
                 case ENGTHREE_OK:
-                    Log.d("-진우- ", "handler ENGTHREE_OK 실행");
+                    //Log.d("-진우- ", "handler ENGTHREE_OK 실행");
                     eng1t1.setText(engThrees.get(2).getToday_date());
                     eng1t2.setText(engThrees.get(2).getEng_sentence());
                     eng1t3.setText(engThrees.get(2).getEng_mean());
@@ -230,14 +226,11 @@ public class Activity_alarm_eng extends Activity {
 
         @Override
         public void run() {
-            Log.d("-진우- ", "engTodayThread.run() 실행");
+            //Log.d("-진우- ", "engTodayThread.run() 실행");
 
             HttpClient httpclient = new DefaultHttpClient();
             HttpPost httppost = new HttpPost(uri);
             try{
-                //HttpClient httpclient = new DefaultHttpClient();
-                //HttpPost httppost = new HttpPost(uri);
-
                 HttpParams params = httpclient.getParams();
                 HttpConnectionParams.setConnectionTimeout(params, 10000);
                 HttpConnectionParams.setSoTimeout(params, 10000);
@@ -245,7 +238,7 @@ public class Activity_alarm_eng extends Activity {
                 HttpResponse response = httpclient.execute(httppost);
                 StatusLine status = response.getStatusLine();
 
-                Log.d("-진우- ", String.valueOf(status.getStatusCode()));
+                //Log.d("-진우- ", String.valueOf(status.getStatusCode()));
                 if(status.getStatusCode() == 200){
                     HttpEntity entity = response.getEntity();
                     InputStream is = entity.getContent();
@@ -297,14 +290,11 @@ public class Activity_alarm_eng extends Activity {
 
         @Override
         public void run() {
-            Log.d("-진우- ", "engThreeThread.run() 실행");
+            //Log.d("-진우- ", "engThreeThread.run() 실행");
 
             HttpClient httpclient = new DefaultHttpClient();
             HttpPost httppost = new HttpPost(uri);
             try{
-                //HttpClient httpclient = new DefaultHttpClient();
-                //HttpPost httppost = new HttpPost(uri);
-
                 HttpParams params = httpclient.getParams();
                 HttpConnectionParams.setConnectionTimeout(params, 10000);
                 HttpConnectionParams.setSoTimeout(params, 10000);
@@ -312,7 +302,7 @@ public class Activity_alarm_eng extends Activity {
                 HttpResponse response = httpclient.execute(httppost);
                 StatusLine status = response.getStatusLine();
 
-                Log.d("-진우- ", String.valueOf(status.getStatusCode()));
+                //Log.d("-진우- ", String.valueOf(status.getStatusCode()));
                 if(status.getStatusCode() == 200){
                     HttpEntity entity = response.getEntity();
                     InputStream is = entity.getContent();
@@ -374,15 +364,11 @@ public class Activity_alarm_eng extends Activity {
 
         @Override
         public void run() {
-            Log.d("-진우- ", "engThreeThread.run() 실행");
+            //Log.d("-진우- ", "engThreeThread.run() 실행");
 
             HttpClient httpclient = new DefaultHttpClient();
             HttpPost httppost = new HttpPost(uri);
-
-
             try{
-                //HttpClient httpclient = new DefaultHttpClient();
-                //HttpPost httppost = new HttpPost(uri);
                 List<NameValuePair> nvps = new ArrayList<NameValuePair>();
                 nvps.add(new BasicNameValuePair("eng_seq", eng_seq));
                 nvps.add(new BasicNameValuePair("orien", orien));
@@ -392,11 +378,10 @@ public class Activity_alarm_eng extends Activity {
                 HttpConnectionParams.setConnectionTimeout(params, 10000);
                 HttpConnectionParams.setSoTimeout(params, 10000);
 
-
                 HttpResponse response = httpclient.execute(httppost);
                 StatusLine status = response.getStatusLine();
 
-                Log.d("-진우- ", String.valueOf(status.getStatusCode()));
+                //Log.d("-진우- ", String.valueOf(status.getStatusCode()));
                 if(status.getStatusCode() == 200){
                     HttpEntity entity = response.getEntity();
                     InputStream is = entity.getContent();
@@ -439,12 +424,9 @@ public class Activity_alarm_eng extends Activity {
             }catch(JSONException e){
                 Log.d("-진우- JSON", "Error parsing data " + e.toString());
             }
-
             handler.sendEmptyMessage(ENGTHREE_OK);
         }
     }
-
-
 
     //배경이미지 위치정보를 서버에 받는다.
     private class engbgThread extends Thread {
@@ -457,7 +439,7 @@ public class Activity_alarm_eng extends Activity {
 
         @Override
         public void run() {
-            Log.d("-진우- ", "engbgThread.run() 실행");
+            //Log.d("-진우- ", "engbgThread.run() 실행");
             HttpClient httpclient = null;
             HttpPost httppost = null;
             try {
@@ -471,7 +453,7 @@ public class Activity_alarm_eng extends Activity {
                 HttpResponse response = httpclient.execute(httppost);
                 StatusLine status = response.getStatusLine();
 
-                Log.d("-진우- ", String.valueOf(status.getStatusCode()));
+                //Log.d("-진우- ", String.valueOf(status.getStatusCode()));
                 if (status.getStatusCode() == 200) {
                     HttpEntity entity = response.getEntity();
                     InputStream is = entity.getContent();
@@ -536,10 +518,10 @@ public class Activity_alarm_eng extends Activity {
                     break;
                 case MotionEvent.ACTION_UP:
                     endX = (int)motionEvent.getX();
-                    Log.d("-진우- 어떻게 된거니? ", startX + ", " + endX + " um");
+                    //Log.d("-진우- 위치 ", startX + ", " + endX + " um");
                     if(startX != 0 && endX != 0) {
                         if (startX < endX && endX-startX > 30) {
-                            Log.d("-진우- engthree", "증가 왼쪽 화면 불러옴");
+                            //Log.d("-진우- engthree", "증가 왼쪽 화면 불러옴");
                             //아랫부분 다시 불러오기
                             String st = HTTPADDR + "/and/engThreeRe.do";
                             try {
@@ -550,7 +532,7 @@ public class Activity_alarm_eng extends Activity {
                             }
                         }
                         if (startX > endX && startX-endX > 30) {
-                            Log.d("-진우- engthree", "감소 오른쪽 화면 불러옴");
+                            //Log.d("-진우- engthree", "감소 오른쪽 화면 불러옴");
                             //아랫부분 다시 불러오기
                             String st = HTTPADDR + "/and/engThreeRe.do";
                             try {
@@ -561,7 +543,7 @@ public class Activity_alarm_eng extends Activity {
                             }
                         }
                         if(startX == endX || Math.abs(endX-startX) <= 30){
-                            Log.d("-진우- eng1", "이동1");
+                            //Log.d("-진우- eng1", "이동1");
                             engTodayDate.setText(engThrees.get(2).getToday_date());
                             engTodaySentence.setText(engThrees.get(2).getEng_sentence());
                             engTodayMean.setText(engThrees.get(2).getEng_mean());
@@ -594,11 +576,11 @@ public class Activity_alarm_eng extends Activity {
                     break;
                 case MotionEvent.ACTION_UP:
                     endX = (int)motionEvent.getX();
-                    Log.d("-진우- 어떻게 된거니? ", startX + ", " + endX + " um");
+                    //Log.d("-진우- 위치 ", startX + ", " + endX + " um");
 
                     if(startX != 0 && endX != 0) {
                         if (startX < endX && endX-startX > 30) {
-                            Log.d("-진우- engthree", "증가 왼쪽 화면 불러옴");
+                            //Log.d("-진우- engthree", "증가 왼쪽 화면 불러옴");
                             //아랫부분 다시 불러오기
                             String st = HTTPADDR + "/and/engThreeRe.do";
                             try {
@@ -609,7 +591,7 @@ public class Activity_alarm_eng extends Activity {
                             }
                         }
                         if (startX > endX && startX-endX > 30) {
-                            Log.d("-진우- engthree", "감소 오른쪽 화면 불러옴");
+                            //Log.d("-진우- engthree", "감소 오른쪽 화면 불러옴");
                             //아랫부분 다시 불러오기
                             String st = HTTPADDR + "/and/engThreeRe.do";
                             try {
@@ -620,7 +602,7 @@ public class Activity_alarm_eng extends Activity {
                             }
                         }
                         if(startX == endX || Math.abs(endX-startX) <= 30){
-                            Log.d("-진우- eng1", "이동2");
+                            //Log.d("-진우- eng1", "이동2");
                             engTodayDate.setText(engThrees.get(1).getToday_date());
                             engTodaySentence.setText(engThrees.get(1).getEng_sentence());
                             engTodayMean.setText(engThrees.get(1).getEng_mean());
@@ -653,11 +635,10 @@ public class Activity_alarm_eng extends Activity {
                     break;
                 case MotionEvent.ACTION_UP:
                     endX = (int)motionEvent.getX();
-                    Log.d("-진우- 어떻게 된거니? ", startX + ", " + endX + " um");
-
+                    //Log.d("-진우- 위치  ", startX + ", " + endX + " um");
                     if(startX != 0 && endX != 0) {
                         if (startX < endX && endX-startX > 30) {
-                            Log.d("-진우- engthree", "증가 왼쪽 화면 불러옴");
+                            //Log.d("-진우- engthree", "증가 왼쪽 화면 불러옴");
                             //아랫부분 다시 불러오기
                             String st = HTTPADDR + "/and/engThreeRe.do";
                             try {
@@ -668,7 +649,7 @@ public class Activity_alarm_eng extends Activity {
                             }
                         }
                         if (startX > endX && startX-endX > 30) {
-                            Log.d("-진우- engthree", "감소 오른쪽 화면 불러옴");
+                            //Log.d("-진우- engthree", "감소 오른쪽 화면 불러옴");
                             //아랫부분 다시 불러오기
                             String st = HTTPADDR + "/and/engThreeRe.do";
                             try {
@@ -679,7 +660,7 @@ public class Activity_alarm_eng extends Activity {
                             }
                         }
                         if(startX == endX || Math.abs(endX-startX) <= 30){
-                            Log.d("-진우- eng1", "이동3");
+                            //Log.d("-진우- eng1", "이동3");
                             engTodayDate.setText(engThrees.get(0).getToday_date());
                             engTodaySentence.setText(engThrees.get(0).getEng_sentence());
                             engTodayMean.setText(engThrees.get(0).getEng_mean());
@@ -708,7 +689,7 @@ public class Activity_alarm_eng extends Activity {
         //mediaPlayer.setVolume(100f, 100f);
         AudioManager am = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
         if(alarm == null){
-            Log.d("-진우- 알람 ", "널이다");
+            //Log.d("-진우- 알람 ", "널이다");
             //am.setStreamVolume(AudioManager.STREAM_MUSIC, 8, 0);
         } else {
             Log.d("-진우- 알람 ", alarm.toString());

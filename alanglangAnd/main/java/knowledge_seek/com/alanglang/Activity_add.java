@@ -29,7 +29,6 @@ public class Activity_add extends BaseActivity{
     private TimePicker timePicker;
     LinearLayout popType;
     LinearLayout popType2;
-    //LinearLayout popRepeat;
 
     //월, 화, 수, 목, 금, 토, 일
     ImageView day1, day2, day3, day4, day5, day6, day7;
@@ -60,7 +59,7 @@ public class Activity_add extends BaseActivity{
 
         //알람시간 셋팅
         timePicker = (TimePicker)findViewById(R.id.timePicker);
-        Log.d("-진우- 시간 ", alarm.getAlarmTimeString());
+        //Log.d("-진우- 시간 ", alarm.getAlarmTimeString());
         //Log.d("-진우- 시간2: ", alarm.getAlarmTime().toString());
         //Log.d("-진우- 시간3 : ", alarm.getAlarmTimeView());
         String[] timePieces = alarm.getAlarmTimeString().split(":");
@@ -88,7 +87,7 @@ public class Activity_add extends BaseActivity{
 
         //알람타입 셋팅
         popType = (LinearLayout)findViewById(R.id.popType);
-        Log.d("-진우- 알람타입 : ", String.valueOf(alarm.getType()));
+        //Log.d("-진우- 알람타입 : ", String.valueOf(alarm.getType()));
         TextView alarm_type = (TextView)findViewById(R.id.alarm_type);
         alarm_type.setText(String.valueOf(alarm.getType()).concat(" 알람"));
 
@@ -96,7 +95,7 @@ public class Activity_add extends BaseActivity{
         popType2 = (LinearLayout)findViewById(R.id.popType2);
         if(alarm.getType() == Alarm.Type.STAR){
             popType2.setVisibility(View.VISIBLE);
-            Log.d("-진우- 스타타입 : ", String.valueOf(alarm.getStar()));
+            //Log.d("-진우- 스타타입 : ", String.valueOf(alarm.getStar()));
             TextView alarm_type2 = (TextView)findViewById(R.id.alarm_type2);
             alarm_type2.setText(String.valueOf(alarm.getStar()));
         } else {
@@ -339,9 +338,8 @@ public class Activity_add extends BaseActivity{
         volume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                Log.d("-진우- 볼륨크기 ", String.valueOf(i));
+                //Log.d("-진우- 볼륨크기 ", String.valueOf(i));
                 alarm.setVolume(i);
-
             }
 
             @Override
@@ -391,93 +389,6 @@ public class Activity_add extends BaseActivity{
             }
         });*/
     }
-
-    //알람타입
-    /*public void pop_type(View v) {
-        new AlertDialog.Builder(this)
-                .setTitle("알람타입")
-                .setSingleChoiceItems(R.array.type, mSelect, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        mSelect = which;
-                    }
-                })
-                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        String[] type = getResources().getStringArray(R.array.type);
-                        TextView text = (TextView) findViewById(R.id.alarm_type);
-                        text.setText(type[mSelect]);
-
-                        //알람에 타입저장
-                        Alarm.Type t = Alarm.Type.values()[mSelect];
-                        alarm.setType(t);
-
-                        if (2 == mSelect) {
-                            star.setVisibility(View.VISIBLE);
-                            Alarm.Star s = Alarm.Star.values()[0];
-                            alarm.setStar(s);
-                        } else {
-                            star.setVisibility(View.GONE);
-                        }
-
-                    }
-                })
-                .setNegativeButton("취소", null)
-                .show();
-    }*/
-
-    //스타알람타입
-    /*public void pop_type2(View v) {
-        new AlertDialog.Builder(this)
-                .setTitle("스타알람")
-                .setSingleChoiceItems(R.array.type2, mSelect, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        mSelect = which;
-                    }
-                })
-                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        String[] type = getResources().getStringArray(R.array.type2);
-                        TextView text = (TextView) findViewById(R.id.alarm_type2);
-                        text.setText(type[mSelect]);
-
-                        //알람에 스타저장
-                        Alarm.Star s = Alarm.Star.values()[mSelect];
-                        alarm.setStar(s);
-                        Log.d("-진우- 스타저장 : ", String.valueOf(mSelect));
-
-                    }
-                })
-                .setNegativeButton("취소", null)
-                .show();
-    }*/
-
-    //다시알림
-    /*public void pop_repeat(View v) {
-        new AlertDialog.Builder(this)
-                .setTitle("다시알림")
-                .setSingleChoiceItems(R.array.repeat, mSelect, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        mSelect = which;
-                    }
-                })
-
-                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        String[] type = getResources().getStringArray(R.array.repeat);
-                        TextView text = (TextView) findViewById(R.id.alarm_repeat);
-                        text.setText(type[mSelect]);
-
-                        //알람에 다시알림 저장
-                        Alarm.Repeat r = Alarm.Repeat.values()[mSelect];
-                        alarm.setRepeat(r);
-                    }
-                })
-                .setNegativeButton("취소", null)
-                .show();
-    }*/
 
     //알람저장
     public void alarmRegister(View v) {

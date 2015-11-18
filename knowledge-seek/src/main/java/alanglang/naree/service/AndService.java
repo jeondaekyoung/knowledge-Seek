@@ -4,6 +4,7 @@ import java.util.List;
 
 import alanglang.naree.db.domain.Ad;
 import alanglang.naree.db.domain.Eng;
+import alanglang.naree.db.domain.EngBg;
 import alanglang.naree.db.domain.Entries;
 import alanglang.naree.db.domain.MainBg;
 import alanglang.naree.db.domain.SqlEntriesAd;
@@ -18,7 +19,7 @@ public interface AndService {
 	public Eng findTodayEng();
 
 	/**
-	 * 3일치 영어학습 찾기
+	 * 9일치 영어학습 찾기
 	 * @return
 	 */
 	public List<Eng> findNineEng();
@@ -81,5 +82,25 @@ public interface AndService {
 	 * @return
 	 */
 	public StarBg findMaxStarBg();
+
+	/**
+	 * 영어배경 이미지 찾기
+	 * @return
+	 */
+	public EngBg findMaxEngBg();
+
+	/**
+	 * 3일치 영어학습 찾기(아랫부분)
+	 * @return
+	 */
+	public List<Eng> findThreeEng();
+
+	/**
+	 * 3일치 영어학습 찾기(아랫부분) 왼쪽, 오른쪽 이동시
+	 * @param eng_seq
+	 * @param orien
+	 * @return
+	 */
+	public List<Eng> findThreeEngRe(String eng_seq, String orien);
 
 }

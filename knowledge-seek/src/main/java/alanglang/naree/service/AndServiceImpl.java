@@ -1,5 +1,6 @@
 package alanglang.naree.service;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import alanglang.naree.dao.AndDao;
 import alanglang.naree.db.domain.Ad;
 import alanglang.naree.db.domain.Eng;
+import alanglang.naree.db.domain.EngBg;
 import alanglang.naree.db.domain.Entries;
 import alanglang.naree.db.domain.MainBg;
 import alanglang.naree.db.domain.SqlEntriesAd;
@@ -142,6 +144,37 @@ public class AndServiceImpl implements AndService {
 	public StarBg findMaxStarBg() {
 		
 		return andDao.selectMaxStarBg();
+	}
+
+	@Override
+	public EngBg findMaxEngBg() {
+		
+		return andDao.selectMaxEngBg();
+	}
+
+	@Override
+	public List<Eng> findThreeEng() {
+		
+		return andDao.selectThreeEng();
+	}
+
+	@Override
+	public List<Eng> findThreeEngRe(String eng_seq, String orien) {
+		List<Eng> engs = new ArrayList<Eng>();
+		if("left".equals(orien)){
+			engs = andDao.selectThreeEngReLeft(eng_seq);
+			if(engs.size() < 3){
+				engs = andDao.selectThreeEngReLeftMax();
+			}
+		}
+		if("right".equals(orien)){
+			engs = andDao.selectThreeEngReRight(eng_seq);
+			//System.out.println(engs.size());
+			if(engs.size() < 3){
+				engs = andDao.selectThreeEngReRightMax();
+			}
+		}
+		return engs;
 	}
 
 }

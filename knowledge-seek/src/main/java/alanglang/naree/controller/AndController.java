@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import alanglang.naree.db.domain.Ad;
 import alanglang.naree.db.domain.Eng;
+import alanglang.naree.db.domain.EngBg;
 import alanglang.naree.db.domain.Entries;
 import alanglang.naree.db.domain.MainBg;
 import alanglang.naree.db.domain.SqlEntriesAd;
@@ -26,7 +27,7 @@ public class AndController {
 	private AndService andService;
 
 	/**
-	 * 영어학습알람화면
+	 * 영어학습알람화면 jsp
 	 * @return
 	 */
 	@RequestMapping(value = "eng.do")
@@ -231,6 +232,67 @@ public class AndController {
 		
 		StarBg starbg = andService.findMaxStarBg();
 		return starbg;
+	}
+	
+	/**
+	 * 영어배경 이미지파일을 안드로이드에 알려주기 위한 JSON
+	 * @return
+	 */
+	@RequestMapping(value = "engbg.do")
+	@ResponseBody
+	public EngBg engbg(){
+		System.out.println("영어배경 이미지파일을 안드로이드에 알려주기 위한 JSON");
+		
+		EngBg engbg = andService.findMaxEngBg();
+		return engbg;
+	}
+	
+	
+	/**
+	 * 영어학습알람화면
+	 * 윗부분
+	 * @return
+	 */
+	@RequestMapping(value = "engToday.do")
+	@ResponseBody
+	public Eng engToday(){
+		ModelAndView mv = new ModelAndView();
+		
+		//오늘의 예문과 뜻
+		System.out.println("============== 오늘의 예문 찾기==============");
+		Eng eng = andService.findTodayEng();
+		
+		return eng;
+	}
+	/**
+	 * 영어학습알람화면
+	 * 아랫부분
+	 * @return
+	 */
+	@RequestMapping(value = "engThree.do")
+	@ResponseBody
+	public List<Eng> engThree(){
+		System.out.println("============== 3일치 예문 찾기==============");
+		
+		//3개 예문과 뜻 읽어오기
+		List<Eng> engs = andService.findThreeEng();
+		
+		return engs;
+	}
+	/**
+	 * 영어학습알람화면
+	 * 아랫부분 (오른쪽, 왼쪽 이동시 변경)
+	 * @return
+	 */
+	@RequestMapping(value = "engThreeRe.do")
+	@ResponseBody
+	public List<Eng> engThreeRe(String eng_seq, String orien){
+		System.out.println("============== 3일치 예문 찾기 왼쪽, 오른쪽 이동시 ==============");
+		System.out.println(eng_seq + ", " + orien);
+		//3개 예문과 뜻 읽어오기
+		List<Eng> engs = andService.findThreeEngRe(eng_seq, orien);
+		
+		return engs;
 	}
 	
 }

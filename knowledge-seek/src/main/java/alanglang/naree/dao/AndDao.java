@@ -4,6 +4,7 @@ import java.util.List;
 
 import alanglang.naree.db.domain.Ad;
 import alanglang.naree.db.domain.Eng;
+import alanglang.naree.db.domain.EngBg;
 import alanglang.naree.db.domain.Entries;
 import alanglang.naree.db.domain.MainBg;
 import alanglang.naree.db.domain.SqlEntriesAd;
@@ -114,5 +115,43 @@ public interface AndDao {
 	 * @return
 	 */
 	public StarBg selectMaxStarBg();
+
+	/**
+	 * 영어배경 이미지 찾기
+	 * @return
+	 */
+	public EngBg selectMaxEngBg();
+
+	/**
+	 * 3일치 영어학습 찾기(아랫부분)
+	 * @return
+	 */
+	public List<Eng> selectThreeEng();
+
+	/**
+	 * 3일치 영어학습 찾기(아랫부분) 왼쪽으로 이동시
+	 * @param eng_seq
+	 * @return
+	 */
+	public List<Eng> selectThreeEngReLeft(String eng_seq);
+
+	/**
+	 * 3일치 영어학습 찾기(아랫부분) 오른쪽으로 이동시
+	 * @param eng_seq
+	 * @return
+	 */
+	public List<Eng> selectThreeEngReRight(String eng_seq);
+
+	/**
+	 * 3일치 영어학습 찾기(아랫부분) 오른쪽 맨 끝
+	 * @return
+	 */
+	public List<Eng> selectThreeEngReRightMax();
+
+	/**
+	 * 3일치 영어학습 찾기(아랫부분) 왼쪽 맨 끝
+	 * @return
+	 */
+	public List<Eng> selectThreeEngReLeftMax();
 
 }

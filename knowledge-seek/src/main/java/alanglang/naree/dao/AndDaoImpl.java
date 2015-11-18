@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import alanglang.naree.db.domain.Ad;
 import alanglang.naree.db.domain.Eng;
+import alanglang.naree.db.domain.EngBg;
 import alanglang.naree.db.domain.Entries;
 import alanglang.naree.db.domain.MainBg;
 import alanglang.naree.db.domain.SqlEntriesAd;
@@ -237,6 +238,85 @@ public class AndDaoImpl implements AndDao {
 		}
 		
 		return starbg;
+	}
+
+	@Override
+	public EngBg selectMaxEngBg() {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		EngBg engbg = null;
+		try {
+			AndMapper andMapper = sqlSession.getMapper(AndMapper.class);
+			engbg = andMapper.selectMaxEngBg();
+		} finally {
+			sqlSession.close();
+		}
+		
+		return engbg;
+	}
+
+	@Override
+	public List<Eng> selectThreeEng() {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		List<Eng> engs = null;
+		try{
+			AndMapper andMapper = sqlSession.getMapper(AndMapper.class);
+			engs = andMapper.selectThreeEng();
+		} finally {
+			sqlSession.close();
+		}
+		return engs;
+	}
+
+	@Override
+	public List<Eng> selectThreeEngReLeft(String eng_seq) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		List<Eng> engs = null;
+		try{
+			AndMapper andMapper = sqlSession.getMapper(AndMapper.class);
+			engs = andMapper.selectThreeEngReLeft(eng_seq);
+		} finally {
+			sqlSession.close();
+		}
+		return engs;
+	}
+
+	@Override
+	public List<Eng> selectThreeEngReRight(String eng_seq) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		List<Eng> engs = null;
+		try{
+			AndMapper andMapper = sqlSession.getMapper(AndMapper.class);
+			engs = andMapper.selectThreeEngReRight(eng_seq);
+		} finally {
+			sqlSession.close();
+		}
+		return engs;
+	}
+
+	@Override
+	public List<Eng> selectThreeEngReRightMax() {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		List<Eng> engs = null;
+		try{
+			AndMapper andMapper = sqlSession.getMapper(AndMapper.class);
+			engs = andMapper.selectThreeEngReRightMax();
+		} finally {
+			sqlSession.close();
+		}
+		return engs;
+	}
+
+	@Override
+	public List<Eng> selectThreeEngReLeftMax() {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		List<Eng> engs = null;
+		try{
+			AndMapper andMapper = sqlSession.getMapper(AndMapper.class);
+			engs = andMapper.selectThreeEngReLeftMax();
+		} finally {
+			sqlSession.close();
+		}
+		return engs;
 	}
 
 }

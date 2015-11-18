@@ -42,7 +42,6 @@
                 android:layout_height="200dp"
                 android:layout_gravity="end"
                 android:layout_marginTop="-80dp"
-
                 android:onClick="btn_alang"
                 android:src="@drawable/alang_eng" />
 
@@ -50,13 +49,11 @@
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_marginTop="-80dp"
-
                 android:onClick="btn_event"
                 android:src="@drawable/alang_event" />
 
         </LinearLayout>
 
     </ScrollView>
-
 
 </LinearLayout>

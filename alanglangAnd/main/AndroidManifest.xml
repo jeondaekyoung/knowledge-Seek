@@ -4,7 +4,7 @@
 
     <!-- 애플리케이션에 필요한 sdk : 최소요구사항은 18, 타겟은 21 -->
     <uses-sdk
-        android:minSdkVersion="18"
+        android:minSdkVersion="1"
         android:targetSdkVersion="21" />
 
     <!-- Allows using PowerManager WakeLocks to keep processor from sleeping or screen from dimming. -->

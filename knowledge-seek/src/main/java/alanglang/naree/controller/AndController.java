@@ -218,6 +218,7 @@ public class AndController {
 		System.out.println("메인배경 이미지파일을 안드로이드에 알려주기 위한 JSON");
 		
 		MainBg mainbg = andService.findMaxMainBg();
+		System.out.println("결과 : " + mainbg.toString());
 		return mainbg;
 	}
 	

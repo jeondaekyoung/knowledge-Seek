@@ -1,5 +1,6 @@
 package knowledge_seek.com;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -7,34 +8,25 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.StatusLine;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
 
@@ -51,13 +43,7 @@ public class MainActivity extends BaseActivity {
     AlarmListAdapter alarmListAdapter;
 
     private static final String HTTPADDR = "http://www.knowledge-seek.com";
-    //private static final String HTTPADDR = "http://182.162.143.24";
     LinearLayout main_linearLayout;         //메인 리니어아웃
-    String mainbg_name;                         //메인배경 이미지 이름
-
-    //통신 결과
-    private static final int MESSAGE_OK = 1;
-    //private Alarm alarm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,14 +54,9 @@ public class MainActivity extends BaseActivity {
         main_linearLayout = (LinearLayout)findViewById(R.id.main_linearLayout);
 
 
-        //서버와 통신하여 서버에 있는 배경이미지파일을 알아온다.
-        String st = HTTPADDR + "/and/mainbg.do";
-        try {
-            mainbgThread async = new mainbgThread(st);
-            async.start();
-        } catch (URISyntaxException e1){
-            e1.printStackTrace();
-        }
+        //서버와 통신하여 서버에 있는 배경이미지불러오기
+        OpenHttpConnection opHttpCon = new OpenHttpConnection();
+        opHttpCon.execute(main_linearLayout, HTTPADDR);
 
         //롱클릭으로 삭제
         alarmListView.setLongClickable(true);
@@ -181,6 +162,10 @@ public class MainActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         updateAlarmList();
+
+        if("NONE".equals(NetworkUtil.getConnectivityStatusString(this))){
+            Toast.makeText(MainActivity.this, "네트워크를 확인해주세요", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void updateAlarmList(){
@@ -203,82 +188,6 @@ public class MainActivity extends BaseActivity {
     }
 
 
-
-    final Handler handler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            switch(msg.what){
-                case MESSAGE_OK:
-                    //Log.d("-진우- ", "handler MESSAGE_OK 실행");
-                    String st = HTTPADDR + "/fileupload/bg/" + mainbg_name;
-                    Log.d("-진우- 배경이미지", st);
-                    BitmapFactory.Options bmOptions;
-                    bmOptions = new BitmapFactory.Options();
-                    bmOptions.inSampleSize = 1;
-                    OpenHttpConnection opHttpCon = new OpenHttpConnection();
-                    opHttpCon.execute(main_linearLayout, st);
-                    break;
-            }
-        }
-    };
-
-
-    private class mainbgThread extends Thread {
-        String result = "";
-        URI uri;
-
-        public mainbgThread(String url) throws URISyntaxException {
-            uri = new URI(url);
-        }
-
-        @Override
-        public void run() {
-            //Log.d("-진우- ", "run() 실행");
-            HttpClient httpclient = null;
-            HttpPost httppost = null;
-            try {
-                httpclient = new DefaultHttpClient();
-                httppost = new HttpPost(uri);
-
-                HttpParams params = httpclient.getParams();
-                HttpConnectionParams.setConnectionTimeout(params, 10000);
-                HttpConnectionParams.setSoTimeout(params, 1000);
-
-                HttpResponse response = httpclient.execute(httppost);
-                StatusLine status = response.getStatusLine();
-
-                //Log.d("-진우- ", String.valueOf(status.getStatusCode()));
-                if (status.getStatusCode() == 200) {
-                    HttpEntity entity = response.getEntity();
-                    InputStream is = entity.getContent();
-
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(is,"UTF-8"),64);
-                    StringBuilder sb = new StringBuilder();
-                    String line = null;
-                    while ((line = reader.readLine()) != null) {
-                        sb.append(line + "\n");
-                    }
-                    is.close();
-                    result = sb.toString();
-                }
-            }catch(Exception e){
-                Log.e("log_tag", "Error in http connection "+e.toString());
-            } finally {
-                httpclient.getConnectionManager().shutdown();
-            }
-
-            Log.d("-진우- 배경이미지정보 ", result);
-            try {
-                JSONObject json = new JSONObject(result);
-
-                mainbg_name = json.getString("main_bg_server");
-            } catch(JSONException e){
-                Log.e("-진우- JSON", "Error parsing data "+e.toString());
-            }
-            handler.sendEmptyMessage(MESSAGE_OK);
-        }
-    }
-
     /*
     * 리스트뷰의 높이를 구함
     * */
@@ -295,16 +204,51 @@ public class MainActivity extends BaseActivity {
     //이미지광고시 이미지불러오기
     private class OpenHttpConnection extends AsyncTask<Object, Void, Bitmap> {
 
-        private LinearLayout bgLinearLayout;
+        private ProgressDialog dialog = new ProgressDialog(MainActivity.this);
+        private LinearLayout bgLinearLayout;        //배경이미지 레이아웃
+        private String url;                                    //나리지식 도메인
+
+        @Override
+        protected void onPreExecute() {
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setMessage("잠시만 기달려주세요");
+            dialog.show();
+            super.onPreExecute();
+        }
 
         @Override
         protected Bitmap doInBackground(Object... objects) {
+
             Bitmap mBitmap = null;
             bgLinearLayout = (LinearLayout)objects[0];
-            String url = (String)objects[1];
+            url = (String)objects[1];
+            String result = null;
+            String mainbg_name = null;
+
+            OkHttpClient client = new OkHttpClient();
+            //배경 이미지 이름 알라오기
+            Request request1 = new Request.Builder()
+                    .url(url + "/and/mainbg.do")
+                    .build();
+            try {
+                Response response = client.newCall(request1).execute();
+                if(!response.isSuccessful()){
+                    Log.d("-진우-", "서버와의 통신이 올바르지않습니다");
+                }
+                result = response.body().string();
+                Log.d("-진우-", "첫번째 결과 : " + result);
+                JSONObject json = new JSONObject(result);
+                mainbg_name = json.getString("main_bg_server");
+                Log.d("-진우-", "두번째 결과 : " + mainbg_name);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e){
+                e.printStackTrace();
+            }
+            //배경 이미지 불러오기
             InputStream in = null;
             try{
-                in = new URL(url).openStream();
+                in = new URL(url + "/fileupload/bg/" + mainbg_name).openStream();
                 mBitmap = BitmapFactory.decodeStream(in);
                 in.close();
             }catch (Exception e){
@@ -316,8 +260,14 @@ public class MainActivity extends BaseActivity {
 
         @Override
         protected void onPostExecute(Bitmap bitmap) {
+            if(bitmap != null){
+                bgLinearLayout.setBackground(new BitmapDrawable(getResources(), bitmap));
+            }
+
+            dialog.dismiss();
             super.onPostExecute(bitmap);
-            bgLinearLayout.setBackground(new BitmapDrawable(getResources(), bitmap));
+
         }
     }
+
 }

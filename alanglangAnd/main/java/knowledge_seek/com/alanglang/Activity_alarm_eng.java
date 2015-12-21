@@ -1,6 +1,7 @@
 package knowledge_seek.com.alanglang;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,6 +27,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -43,6 +48,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
@@ -63,8 +69,6 @@ public class Activity_alarm_eng extends Activity {
     private Eng engToday;           //오늘의 예문
     private List<Eng> engThrees;    //3일 영어 예문
     private static final String HTTPADDR = "http://www.knowledge-seek.com";
-    //private static final String HTTPADDR = "http://182.162.143.24";
-    //private static final String HTTPADDR = "http://192.168.123.103:8080";
 
     private static final int MESSAGE_OK = 1;
     private static final int ENGBG_OK = 2;
@@ -106,72 +110,57 @@ public class Activity_alarm_eng extends Activity {
 
         //액티비티실행시 넘어온 Alarm객체가 있는지 확인하여 받아들인다.(볼륨땜시)
         Bundle bundle = this.getIntent().getExtras();
-        if(bundle != null) {
-            alarm = (Alarm)bundle.getSerializable("alarm");
+        if (bundle != null) {
+            alarm = (Alarm) bundle.getSerializable("alarm");
         }
         engToday = new Eng();
         engThrees = new ArrayList<Eng>();
 
         //컨텐츠
-        engTodayLinear = (LinearLayout)findViewById(R.id.engTodayLinear);
+        engTodayLinear = (LinearLayout) findViewById(R.id.engTodayLinear);
         //윗 부분
-        engTodayDate = (TextView)findViewById(R.id.engTodayDate);
-        engTodaySentence = (TextView)findViewById(R.id.engTodaySentence);
-        engTodayMean = (TextView)findViewById(R.id.engTodayMean);
+        engTodayDate = (TextView) findViewById(R.id.engTodayDate);
+        engTodaySentence = (TextView) findViewById(R.id.engTodaySentence);
+        engTodayMean = (TextView) findViewById(R.id.engTodayMean);
         //아랫 부분
         //engthreelinear = (LinearLayout)findViewById(R.id.engthreelinear);
-        eng1linear = (LinearLayout)findViewById(R.id.eng1linear);
-        eng2linear = (LinearLayout)findViewById(R.id.eng2linear);
-        eng3linear = (LinearLayout)findViewById(R.id.eng3linear);
+        eng1linear = (LinearLayout) findViewById(R.id.eng1linear);
+        eng2linear = (LinearLayout) findViewById(R.id.eng2linear);
+        eng3linear = (LinearLayout) findViewById(R.id.eng3linear);
         eng1linear.setOnTouchListener(eng1Listener);
         eng2linear.setOnTouchListener(eng2Listener);
         eng3linear.setOnTouchListener(eng3Listener);
-        eng1t1 = (TextView)findViewById(R.id.eng1t1);
-        eng1t2 = (TextView)findViewById(R.id.eng1t2);
-        eng1t3 = (TextView)findViewById(R.id.eng1t3);
-        eng2t1 = (TextView)findViewById(R.id.eng2t1);
-        eng2t2 = (TextView)findViewById(R.id.eng2t2);
-        eng2t3 = (TextView)findViewById(R.id.eng2t3);
-        eng3t1 = (TextView)findViewById(R.id.eng3t1);
-        eng3t2 = (TextView)findViewById(R.id.eng3t2);
-        eng3t3 = (TextView)findViewById(R.id.eng3t3);
+        eng1t1 = (TextView) findViewById(R.id.eng1t1);
+        eng1t2 = (TextView) findViewById(R.id.eng1t2);
+        eng1t3 = (TextView) findViewById(R.id.eng1t3);
+        eng2t1 = (TextView) findViewById(R.id.eng2t1);
+        eng2t2 = (TextView) findViewById(R.id.eng2t2);
+        eng2t3 = (TextView) findViewById(R.id.eng2t3);
+        eng3t1 = (TextView) findViewById(R.id.eng3t1);
+        eng3t2 = (TextView) findViewById(R.id.eng3t2);
+        eng3t3 = (TextView) findViewById(R.id.eng3t3);
 
-        //서버와 통신하여 서버에 있는 배경이미지파일을 알아온다.
-        String bg = HTTPADDR + "/and/engbg.do";
-        try {
-            engbgThread async = new engbgThread(bg);
-            async.start();
-        } catch (URISyntaxException e1){
-            e1.printStackTrace();
-        }
-
-        //서버와 통신하여 오늘의 예문 읽어오기
-        //윗부분
-       String st = HTTPADDR + "/and/engToday.do";
-        try {
-            engTodayThread async = new engTodayThread(st);
-            async.start();
-        } catch (URISyntaxException e1){
-            e1.printStackTrace();
-        }
+        //서버와 통신하여 서버에 있는 배경이미지파일, 오늘의 예문을 알아온다.
+        OpenHttpConnection opHttpCon = new OpenHttpConnection();
+        opHttpCon.execute(engTodayLinear);
 
         //소리끄기
-        btn_media = (ImageButton)findViewById(R.id.btn_media);
+        btn_media = (ImageButton) findViewById(R.id.btn_media);
         btn_media.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(sound_act == true){
+                if (sound_act == true) {
                     sound_act = false;
-                    ((ImageButton)view).setImageResource(R.drawable.btn_sound_off);
+                    ((ImageButton) view).setImageResource(R.drawable.btn_sound_off);
                     killMediaPlayer();
                 } else {
                     sound_act = true;
-                    ((ImageButton)view).setImageResource(R.drawable.btn_sound_on);
+                    ((ImageButton) view).setImageResource(R.drawable.btn_sound_on);
                     audio_url = HTTPADDR + "/fileupload/sound/" + engToday.getEng_sound_server();
                     Log.d("-진우- 소리파일 ", audio_url);
-                    try{
+                    try {
                         playAudio(audio_url);
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
 
@@ -179,7 +168,7 @@ public class Activity_alarm_eng extends Activity {
             }
         });
 
-        Button btnFinish=(Button)findViewById(R.id.btn_finish);
+        Button btnFinish = (Button) findViewById(R.id.btn_finish);
         btnFinish.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 finish();
@@ -189,44 +178,10 @@ public class Activity_alarm_eng extends Activity {
 
 
     //통신후 해야할 일
-    final Handler handler = new Handler(){
+    final Handler handler = new Handler() {
         @Override
-        public void handleMessage(Message msg){
-            switch(msg.what){
-                case MESSAGE_OK:
-                    //Log.d("-진우- ", "handler MESSAGE_OK 실행");
-                    engTodayDate.setText(engToday.getToday_date());
-                    engTodaySentence.setText(engToday.getEng_sentence());
-                    engTodayMean.setText(engToday.getEng_mean());
-                    audio_url = HTTPADDR + "/fileupload/sound/" + engToday.getEng_sound_server();
-                    Log.d("-진우- 소리파일 ", audio_url);
-                    sound_act = true;
-                    try{
-                        playAudio(audio_url);
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                    //서버와 통신하여 3개 영어
-                    //아랫부분
-                    String st3 = HTTPADDR + "/and/engThree.do";
-                    try {
-                        engThreeThread async = new engThreeThread(st3);
-                        async.start();
-                    } catch (URISyntaxException e1){
-                        e1.printStackTrace();
-                    }
-
-                    break;
-                case ENGBG_OK:
-                    //Log.d("-진우- ", "handler ENGBG_OK 실행");
-                    String st = HTTPADDR + "/fileupload/bg/" + engbg_name;
-                    Log.d("-진우- 배경이미지", st);
-                    BitmapFactory.Options bmOptions;
-                    bmOptions = new BitmapFactory.Options();
-                    bmOptions.inSampleSize = 1;
-                    OpenHttpConnection opHttpCon = new OpenHttpConnection();
-                    opHttpCon.execute(engTodayLinear, st);
-                    break;
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
                 case ENGTHREE_OK:
                     //Log.d("-진우- ", "handler ENGTHREE_OK 실행");
                     eng1t1.setText(engThrees.get(2).getToday_date());
@@ -243,139 +198,7 @@ public class Activity_alarm_eng extends Activity {
         }
     };
 
-    //컨텐츠 위부분 영어정보를 받아온다.
-    private class engTodayThread extends Thread {
-        String result = "";
-        URI uri;
 
-        public engTodayThread(String url) throws URISyntaxException {
-            uri = new URI(url);
-        }
-
-        @Override
-        public void run() {
-            //Log.d("-진우- ", "engTodayThread.run() 실행");
-
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpPost httppost = new HttpPost(uri);
-            try{
-                HttpParams params = httpclient.getParams();
-                HttpConnectionParams.setConnectionTimeout(params, 10000);
-                HttpConnectionParams.setSoTimeout(params, 10000);
-
-                HttpResponse response = httpclient.execute(httppost);
-                StatusLine status = response.getStatusLine();
-
-                //Log.d("-진우- ", String.valueOf(status.getStatusCode()));
-                if(status.getStatusCode() == 200){
-                    HttpEntity entity = response.getEntity();
-                    InputStream is = entity.getContent();
-
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"), 64);
-                    StringBuilder sb = new StringBuilder();
-                    String line = null;
-                    while((line = reader.readLine()) != null){
-                        sb.append(line + "\n");
-                    }
-                    is.close();
-                    result = sb.toString();
-                }
-            }catch(Exception e){
-                Log.d("log_tag", "Error in http connection " + e.toString());
-            }
-            //자원 반환이 이루어지지않은건가?
-            finally {
-                httpclient.getConnectionManager().shutdown();
-            }
-
-            Log.d("-진우- 오늘의 영어 정보 ", result);
-            try{
-                JSONObject json = new JSONObject(result);
-
-                stringFormatDate(json.getString("today_date"));
-
-                engToday.setEng_seq(json.getString("eng_seq"));
-                engToday.setToday_date(stringFormatDate(json.getString("today_date")));
-                engToday.setEng_sentence(json.getString("eng_sentence"));
-                engToday.setEng_mean(json.getString("eng_mean"));
-                engToday.setEng_sound_server(json.getString("eng_sound_server"));
-            }catch(JSONException e){
-                Log.d("-진우- JSON", "Error parsing data " + e.toString());
-            }
-
-            handler.sendEmptyMessage(MESSAGE_OK);
-        }
-    }
-
-    //컨텐츠 아랫부분에 들어갈 내용을 받아온다
-    private class engThreeThread extends Thread {
-        String result = "";
-        URI uri;
-
-        public engThreeThread(String url) throws URISyntaxException {
-            uri = new URI(url);
-        }
-
-        @Override
-        public void run() {
-            //Log.d("-진우- ", "engThreeThread.run() 실행");
-
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpPost httppost = new HttpPost(uri);
-            try{
-                HttpParams params = httpclient.getParams();
-                HttpConnectionParams.setConnectionTimeout(params, 10000);
-                HttpConnectionParams.setSoTimeout(params, 10000);
-
-                HttpResponse response = httpclient.execute(httppost);
-                StatusLine status = response.getStatusLine();
-
-                //Log.d("-진우- ", String.valueOf(status.getStatusCode()));
-                if(status.getStatusCode() == 200){
-                    HttpEntity entity = response.getEntity();
-                    InputStream is = entity.getContent();
-
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"), 64);
-                    StringBuilder sb = new StringBuilder();
-                    String line = null;
-                    while((line = reader.readLine()) != null){
-                        sb.append(line + "\n");
-                    }
-                    is.close();
-                    result = sb.toString();
-                }
-            }catch(Exception e){
-                Log.d("log_tag", "Error in http connection " + e.toString());
-            }
-            //자원 반환이 이루어지지않은건가?
-            finally {
-                httpclient.getConnectionManager().shutdown();
-            }
-
-            Log.d("-진우- 3개 영어정보 ", result);
-            try{
-                JSONArray jsons = new JSONArray(result);
-                Eng eng;
-                for(int i = 0; i < jsons.length() ; i++){
-                    eng = new Eng();
-                    //Log.d("-진우-", i + "번째 " + jsons.getJSONObject(i).getString("eng_seq"));
-                    eng.setEng_seq(jsons.getJSONObject(i).getString("eng_seq"));
-                    eng.setToday_date(stringFormatDate(jsons.getJSONObject(i).getString("today_date")));
-                    eng.setEng_sentence(jsons.getJSONObject(i).getString("eng_sentence"));
-                    eng.setEng_mean(jsons.getJSONObject(i).getString("eng_mean"));
-                    eng.setEng_sound_server(jsons.getJSONObject(i).getString("eng_sound_server"));
-                    engThrees.add(eng);
-                }
-                /*for(Eng e : engThrees){
-                    Log.d("-진우- 3개 결과 ", e.toString());
-                }*/
-            }catch(JSONException e){
-                Log.d("-진우- JSON", "Error parsing data " + e.toString());
-            }
-
-            handler.sendEmptyMessage(ENGTHREE_OK);
-        }
-    }
 
     //컨텐츠 아랫부분에 들어갈 내용을 받아온다. (오른쪽, 왼쪽 이동시)
     private class engThreeReThread extends Thread {
@@ -396,7 +219,7 @@ public class Activity_alarm_eng extends Activity {
 
             HttpClient httpclient = new DefaultHttpClient();
             HttpPost httppost = new HttpPost(uri);
-            try{
+            try {
                 List<NameValuePair> nvps = new ArrayList<NameValuePair>();
                 nvps.add(new BasicNameValuePair("eng_seq", eng_seq));
                 nvps.add(new BasicNameValuePair("orien", orien));
@@ -410,20 +233,20 @@ public class Activity_alarm_eng extends Activity {
                 StatusLine status = response.getStatusLine();
 
                 //Log.d("-진우- ", String.valueOf(status.getStatusCode()));
-                if(status.getStatusCode() == 200){
+                if (status.getStatusCode() == 200) {
                     HttpEntity entity = response.getEntity();
                     InputStream is = entity.getContent();
 
                     BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"), 64);
                     StringBuilder sb = new StringBuilder();
                     String line = null;
-                    while((line = reader.readLine()) != null){
+                    while ((line = reader.readLine()) != null) {
                         sb.append(line + "\n");
                     }
                     is.close();
                     result = sb.toString();
                 }
-            }catch(Exception e){
+            } catch (Exception e) {
                 Log.d("log_tag", "Error in http connection " + e.toString());
             }
             //자원 반환이 이루어지지않은건가?
@@ -432,11 +255,11 @@ public class Activity_alarm_eng extends Activity {
             }
 
             Log.d("-진우- 3개 영어정보 ", result);
-            try{
+            try {
                 JSONArray jsons = new JSONArray(result);
                 engThrees.clear();
                 Eng eng;
-                for(int i = 0; i < jsons.length() ; i++){
+                for (int i = 0; i < jsons.length(); i++) {
                     eng = new Eng();
                     //Log.d("-진우-", i + "번째 " + jsons.getJSONObject(i).getString("eng_seq"));
                     eng.setEng_seq(jsons.getJSONObject(i).getString("eng_seq"));
@@ -449,67 +272,10 @@ public class Activity_alarm_eng extends Activity {
                 /*for(Eng e : engThrees){
                     Log.d("-진우- 3개 결과 ", e.toString());
                 }*/
-            }catch(JSONException e){
+            } catch (JSONException e) {
                 Log.d("-진우- JSON", "Error parsing data " + e.toString());
             }
             handler.sendEmptyMessage(ENGTHREE_OK);
-        }
-    }
-
-    //배경이미지 위치정보를 서버에 받는다.
-    private class engbgThread extends Thread {
-        String result = "";
-        URI uri;
-
-        public engbgThread(String url) throws URISyntaxException {
-            uri = new URI(url);
-        }
-
-        @Override
-        public void run() {
-            //Log.d("-진우- ", "engbgThread.run() 실행");
-            HttpClient httpclient = null;
-            HttpPost httppost = null;
-            try {
-                httpclient = new DefaultHttpClient();
-                httppost = new HttpPost(uri);
-
-                HttpParams params = httpclient.getParams();
-                HttpConnectionParams.setConnectionTimeout(params, 10000);
-                HttpConnectionParams.setSoTimeout(params, 1000);
-
-                HttpResponse response = httpclient.execute(httppost);
-                StatusLine status = response.getStatusLine();
-
-                //Log.d("-진우- ", String.valueOf(status.getStatusCode()));
-                if (status.getStatusCode() == 200) {
-                    HttpEntity entity = response.getEntity();
-                    InputStream is = entity.getContent();
-
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(is,"UTF-8"),64);
-                    StringBuilder sb = new StringBuilder();
-                    String line = null;
-                    while ((line = reader.readLine()) != null) {
-                        sb.append(line + "\n");
-                    }
-                    is.close();
-                    result = sb.toString();
-                }
-            }catch(Exception e){
-                Log.e("log_tag", "Error in http connection " + e.toString());
-            } finally {
-                httpclient.getConnectionManager().shutdown();
-            }
-
-            Log.d("-진우- 배경이미지정보 ", result);
-            try {
-                JSONObject json = new JSONObject(result);
-
-                engbg_name = json.getString("eng_bg_server");
-            } catch(JSONException e){
-                Log.e("-진우- JSON", "Error parsing data " + e.toString());
-            }
-            handler.sendEmptyMessage(ENGBG_OK);
         }
     }
 
@@ -532,45 +298,45 @@ public class Activity_alarm_eng extends Activity {
     }
 
     //아랫부분 터치이벤트
-    private final View.OnTouchListener eng1Listener = new View.OnTouchListener(){
+    private final View.OnTouchListener eng1Listener = new View.OnTouchListener() {
         int startX, endX;
 
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
-            switch (motionEvent.getActionMasked()){
+            switch (motionEvent.getActionMasked()) {
                 case MotionEvent.ACTION_MOVE:
 
                     break;
                 case MotionEvent.ACTION_DOWN:
-                    startX = (int)motionEvent.getX();
+                    startX = (int) motionEvent.getX();
                     break;
                 case MotionEvent.ACTION_UP:
-                    endX = (int)motionEvent.getX();
+                    endX = (int) motionEvent.getX();
                     //Log.d("-진우- 위치 ", startX + ", " + endX + " um");
-                    if(startX != 0 && endX != 0) {
-                        if (startX < endX && endX-startX > 30) {
+                    if (startX != 0 && endX != 0) {
+                        if (startX < endX && endX - startX > 30) {
                             //Log.d("-진우- engthree", "증가 왼쪽 화면 불러옴");
                             //아랫부분 다시 불러오기
                             String st = HTTPADDR + "/and/engThreeRe.do";
                             try {
                                 engThreeReThread async = new engThreeReThread(st, engThrees.get(2).getEng_seq(), "left");
                                 async.start();
-                            } catch (URISyntaxException e1){
+                            } catch (URISyntaxException e1) {
                                 e1.printStackTrace();
                             }
                         }
-                        if (startX > endX && startX-endX > 30) {
+                        if (startX > endX && startX - endX > 30) {
                             //Log.d("-진우- engthree", "감소 오른쪽 화면 불러옴");
                             //아랫부분 다시 불러오기
                             String st = HTTPADDR + "/and/engThreeRe.do";
                             try {
                                 engThreeReThread async = new engThreeReThread(st, engThrees.get(0).getEng_seq(), "right");
                                 async.start();
-                            } catch (URISyntaxException e1){
+                            } catch (URISyntaxException e1) {
                                 e1.printStackTrace();
                             }
                         }
-                        if(startX == endX || Math.abs(endX-startX) <= 30){
+                        if (startX == endX || Math.abs(endX - startX) <= 30) {
                             //Log.d("-진우- eng1", "이동1");
                             engToday = engThrees.get(2);
                             engTodayDate.setText(engToday.getToday_date());
@@ -578,10 +344,10 @@ public class Activity_alarm_eng extends Activity {
                             engTodayMean.setText(engToday.getEng_mean());
                             audio_url = HTTPADDR + "/fileupload/sound/" + engToday.getEng_sound_server();
                             Log.d("-진우- 소리파일 ", audio_url);
-                            if(sound_act == true){
-                                try{
+                            if (sound_act == true) {
+                                try {
                                     playAudio(audio_url);
-                                }catch (Exception e){
+                                } catch (Exception e) {
                                     e.printStackTrace();
                                 }
                             }
@@ -592,47 +358,47 @@ public class Activity_alarm_eng extends Activity {
             return true;
         }
     };
-    private final View.OnTouchListener eng2Listener = new View.OnTouchListener(){
+    private final View.OnTouchListener eng2Listener = new View.OnTouchListener() {
         int startX, endX;
 
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
 
-            switch (motionEvent.getActionMasked()){
+            switch (motionEvent.getActionMasked()) {
                 case MotionEvent.ACTION_MOVE:
 
                     break;
                 case MotionEvent.ACTION_DOWN:
-                    startX = (int)motionEvent.getX();
+                    startX = (int) motionEvent.getX();
                     break;
                 case MotionEvent.ACTION_UP:
-                    endX = (int)motionEvent.getX();
+                    endX = (int) motionEvent.getX();
                     //Log.d("-진우- 위치 ", startX + ", " + endX + " um");
 
-                    if(startX != 0 && endX != 0) {
-                        if (startX < endX && endX-startX > 30) {
+                    if (startX != 0 && endX != 0) {
+                        if (startX < endX && endX - startX > 30) {
                             //Log.d("-진우- engthree", "증가 왼쪽 화면 불러옴");
                             //아랫부분 다시 불러오기
                             String st = HTTPADDR + "/and/engThreeRe.do";
                             try {
                                 engThreeReThread async = new engThreeReThread(st, engThrees.get(2).getEng_seq(), "left");
                                 async.start();
-                            } catch (URISyntaxException e1){
+                            } catch (URISyntaxException e1) {
                                 e1.printStackTrace();
                             }
                         }
-                        if (startX > endX && startX-endX > 30) {
+                        if (startX > endX && startX - endX > 30) {
                             //Log.d("-진우- engthree", "감소 오른쪽 화면 불러옴");
                             //아랫부분 다시 불러오기
                             String st = HTTPADDR + "/and/engThreeRe.do";
                             try {
                                 engThreeReThread async = new engThreeReThread(st, engThrees.get(0).getEng_seq(), "right");
                                 async.start();
-                            } catch (URISyntaxException e1){
+                            } catch (URISyntaxException e1) {
                                 e1.printStackTrace();
                             }
                         }
-                        if(startX == endX || Math.abs(endX-startX) <= 30){
+                        if (startX == endX || Math.abs(endX - startX) <= 30) {
                             //Log.d("-진우- eng1", "이동2");
                             engToday = engThrees.get(1);
                             engTodayDate.setText(engToday.getToday_date());
@@ -640,10 +406,10 @@ public class Activity_alarm_eng extends Activity {
                             engTodayMean.setText(engToday.getEng_mean());
                             audio_url = HTTPADDR + "/fileupload/sound/" + engToday.getEng_sound_server();
                             Log.d("-진우- 소리파일 ", audio_url);
-                            if(sound_act == true){
-                                try{
+                            if (sound_act == true) {
+                                try {
                                     playAudio(audio_url);
-                                }catch (Exception e){
+                                } catch (Exception e) {
                                     e.printStackTrace();
                                 }
                             }
@@ -654,46 +420,46 @@ public class Activity_alarm_eng extends Activity {
             return true;
         }
     };
-    private final View.OnTouchListener eng3Listener = new View.OnTouchListener(){
+    private final View.OnTouchListener eng3Listener = new View.OnTouchListener() {
         int startX, endX;
 
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
 
-            switch (motionEvent.getActionMasked()){
+            switch (motionEvent.getActionMasked()) {
                 case MotionEvent.ACTION_MOVE:
 
                     break;
                 case MotionEvent.ACTION_DOWN:
-                    startX = (int)motionEvent.getX();
+                    startX = (int) motionEvent.getX();
                     break;
                 case MotionEvent.ACTION_UP:
-                    endX = (int)motionEvent.getX();
+                    endX = (int) motionEvent.getX();
                     //Log.d("-진우- 위치  ", startX + ", " + endX + " um");
-                    if(startX != 0 && endX != 0) {
-                        if (startX < endX && endX-startX > 30) {
+                    if (startX != 0 && endX != 0) {
+                        if (startX < endX && endX - startX > 30) {
                             //Log.d("-진우- engthree", "증가 왼쪽 화면 불러옴");
                             //아랫부분 다시 불러오기
                             String st = HTTPADDR + "/and/engThreeRe.do";
                             try {
                                 engThreeReThread async = new engThreeReThread(st, engThrees.get(2).getEng_seq(), "left");
                                 async.start();
-                            } catch (URISyntaxException e1){
+                            } catch (URISyntaxException e1) {
                                 e1.printStackTrace();
                             }
                         }
-                        if (startX > endX && startX-endX > 30) {
+                        if (startX > endX && startX - endX > 30) {
                             //Log.d("-진우- engthree", "감소 오른쪽 화면 불러옴");
                             //아랫부분 다시 불러오기
                             String st = HTTPADDR + "/and/engThreeRe.do";
                             try {
                                 engThreeReThread async = new engThreeReThread(st, engThrees.get(0).getEng_seq(), "right");
                                 async.start();
-                            } catch (URISyntaxException e1){
+                            } catch (URISyntaxException e1) {
                                 e1.printStackTrace();
                             }
                         }
-                        if(startX == endX || Math.abs(endX-startX) <= 30){
+                        if (startX == endX || Math.abs(endX - startX) <= 30) {
                             //Log.d("-진우- eng1", "이동3");
                             engToday = engThrees.get(0);
                             engTodayDate.setText(engToday.getToday_date());
@@ -701,10 +467,10 @@ public class Activity_alarm_eng extends Activity {
                             engTodayMean.setText(engToday.getEng_mean());
                             audio_url = HTTPADDR + "/fileupload/sound/" + engToday.getEng_sound_server();
                             Log.d("-진우- 소리파일 ", audio_url);
-                            if(sound_act == true){
-                                try{
+                            if (sound_act == true) {
+                                try {
                                     playAudio(audio_url);
-                                }catch (Exception e){
+                                } catch (Exception e) {
                                     e.printStackTrace();
                                 }
                             }
@@ -725,7 +491,7 @@ public class Activity_alarm_eng extends Activity {
         mediaPlayer.setDataSource(url);
         //mediaPlayer.setVolume(100f, 100f);
         AudioManager am = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
-        if(alarm == null){
+        if (alarm == null) {
             //Log.d("-진우- 알람 ", "널이다");
             //am.setStreamVolume(AudioManager.STREAM_MUSIC, 8, 0);
         } else {
@@ -737,32 +503,127 @@ public class Activity_alarm_eng extends Activity {
         mediaPlayer.start();
     }
 
-    private void killMediaPlayer(){
-        if(mediaPlayer != null){
-            try{
+    private void killMediaPlayer() {
+        if (mediaPlayer != null) {
+            try {
                 mediaPlayer.release();
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
 
-    //배경  이미지불러오기
+    //배경  이미지불러오기, 오늘의 예문 읽어오기
     private class OpenHttpConnection extends AsyncTask<Object, Void, Bitmap> {
 
+        private ProgressDialog dialog = new ProgressDialog(Activity_alarm_eng.this);
         private LinearLayout bgLinearLayout;
+
+        @Override
+        protected void onPreExecute() {
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setMessage("잠시만 기달려주세요");
+            dialog.show();
+            super.onPreExecute();
+        }
 
         @Override
         protected Bitmap doInBackground(Object... objects) {
             Bitmap mBitmap = null;
-            bgLinearLayout = (LinearLayout)objects[0];
-            String url = (String)objects[1];
+            String result = null;
+            bgLinearLayout = (LinearLayout) objects[0];
+
+            OkHttpClient client = new OkHttpClient();
+
+            //1. 서버와 통신하여 서버에 있는 배경이미지파일을 알아온다.
+            Request request1 = new Request.Builder()
+                    .url(HTTPADDR + "/and/engbg.do")
+                    .build();
+            try {
+                Response response = client.newCall(request1).execute();
+                if (!response.isSuccessful()) {
+                    Log.d("-진우-", "서버와의 통신이 올바르지않습니다");
+                }
+                result = response.body().string();
+                Log.d("-진우-", "첫번째 결과 : " + result);
+                JSONObject json = new JSONObject(result);
+                engbg_name = json.getString("eng_bg_server");
+                Log.d("-진우-", "두번째 결과 : " + engbg_name);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            //이미지 불러오기
             InputStream in = null;
-            try{
-                in = new URL(url).openStream();
+            try {
+                in = new URL(HTTPADDR + "/fileupload/bg/" + engbg_name).openStream();
                 mBitmap = BitmapFactory.decodeStream(in);
                 in.close();
-            }catch (Exception e){
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            //2. 서버와 통신하여 오늘의 예문 읽어오기
+            //윗부분 컨텐츠
+            Request request2 = new Request.Builder()
+                    .url(HTTPADDR + "/and/engToday.do")
+                    .build();
+            try {
+                Response response = client.newCall(request2).execute();
+                if (!response.isSuccessful()) {
+                    Log.d("-진우-", "서버와의 통신이 올바르지않습니다");
+                }
+                result = response.body().string();
+                Log.d("-진우-", "세번째 결과 : " + result);
+                JSONObject json = new JSONObject(result);
+                stringFormatDate(json.getString("today_date"));
+
+                engToday.setEng_seq(json.getString("eng_seq"));
+                engToday.setToday_date(stringFormatDate(json.getString("today_date")));
+                engToday.setEng_sentence(json.getString("eng_sentence"));
+                engToday.setEng_mean(json.getString("eng_mean"));
+                engToday.setEng_sound_server(json.getString("eng_sound_server"));
+                Log.d("-진우-", "네번째 결과 : " + engToday.toString());
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            //3. 서버와 통신하여 3개 영어
+            //아랫부분
+            Request request3 = new Request.Builder()
+                    .url(HTTPADDR + "/and/engThree.do")
+                    .build();
+            try {
+                Response response = client.newCall(request3).execute();
+                if (!response.isSuccessful()) {
+                    Log.d("-진우-", "서버와의 통신이 올바르지않습니다");
+                }
+                result = response.body().string();
+                Log.d("-진우-", "다섯번째 결과 : " + result);
+                JSONArray jsons = new JSONArray(result);
+                Eng eng;
+                for (int i = 0; i < jsons.length(); i++) {
+                    eng = new Eng();
+                    //Log.d("-진우-", i + "번째 " + jsons.getJSONObject(i).getString("eng_seq"));
+                    eng.setEng_seq(jsons.getJSONObject(i).getString("eng_seq"));
+                    eng.setToday_date(stringFormatDate(jsons.getJSONObject(i).getString("today_date")));
+                    eng.setEng_sentence(jsons.getJSONObject(i).getString("eng_sentence"));
+                    eng.setEng_mean(jsons.getJSONObject(i).getString("eng_mean"));
+                    eng.setEng_sound_server(jsons.getJSONObject(i).getString("eng_sound_server"));
+                    engThrees.add(eng);
+                }
+                for (Eng e : engThrees) {
+                    Log.d("-진우- 여섯번째 영어예문 3개 결과 ", e.toString());
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
 
@@ -771,13 +632,42 @@ public class Activity_alarm_eng extends Activity {
 
         @Override
         protected void onPostExecute(Bitmap bitmap) {
+            //1. 이미지 불러오기
+            if (bitmap != null) {
+                bgLinearLayout.setBackground(new BitmapDrawable(getResources(), bitmap));
+            }
+
+            //2. 오늘의 영어예문 (컨텐츠 위부분 영어정보) 셋팅
+            engTodayDate.setText(engToday.getToday_date());
+            engTodaySentence.setText(engToday.getEng_sentence());
+            engTodayMean.setText(engToday.getEng_mean());
+            audio_url = HTTPADDR + "/fileupload/sound/" + engToday.getEng_sound_server();
+            Log.d("-진우- 소리파일 ", audio_url);
+            sound_act = true;
+            try {
+                playAudio(audio_url);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            //3. 컨텐츠 아랫부분 영어예문 3개
+            eng1t1.setText(engThrees.get(2).getToday_date());
+            eng1t2.setText(engThrees.get(2).getEng_sentence());
+            eng1t3.setText(engThrees.get(2).getEng_mean());
+            eng2t1.setText(engThrees.get(1).getToday_date());
+            eng2t2.setText(engThrees.get(1).getEng_sentence());
+            eng2t3.setText(engThrees.get(1).getEng_mean());
+            eng3t1.setText(engThrees.get(0).getToday_date());
+            eng3t2.setText(engThrees.get(0).getEng_sentence());
+            eng3t3.setText(engThrees.get(0).getEng_mean());
+
+
+            dialog.dismiss();
             super.onPostExecute(bitmap);
-            bgLinearLayout.setBackground(new BitmapDrawable(getResources(), bitmap));
         }
     }
 
     //날짜 변경
-    private String stringFormatDate(String today){
+    private String stringFormatDate(String today) {
         String[] todays = today.split("-");
         return new StringBuilder(todays[1]).append("/").append(todays[2]).toString();
     }

@@ -1,6 +1,7 @@
 package knowledge_seek.com.alanglang;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,6 +27,9 @@ import android.widget.Toast;
 
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -39,6 +43,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
@@ -61,7 +66,6 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
     private WebView webView;
     final Activity activity = this;
     private static final String HTTPADDR = "http://www.knowledge-seek.com";
-    //private static final String HTTPADDR = "http://182.162.143.24";
     private String ad_seq;                           //광고 시퀀스
 
     //통신 결과
@@ -115,13 +119,10 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
         webView = (WebView)findViewById(R.id.webView);
 
         //서버와 통신하여 서버에 있는 광고정보를 받는다.
-        String st = HTTPADDR + "/and/adInfo.do";
-        try {
-            adInfoThread async = new adInfoThread(st);
-            async.start();
-        } catch (URISyntaxException e1){
-            e1.printStackTrace();
-        }
+        //(광고이미지는 미리넘겨준다. 이유는 광고정보에 있는 이미지이름을 통하여 서버에 있는 이미지를 읽어와야한다.
+        // 즉, 통신이 다시 일어난다)
+        OpenHttpConnection opHttpCon = new OpenHttpConnection();
+        opHttpCon.execute(imageView);
 
         //응모하기(리니어레이아웃)있을시 필요
         entryLinearLayout = (LinearLayout)findViewById(R.id.entryLinearLayout);
@@ -205,67 +206,6 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
         @Override
         public void handleMessage(Message msg) {
             switch(msg.what) {
-                case MESSAGE_OK:
-                    //Log.d("-진우- ", "handler MESSAGE_OK 실행");
-                    //유뷰트광고
-                    if(ad.getYoutube_addr() != null){
-                        youTubeView.setVisibility(View.VISIBLE);
-                        if(alarm != null){
-                            Log.d("-진우- 유뷰브소리 " , String.valueOf(alarm.getVolume()));
-                            AudioManager am = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
-                            am.setStreamVolume(AudioManager.STREAM_MUSIC, alarm.getVolume(), 0);
-                        } else {
-                            //Log.d("-진우- 유뷰브소리 " , "월래 소리냄");
-                        }
-                    }
-                    //이미지,소리광고
-                    if(ad.getAd_image_server() != null){
-                        imageView.setVisibility(View.VISIBLE);
-
-                        String st = HTTPADDR + "/fileupload/image/" + ad.getAd_image_server();
-                        //Log.d("-진우- 이미지", st);
-                        BitmapFactory.Options bmOptions;
-                        bmOptions = new BitmapFactory.Options();
-                        bmOptions.inSampleSize = 1;
-                        OpenHttpConnection opHttpCon = new OpenHttpConnection();
-                        opHttpCon.execute(imageView, st);
-                    }
-
-                    //외부광고
-                    if(ad.getAd_url() != null){
-                        webView.setVisibility(View.VISIBLE);
-                        webView.getSettings().setJavaScriptEnabled(true);
-                        webView.loadUrl("http://" + ad.getAd_url());
-                        webView.setWebViewClient(new AdWebViewClient());
-                        webView.setWebChromeClient(new WebChromeClient() {
-                            @Override
-                            public void onProgressChanged(WebView view, int progress) {
-                                //매개변수로 제공되는 progress의 범위는 0부터 10,000까지 사용한다.
-                                //웹 페이지가 100% 출력될때까지 화면 출력을 지연한다.
-                                activity.setProgress(progress * 100);
-                            }
-                        });
-                    }
-
-                    //소리재생
-                    if(ad.getAd_sound_server() != null){
-                        sound_act = true;
-                        try{
-                            String st = HTTPADDR + "/fileupload/sound/" + ad.getAd_sound_server();
-                            Log.d("-진우- 소리재생 ", st);
-                            playAudio(st);
-
-                        }catch (Exception e){
-                            e.printStackTrace();
-                        }
-                    }
-
-                    //응모하기
-                    if(ad.getEntry_or() != null && ad.getEntry_or().equals("Y")){
-                        entryLinearLayout.setVisibility(View.VISIBLE);
-                    }
-                    break;
-                //<- 응모하기
                 case ENTRY_SUCCESS:
                     Toast.makeText(getApplicationContext(), "응모하였습니다.", Toast.LENGTH_SHORT).show();
                     break;
@@ -292,86 +232,6 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
         }
     }
     //->
-
-    private class adInfoThread extends Thread {
-        String result = "";
-        URI uri;
-
-        public adInfoThread(String url) throws URISyntaxException {
-            uri = new URI(url);
-        }
-
-        @Override
-        public void run() {
-            //Log.d("-진우- ", "run() 실행");
-            HttpClient httpclient =  null;
-            HttpPost httppost = null;
-            try{
-                httpclient = new DefaultHttpClient();
-                httppost = new HttpPost(uri);
-
-                HttpParams params = httpclient.getParams();
-                HttpConnectionParams.setConnectionTimeout(params, 10000);
-                HttpConnectionParams.setSoTimeout(params, 10000);
-
-                HttpResponse response = httpclient.execute(httppost);
-                StatusLine status = response.getStatusLine();
-
-                //Log.d("-진우- ", String.valueOf(status.getStatusCode()));
-                if (status.getStatusCode() == 200) {
-                    HttpEntity entity = response.getEntity();
-                    InputStream is = entity.getContent();
-
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(is,"UTF-8"),64);
-                    StringBuilder sb = new StringBuilder();
-                    String line = null;
-                    while ((line = reader.readLine()) != null) {
-                        sb.append(line + "\n");
-                    }
-                    is.close();
-                    result = sb.toString();
-                }
-            }catch(Exception e){
-                Log.e("log_tag", "Error in http connection "+e.toString());
-            } finally {
-                httpclient.getConnectionManager().shutdown();
-            }
-
-            //Log.d("-진우- 광고정보 ", result);
-            try{
-                JSONObject json = new JSONObject(result);
-
-                //null이 넘어올때는 null이 넘어오지만 문자 null이 넘어온다.
-                /*Log.d("-진우1- ", json.getString("ad_image_server"));
-                Log.d("-진우2- ", String.valueOf(json.getString("ad_image_server").length()));
-                Log.d("-진우3- ", String.valueOf(json.getString("ad_image_server") == null));
-                ad.setAd_image_server(json.getString("ad_image_server"));
-                Log.d("-진우4- ", ad.getAd_image_server());
-                Log.d("-진우5- ", String.valueOf(ad.getAd_image_server().length()));*/
-
-                if(!json.getString("ad_sound_server").equals("null")){
-                    ad.setAd_sound_server(json.getString("ad_sound_server"));
-                }
-                if(!json.getString("ad_image_server").equals("null")){
-                    ad.setAd_image_server(json.getString("ad_image_server"));
-                }
-                if(!json.getString("ad_url").equals("null")){
-                    ad.setAd_url(json.getString("ad_url"));
-                }
-                if(!json.getString("youtube_addr").equals("null")){
-                    ad.setYoutube_addr(json.getString("youtube_addr"));
-                }
-                if(!json.getString("entry_or").equals("null")){
-                    ad.setEntry_or(json.getString("entry_or"));
-                }
-                //Log.d("-진우- 광고정보 ", ad.toString());
-            }catch(JSONException e){
-                Log.e("-진우- JSON", "Error parsing data "+e.toString());
-            }
-            handler.sendEmptyMessage(MESSAGE_OK);
-        }
-
-    }
 
     private class eThread extends Thread {
         String result = "";
@@ -452,6 +312,7 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
         killMediaPlayer();
     }
 
+    //외부광고
     class AdWebViewClient extends WebViewClient {
 
         @Override
@@ -494,23 +355,72 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
         }
     }
 
-    //이미지광고시 이미지불러오기
+    //광고정보 받아오기
     private class OpenHttpConnection extends AsyncTask<Object, Void, Bitmap>{
 
-        private ImageView bmImage;
+        private ProgressDialog dialog = new ProgressDialog(Activity_alarm_alanglang.this);
+        private ImageView adImageView;
+
+        @Override
+        protected void onPreExecute() {
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setMessage("잠시만 기달려주세요");
+            dialog.show();
+            super.onPreExecute();
+        }
 
         @Override
         protected Bitmap doInBackground(Object... objects) {
             Bitmap mBitmap = null;
-            bmImage = (ImageView)objects[0];
-            String url = (String)objects[1];
-            InputStream in = null;
-            try{
-                in = new URL(url).openStream();
-                mBitmap = BitmapFactory.decodeStream(in);
-                in.close();
-            }catch (Exception e){
+            String result = null;
+            adImageView = (ImageView)objects[0];
+
+            OkHttpClient client = new OkHttpClient();
+            //광고 정보 가져오기
+            Request request1 = new Request.Builder()
+                    .url(HTTPADDR + "/and/adInfo.do")
+                    .build();
+            try {
+                Response response = client.newCall(request1).execute();
+                if(!response.isSuccessful()){
+                    Log.d("-진우-", "서버와의 통신이 올바르지않습니다");
+                }
+                result = response.body().string();
+                Log.d("-진우-", "첫번째 결과 : " + result);
+                JSONObject json = new JSONObject(result);
+                if(!json.getString("ad_sound_server").equals("null")){
+                    ad.setAd_sound_server(json.getString("ad_sound_server"));
+                }
+                if(!json.getString("ad_image_server").equals("null")){
+                    ad.setAd_image_server(json.getString("ad_image_server"));
+                }
+                if(!json.getString("ad_url").equals("null")){
+                    ad.setAd_url(json.getString("ad_url"));
+                }
+                if(!json.getString("youtube_addr").equals("null")){
+                    ad.setYoutube_addr(json.getString("youtube_addr"));
+                }
+                if(!json.getString("entry_or").equals("null")){
+                    ad.setEntry_or(json.getString("entry_or"));
+                }
+                Log.d("-진우-", "두번째 결과 : " + ad.toString());
+            } catch (IOException e){
                 e.printStackTrace();
+            } catch (JSONException e){
+                e.printStackTrace();
+            }
+
+            //이미지, 소리광고
+            if(ad.getAd_image_server() != null){
+                InputStream in = null;
+                try {
+                    Log.d("-진우-", "광고이미지 : " + HTTPADDR + "/fileupload/image/" + ad.getAd_image_server());
+                    in = new URL(HTTPADDR + "/fileupload/image/" + ad.getAd_image_server()).openStream();
+                    mBitmap = BitmapFactory.decodeStream(in);
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
             return mBitmap;
@@ -518,10 +428,60 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
 
         @Override
         protected void onPostExecute(Bitmap bitmap) {
+            //유뷰트광고
+            if(ad.getYoutube_addr() != null){
+                youTubeView.setVisibility(View.VISIBLE);
+                if(alarm != null){
+                    Log.d("-진우- 유뷰브소리 " , String.valueOf(alarm.getVolume()));
+                    AudioManager am = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+                    am.setStreamVolume(AudioManager.STREAM_MUSIC, alarm.getVolume(), 0);
+                } else {
+                    //Log.d("-진우- 유뷰브소리 " , "월래 소리냄");
+                }
+            }
+            //이미지,소리광고
+            if(bitmap != null){
+                adImageView.setVisibility(View.VISIBLE);
+                adImageView.setImageBitmap(bitmap);
+            }
+
+            //외부광고
+            if(ad.getAd_url() != null){
+                webView.setVisibility(View.VISIBLE);
+                webView.getSettings().setJavaScriptEnabled(true);
+                webView.loadUrl("http://" + ad.getAd_url());
+                webView.setWebViewClient(new AdWebViewClient());
+                webView.setWebChromeClient(new WebChromeClient() {
+                    @Override
+                    public void onProgressChanged(WebView view, int progress) {
+                        //매개변수로 제공되는 progress의 범위는 0부터 10,000까지 사용한다.
+                        //웹 페이지가 100% 출력될때까지 화면 출력을 지연한다.
+                        activity.setProgress(progress * 100);
+                    }
+                });
+            }
+
+            //소리재생
+            if(ad.getAd_sound_server() != null){
+                sound_act = true;
+                try{
+                    String st = HTTPADDR + "/fileupload/sound/" + ad.getAd_sound_server();
+                    Log.d("-진우- 소리재생 ", st);
+                    playAudio(st);
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+
+            //응모하기
+            if(ad.getEntry_or() != null && ad.getEntry_or().equals("Y")){
+                entryLinearLayout.setVisibility(View.VISIBLE);
+            }
+
+
+            dialog.dismiss();
             super.onPostExecute(bitmap);
-            bmImage.setImageBitmap(bitmap);
         }
     }
-
-
 }

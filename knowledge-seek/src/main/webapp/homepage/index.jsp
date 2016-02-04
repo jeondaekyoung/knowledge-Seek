@@ -95,10 +95,8 @@
             <div id="content1">
                 <div class="introduce">
                     <div class="open">
-                        <p class="pt14 shadow">회사소개</p>
-                        <p class="pt36 shadow lh6">ㅡ</p>
-                        <p class="pt18 shadow">Open Innovation을 실행하는 곳,<br>
-                            <span class="pt22">(주)나리지식&amp;컴퍼니입니다</span></p>
+                        <p class="pt30 shadow">Open Innovation을 실행하는 곳,<br>
+                            <span class="pt36">(주)나리지식&amp;컴퍼니입니다</span></p>
                         <p class="pt14 col000">(주)나리지식&amp;컴퍼니는 솔루션 개발과 교육 컨설팅, 지식인들의 강연 등<br>
                             지식-교육 사업을 통해 Open Innovation을 실현시키고 있습니다.</p>
                         <p class="pt14"><a href="aboutUs01.jsp" class="ghostBtn1">자세히 보기</a></p>

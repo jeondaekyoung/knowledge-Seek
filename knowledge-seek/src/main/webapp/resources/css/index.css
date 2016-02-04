@@ -149,8 +149,8 @@ body{_text-align:center; width:100%; min-width: 980px; overflow-y: scroll}
 
 
 .pt14 {font-size: 14px;}
-.pt18 {font-size: 18px}
-.pt22 {font-size: 22px}
+.pt18 {font-size: 18px;}
+.pt30 {font-size: 30px; font-weight: bold}
 .pt36 {font-size: 36px; font-weight: bold}
 
 .shadow {text-shadow: 2px 2px 3px #555}

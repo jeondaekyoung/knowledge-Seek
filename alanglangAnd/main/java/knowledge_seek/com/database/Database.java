@@ -32,16 +32,16 @@ public class Database extends SQLiteOpenHelper {
 
     public static final String ALARM_TABLE = "alarm_tb";
     public static final String COLUMN_ALARM_ID = "_id";
-    public static final String COLUMN_ALARM_ACTIVE = "alarm_active";
-    public static final String COLUMN_ALARM_TIME = "alarm_time";
-    public static final String COLUMN_ALARM_DAYS = "alarm_days";
-    public static final String COLUMN_ALARM_TYPE = "alarm_type";
-    public static final String COLUMN_ALARM_STAR = "alarm_star";
+    public static final String COLUMN_ALARM_ACTIVE = "alarm_active";    //끄고 키고
+    public static final String COLUMN_ALARM_TIME = "alarm_time";        //시간
+    public static final String COLUMN_ALARM_DAYS = "alarm_days";        //요일
+    public static final String COLUMN_ALARM_TYPE = "alarm_type";        //타입
+    public static final String COLUMN_ALARM_STAR = "alarm_star";        //스타알람일 경우 누구인지
     /*public static final String COLUMN_ALARM_TONE = "alarm_tone";*/
     //public static final String COLUMN_ALARM_REPEAT = "alarm_repeat";
     /*public static final String COLUMN_ALARM_VIBRATE = "alarm_vibrate";*/
     /*public static final String COLUMN_ALARM_NAME = "alarm_name";*/
-    public static final String COLUMN_ALARM_VOLUME = "alarm_volume";
+    public static final String COLUMN_ALARM_VOLUME = "alarm_volume";        //알람소리크기
 
     //데이터베이스 객체 생성
     public static void init(Context context){

@@ -5,11 +5,20 @@ package knowledge_seek.com;
  * 광고
  */
 public class Ad {
+    private String ad_seq;
     private String ad_sound_server;
     private String ad_image_server;
     private String ad_url;
     private String youtube_addr;
     private String entry_or;
+
+    public String getAd_seq() {
+        return ad_seq;
+    }
+
+    public void setAd_seq(String ad_seq) {
+        this.ad_seq = ad_seq;
+    }
 
     public String getAd_sound_server() {
         return ad_sound_server;
@@ -54,7 +63,8 @@ public class Ad {
     @Override
     public String toString() {
         return "Ad{" +
-                "ad_sound_server='" + ad_sound_server + '\'' +
+                "ad_seq='" + ad_seq + '\'' +
+                ", ad_sound_server='" + ad_sound_server + '\'' +
                 ", ad_image_server='" + ad_image_server + '\'' +
                 ", ad_url='" + ad_url + '\'' +
                 ", youtube_addr='" + youtube_addr + '\'' +

@@ -106,6 +106,7 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
         Bundle bundle = this.getIntent().getExtras();
         if(bundle != null) {
             alarm = (Alarm)bundle.getSerializable("alarm");
+            Log.d("-진우-", "알람 : " + alarm.toString());
         }
         ad = new Ad();
 
@@ -147,7 +148,7 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
                 }
                 Toast.makeText(getApplicationContext(), "응모하기", Toast.LENGTH_SHORT).show();
 
-                String entry_do = HTTPADDR + "/and/entry.do?name=" + name + "&phone=" + phone + "&email=" + email + "&ad_seq=" + ad_seq;
+                String entry_do = HTTPADDR + "/and/entry.do?name=" + name + "&phone=" + phone + "&email=" + email + "&ad_seq=" + ad.getAd_seq();
                 try {
                     eThread async = new eThread(entry_do);
                     async.start();
@@ -388,6 +389,9 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
                 result = response.body().string();
                 Log.d("-진우-", "첫번째 결과 : " + result);
                 JSONObject json = new JSONObject(result);
+                if(!json.getString("ad_seq").equals("null")){
+                    ad.setAd_seq(json.getString("ad_seq"));
+                }
                 if(!json.getString("ad_sound_server").equals("null")){
                     ad.setAd_sound_server(json.getString("ad_sound_server"));
                 }
@@ -403,6 +407,7 @@ public class Activity_alarm_alanglang extends YouTubeFailureRecoveryActivity {
                 if(!json.getString("entry_or").equals("null")){
                     ad.setEntry_or(json.getString("entry_or"));
                 }
+
                 Log.d("-진우-", "두번째 결과 : " + ad.toString());
             } catch (IOException e){
                 e.printStackTrace();

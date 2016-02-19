@@ -34,7 +34,7 @@ $(document).ready(function(){
 			alert("0보다 큰 수를 입력하십시오.");
 			return false;
 		}
-		if(num >= totIpt){
+		if(num > totIpt){
 			alert("전체 응모자 수보다 큰 수를 입력했습니다.");
 			return false;
 		}

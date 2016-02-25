@@ -12,7 +12,7 @@ body{_text-align:center; width:100%; min-width: 980px; overflow-y: scroll}
 .sta_wrap h1,.sta_wrap ul,.sta_wrap li,.sta_wrap form,.sta_wrap fieldset,.sta_wrap legend,.sta_wrap input,.sta_wrap label,.sta_wrap a,.sta_wrap img{margin:0;padding:0;font-family:'돋움',Dotum,AppleGothic,sans-serif;font-size:12px;line-height:14px}
 .sta_wrap{position:relative;width:980px;height:60px;_height /**/:60px;margin:0 auto;padding:10px 0;}
 .sta_wrap h1{_display:inline;margin:0;_margin:0;font-size:0}
-.sta_wrap h1 a{display:block;width: 300px; }
+.sta_wrap h1 img{width: 230px; }
 .sta_wrap .nav_btn {display: none;}
 .sta_wrap .nav_btn img {cursor: pointer}
 /* top nav */

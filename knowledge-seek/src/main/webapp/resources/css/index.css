@@ -16,7 +16,7 @@ body{_text-align:center; width:100%; min-width: 980px; overflow-y: scroll}
 .sta_wrap .nav_btn {display: none;}
 .sta_wrap .nav_btn img {cursor: pointer}
 /* top nav */
-.nav_wrap {position: absolute;width: 100%; background: #66c7ff; height: 20px}
+.nav_wrap {position: absolute;width: 100%; background: #00b8ee; height: 20px}
 .nav_wrap .nav {overflow: hidden; width: 100%; }
 .nav_wrap .m_nav {display: none}
 .nav #subMenu {overflow: hidden; max-width: 980px; margin: 0 auto}
@@ -88,7 +88,7 @@ body{_text-align:center; width:100%; min-width: 980px; overflow-y: scroll}
 #container2 .contents .contentSbj h3 {font-size: 24px;float: left;}
 #container2 .contents .contentSbj .direction {float: right; }
 
-.aboutUs h4 {font-size: 20px; color:#fff; text-shadow: 1px 1px 2px #666; background: #66c7ff; padding: 5px 10px;}
+.aboutUs h4 {font-size: 20px; color:#fff; text-shadow: 1px 1px 2px #666; background: #00b8ee; padding: 5px 10px;}
 .contents .artcle {margin: 40px 0 0;}
 .contents .artcle .m_map {display: none}
 .contents .artcle .aboutUs{margin: 40px 0 0;}

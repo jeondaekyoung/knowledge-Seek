@@ -92,13 +92,13 @@ body{_text-align:center; width:100%; min-width: 980px; overflow-y: scroll}
 .contents .artcle {margin: 40px 0 0;}
 .contents .artcle .m_map {display: none}
 .contents .artcle .aboutUs{margin: 40px 0 0;}
-.contents .artcle .aboutUs .work {width: 245px; padding: 20px 0; float: left; margin-bottom: 40px}
+.contents .artcle .aboutUs .work {width: 325px; padding: 20px 0; float: left; margin-bottom: 40px}
 .contents .artcle .aboutUs .work p {width: 100%; text-align: center;}
-.contents .artcle .aboutUs .work p.cir {width: 200px; height: 200px; border-radius: 100px; margin: 20px auto; }
+.contents .artcle .aboutUs .work p.cir {width: 300px; height: 300px; border-radius: 150px; margin: 20px auto; }
 .contents .artcle .aboutUs .work p.bgw1 {background: #ededed }
 .contents .artcle .aboutUs .work p.bgw2 {background: #ddffff }
 .contents .artcle .aboutUs .work p.aleft {margin-top: 10px }
-.contents .artcle .aboutUs .work p img {margin-top: 38px }
+.contents .artcle .aboutUs .work p img {margin-top: 88px }
 .contents .artcle .aboutUs .m_work {display: none}
 
 

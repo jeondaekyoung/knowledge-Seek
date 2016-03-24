@@ -30,7 +30,6 @@
                     <ul>
                         <li><a href="aboutUs01.jsp" id="gnb1">회사소개</a></li>
                         <li><a href="business01.jsp" id="gnb2">사업영역</a></li>
-                        <li><a href="resource01.jsp" id="gnb3">자료실</a></li>
                         <li><a href="customer.jsp" id="gnb4">고객센터</a></li>
                     </ul>
                 </div>
@@ -53,9 +52,9 @@
                                 <li><a href="business02.jsp">취업교육</a></li>
                                 <li><a href="business03.jsp">정부 R&amp;D 과제</a></li>
                             </ul>
-                            <ul id="sub3" style="margin-left: 78%;">
+                            <!-- <ul id="sub3" style="margin-left: 78%;">
                                 <li><a href="resource01.jsp">취업교육자료</a></li>
-                            </ul>
+                            </ul> -->
                             <ul id="sub4" style="margin-left: 90%;">
                                 <li><a href="customer.jsp">문의하기</a></li>
                             </ul>
@@ -76,8 +75,8 @@
                                 <li><a href="business02.jsp">취업교육</a></li>
                                 <li><a href="business03.jsp">정부 R&amp;D과제</a></li>
                                 
-                                <li class="gnbTit">자료실</li>
-                                <li><a href="resource01.jsp">취업교육자료</a></li>
+                                <!-- <li class="gnbTit">자료실</li>
+                                <li><a href="resource01.jsp">취업교육자료</a></li> -->
                             
                                 <li class="gnbTit">고객센터</li>
                                 <li><a href="customer.jsp">문의하기</a></li>

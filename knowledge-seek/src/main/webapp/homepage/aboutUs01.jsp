@@ -28,7 +28,6 @@
                     <ul>
                         <li><a href="aboutUs01.jsp" id="gnb1">회사소개</a></li>
                         <li><a href="business01.jsp" id="gnb2">사업영역</a></li>
-                        <li><a href="resource01.jsp" id="gnb3">자료실</a></li>
                         <li><a href="customer.jsp" id="gnb4">고객센터</a></li>
                     </ul>
                 </div>
@@ -41,19 +40,19 @@
                 <div class="nav">
                     <div id="subMenu">
                         <div class="subContent">
-                            <ul id="sub1" style="margin-left: 54%;">
+                            <ul id="sub1" style="margin-left: 60%;">
                                 <li><a href="aboutUs01.jsp">인사말</a></li>
                                 <li><a href="aboutUs02.jsp">조직도</a></li>
                                 <li><a href="aboutUs03.jsp">오시는길</a></li>
                             </ul>
-                            <ul id="sub2" style="margin-left: 64%;">
-                                <li><a href="business01.jsp">솔루션 / 홈페이지 제작</a></li>
-                                <li><a href="business02.jsp">취업교육</a></li>
+                            <ul id="sub2" style="margin-left: 70%;">
+                                <li><a href="business01.jsp">IT사업</a></li>
+                                <li><a href="business02.jsp">교육사업</a></li>
                                 <li><a href="business03.jsp">정부 R&amp;D 과제</a></li>
                             </ul>
-                            <ul id="sub3" style="margin-left: 78%;">
+                            <!-- <ul id="sub3" style="margin-left: 78%;">
                                 <li><a href="resource01.jsp">취업교육자료</a></li>
-                            </ul>
+                            </ul> -->
                             <ul id="sub4" style="margin-left: 90%;">
                                 <li><a href="customer.jsp">문의하기</a></li>
                             </ul>
@@ -70,12 +69,12 @@
                                 <li><a href="aboutUs03.jsp">오시는길</a></li>
                                 
                                 <li class="gnbTit">사업영역</li>
-                                <li><a href="business01.jsp">솔루션 / 홈페이지 제작</a></li>
-                                <li><a href="business02.jsp">취업교육</a></li>
-                                <li><a href="business03.jsp">정부 R&amp;D과제</a></li>
+                                <li><a href="business01.jsp">IT사업</a></li>
+                                <li><a href="business02.jsp">교육사업</a></li>
+                                <li><a href="business03.jsp">정부 R&amp;D 과제</a></li>
                                 
-                                <li class="gnbTit">자료실</li>
-                                <li><a href="resource01.jsp">취업교육자료</a></li>
+                                <!-- <li class="gnbTit">자료실</li>
+                                <li><a href="resource01.jsp">취업교육자료</a></li> -->
                             
                                 <li class="gnbTit">고객센터</li>
                                 <li><a href="customer.jsp">문의하기</a></li>
@@ -105,7 +104,7 @@
                             <h4>주요업무</h4>
                             <div class="work">
                                 <p class="cir bgw1"><img src="${pageContext.request.contextPath}/resources/images/img/buz11.png" alt=""></p>
-                                <p class="pt18">솔루션/홈페이지</p>
+                                <p class="pt18">IT사업</p>
                                 <p class="pt14 aleft">
                                     <span>- 홈페이지 제작</span><br>
                                     <span>- 솔루션 제작</span>
@@ -113,12 +112,12 @@
                             </div>
                             <div class="work">
                                 <p class="cir bgw2"><img src="${pageContext.request.contextPath}/resources/images/img/buz22.png" alt=""></p>
-                                <p class="pt18">정부과제</p>
+                                <p class="pt18">정부R&amp;D과제</p>
                                 <p class="pt14 aleft">
                                     <span>- IOT기반 성장 데이터 플랫폼</span>
                                 </p>
                             </div>
-                            <div class="work">
+                            <%-- <div class="work">
                                 <p class="cir bgw1"><img src="${pageContext.request.contextPath}/resources/images/img/buz00.png" alt=""></p>
                                 <p class="pt18">온라인 마케팅</p>
                                 <p class="pt14 aleft">
@@ -126,9 +125,9 @@
                                     <span>- 바이럴 마케팅</span><br>
                                     <span>- 블로그 마케팅</span>
                                 </p>
-                            </div>
+                            </div> --%>
                             <div class="work">
-                                <p class="cir bgw2"><img src="${pageContext.request.contextPath}/resources/images/img/buz33.png" alt=""></p>
+                                <p class="cir bgw1"><img src="${pageContext.request.contextPath}/resources/images/img/buz33.png" alt=""></p>
                                 <p class="pt18">교육사업</p>
                                 <p class="pt14 aleft">
                                     <span>- 진로/면접/직무 교육</span><br>

@@ -93,9 +93,9 @@
     /* aboutUs03 */
     .map_wrap {}
     .map_wrap .map_content2 {}
-    .map_wrap .map_content2 .box-map {display: none}
+    .map_wrap .map_content2 .box-map {}
     .map_wrap .map_content2 .addr {}
-    .map_wrap .map_content2 .addr .m_map {display: block}
+    .map_wrap .map_content2 .addr .m_map {}
     .map_wrap .map_content2 .addr img {width: 100%}
     
     

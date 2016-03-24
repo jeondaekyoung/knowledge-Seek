@@ -9,7 +9,7 @@
             대표이사 :노경환 <span>사업자등록번호</span> :220-88-64644 <span>대표전화</span> :070-8624-4536<br/>
             주소 :서울특별시 강남구 학동로56길 47, 4층 (지번주소 : 서울특별시 강남구 삼성동 10-7, 4층)<br/>            
         </p>
-        <img src="${pageContext.request.contextPath}/resources/images/logo/logofps.png" class="fr" alt="fps컨설팅">
+        <a href="http://blog.naver.com/job_1253"><img src="${pageContext.request.contextPath}/resources/images/logo/blog.png" class="fr" alt="나리지식 블로그"></a>
 
         <address>
             <em>Copyright ©</em>

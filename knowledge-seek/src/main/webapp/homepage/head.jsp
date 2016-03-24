@@ -12,5 +12,5 @@
 <link type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" rel="stylesheet">
 <link type="text/css" href="${pageContext.request.contextPath}/resources/css/index.css" rel="stylesheet">
 <link type="text/css" href="${pageContext.request.contextPath}/resources/css/mobile.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/css/jquery-ui.css" rel="stylesheet">
 <link type="text/css" href="${pageContext.request.contextPath}/resources/css/animate.css" rel="stylesheet">
+<link type="text/css" href="${pageContext.request.contextPath}/resources/css/jquery-ui.css" rel="stylesheet">

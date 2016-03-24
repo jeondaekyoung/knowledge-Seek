@@ -10,6 +10,13 @@
 	-o-animation-duration:0.5s;
 	animation-duration:0.5s;
 }
+.animated{
+ -webkit-animation-duration:1s;
+ -moz-animation-duration:1s;
+ -ms-animation-duration:1s;
+ -o-animation-duration:1s;
+ animation-duration:1s;
+}
 
 @-webkit-keyframes fadeIn {
 	0% {opacity: 0;}	100% {opacity: 1;}

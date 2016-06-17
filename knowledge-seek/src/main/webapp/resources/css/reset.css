@@ -30,11 +30,11 @@ footer, header, hgroup, menu, nav, section { display: block; }
 
 /* 본문 기본 설정, 리스트 블릿 제거, 인용 구문 제거 */
 body { 
-	font: 12px/1.5 "나눔 고딕", "Nanum Gothic", 돋움, Dotum, Sans-Serief; 
+	font-size: 12px/1.5; 
 	color: #323232; 
 	}
-	/* 영문 설정 */
-	.lang-en, :lang(en) { font: 12px/1.5 "Helvetica Neue", Helvetica, Verdana, Arial, Sans-Serief; }
+/* 영문 설정 */
+.lang-en, :lang(en) { font: 12px/1.5 "Helvetica Neue", Helvetica, Verdana, Arial, Sans-Serief; }
 	
 /* 목록 및 인용 */
 ol, ul { list-style: none; }

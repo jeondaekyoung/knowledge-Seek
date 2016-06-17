@@ -27,33 +27,14 @@
                 <div class="artcle">
                     
                     <div class="edu">
-                        <h4>성공적인 취업을 위한 교육 프로그램</h4>
+	                    <h4>성공적인 취업을 위한 교육 프로그램</h4>
                         <div class="edu1">
-                            <img src="${pageContext.request.contextPath}/resources/images/img/business1.jpg" alt="취업마인드자기분석,입사지원서클리닉,면접클리닉,입사전교육" class="fl" usemap="#buss">
-							<map name="buss">
-								<area href="resource01.jsp" shape="rect" coords="0,0,178,110">
-								<area href="resource01.jsp#001" shape="rect" coords="190,0,367,110">
-								<area href="resource01.jsp#002" shape="rect" coords="0,122,178,233">
-								<area href="resource01.jsp#003" shape="rect" coords="190,123,367,233">
-							</map>
-
+                            <img src="${pageContext.request.contextPath}/resources/images/img/business1.jpg" alt="취업마인드자기분석,입사지원서클리닉,면접클리닉,입사전교육" class="fl">
+							
                             <p class="fr"><span>성공적인 취업을 위한 최적의 교육!</span>
-                                <br><span class="edutt">취업마인드 자기분석 / 입사지원서 클리닉 / 면접 클리닉 / 입사 전 교육</span>
+                                <br><span class="edutt">취업마인드 함양 / 입사지원서 클리닉 / 면접 클리닉 / 입사 전 교육</span>
 
-                            <br>자신에게 맞는 직업과 진로를 탐색하는 자기 분석에서부터 입사지원서 작성, 면접, 그리고 취업에 성공한 뒤 직장에서 해야할 기본 교육까지
-                            취업을 앞둔 학생, 취업준비생을 위한 종합 교육 프로그램을 운영하고 있습니다.
-                            </p>
-                        </div>
-
-                        <h4>실무 역량 강화교육 프로그램</h4>
-                        <div class="edu1">
-                            <img src="${pageContext.request.contextPath}/resources/images/img/business2.jpg" alt="경영사무관리 과정,금융실무 과정,유통마케팅 과정, 비서역량강화 과정" class="fr">
-                            <p class="fl"><span>올바른 취업 준비와 기업 예비 주체로서의 역량 극대화</span>
-                            <br><span class="edutt">경영 사무관리 과정 / 금융 실무과정 / 유통 마케팅 과정 / 비서 역량강화 과정</span>
-                            <br>학생들의 능력과 적성을 고려하여
-                            실제 직무를 먼저 체험해 보고 익힐 수 있는 실무 역량 강화 교육과정입니다.
-                            스펙 위주의 취업 준비에서 벗어나 목표로 하는 직무의
-                            역량을 강화함으로서 기업에서 실제로 필요로 하는 인재를 양성하고 있습니다.
+                            <br>자신에게 맞는 직업과 진로를 탐색하는 자기 분석에서부터 입사지원서 작성, 면접, 그리고 취업에 성공한 뒤 직장에서 해야할 기본 교육까지 취업을 앞둔 학생, 취업준비생을 위한 종합 교육 프로그램을 운영하고 있습니다.
                             </p>
                         </div>
                     </div>
@@ -83,7 +64,7 @@
                                 </p>
                                 <h5>&nbsp;취업 자신감 강화</h5>
                                 <p><strong>취업의 블랙홀 탈출법</strong>
-                                    <br> - 스펙 만이 답이 아니다! 나만의 강점 찾기
+                                    <br>- 스펙 만이 답이 아니다! 나만의 강점 찾기
                                     <br>- 나의 취업 경쟁력 높이는 방법
                                     <br>- 취업에서 두려움을 버리고 자신감을 높이기
                                 </p>
@@ -125,7 +106,7 @@
                             <div class="h_auto"><div class="rsc">
                                 <h5>&nbsp;입사지원서 작성법</h5>
                                 <p><strong>입사지원서 작성법 강의</strong>
-                                    <br> - 작성시 유의사항
+                                    <br>- 작성시 유의사항
                                     <br>- 논리정연 하게 나의 이야기 작성하기
                                     <br>- 합격자의 입사지원서 분석
                                     <br>- 나의 입사지원서 직접 작성해보기
@@ -202,7 +183,7 @@
                                 </p>
                                 <h5>&nbsp;비지니스 매너</h5>
                                 <p><strong>사랑 받는 신입사원 되기</strong>
-                                    <br> - 출/퇴근 예절, 이메일 작성법, 전화 받는법 등 기본 예절 학습
+                                    <br>- 출/퇴근 예절, 이메일 작성법, 전화 받는법 등 기본 예절 학습
                                     <br>- 보고 하는법, 명함 교환, 상석 안내방법 등 비즈니스 매너를 통해 회사가 같이 일하고 싶은 사람 되기
                                     <br>- 가정, 공공시설 등 일상 생활에서의 사회인 다운 예절 학습
                                 </p> 
@@ -211,6 +192,17 @@
                                 <img src="${pageContext.request.contextPath}/resources/images/img/u148.jpg" alt="강의 사진">
                                 </div></div>
                             
+                        </div>
+                    </div>
+                    <div class="edu">
+                         <h4>실무 역량 강화교육 프로그램</h4>
+                        <div class="edu1">
+                            <img src="${pageContext.request.contextPath}/resources/images/img/business2.jpg" alt="경영사무관리 과정,금융실무 과정,유통마케팅 과정, 비서역량강화 과정" class="fr">
+                            <p class="fl"><span>올바른 취업 준비와 기업 예비 주체로서의 역량 극대화</span>
+                            <br><span class="edutt">경영 사무관리 과정 / 금융 실무과정 / 유통 마케팅 과정 / 비서 역량강화 과정</span>
+                            <br>학생들의 능력과 적성을 고려하여 실제 직무를 먼저 체험해 보고 익힐 수 있는 실무 역량 강화 교육과정입니다.
+                            스펙 위주의 취업 준비에서 벗어나 목표로 하는 직무의 역량을 강화함으로서 기업에서 실제로 필요로 하는 인재를 양성하고 있습니다.
+                            </p>
                         </div>
                     </div>
                     

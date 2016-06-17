@@ -1,14 +1,18 @@
 @CHARSET "utf-8";
+@media screen and (max-width:320px) {
+	html {font-size: 8px}
+}
+
 
 @media screen and (max-width:768px) {
-    html {font-size: 12px}
+    html {font-size: 10px}
     body {width: 100%; min-width:320px; max-width: 768px;}
 	#wrap {width: 100%; max-width: 768px;}
     
     #header {position: fixed; top:0; left:0; width: 100%; max-width: 768px; background: #f7f7f7}
     #header .sta_wrap {position: relative;width: 100%; max-width: 768px;}
-    #header .sta_wrap h1 {display: block; width: 100%; max-width: 768px; }
-    #header .sta_wrap h1 a {display:block;width: 250px;}
+    #header .sta_wrap h1 {display: block; width: 100%; max-width: 768px; margin-left: 5px }
+    #header .sta_wrap h1 a {display: block; width: 200px;}
     #header .sta_wrap h1 a img {width: 100%}
     #header .sta_wrap .gnb {display: none}
     
@@ -25,18 +29,18 @@
     
     #footer {width: 100%; max-width: 768px; min-width: 320px;}
     #footer .footerWrap {width: 100%; max-width: 768px; min-width: 320px; display: inline-block; text-align: center}
-    #footer .footerWrap ul {margin: 0; }
+    #footer .footerWrap ul {margin: 0;}
     #footer .footerWrap ul li {}
     #footer .footerWrap ul li a {font-size: 1rem}
     #footer .footerWrap img.fl,
     #footer .footerWrap img.fr {display: none}
     #footer .footerWrap p.info2 {width: 100%; padding: 10px 0; margin-bottom: 0; font-size: 1rem}
-    #footer .footerWrap address {display: inline-block; margin: 0 auto; clear: both; width: 100%}
+    #footer .footerWrap address {display: inline-block; margin: 0 auto; clear: both; width: 100%; padding-left:0}
     #footer .footerWrap address em {font-size: 0.9rem}
     #footer .footerWrap address a {font-size: 0.9rem}
     #footer .footerWrap address span {font-size: 0.9rem}
     
-/*****************************************************************************************/    
+/*****************************************************************************************/
     
     
 /* 메인 */    
@@ -76,7 +80,7 @@
     
     #container2 .contents {width: 100%; max-width: 768px; min-width: 320px;}
     #container2 .contents .contentSbj {width: 100%; margin: 0 0; padding: 0 0 10px 0}
-    .contents .contentSbj h3 {font-size: 2rem}
+    .contents .contentSbj h3 {font-size: 2rem; margin-left:5px}
     .contents .contentSbj .direction {display: none}
     .contents .artcle {width: 100%; margin: 20px 0}
     .contents .artcle img {}
@@ -85,10 +89,15 @@
     .contents .artcle .aboutUs div {}
     .contents .artcle .aboutUs div h4 {font-size: 1.4rem}
     .contents .artcle .aboutUs div img {height: 50%; width: auto}
-    .contents .artcle .aboutUs .work {width: 50%; height: 300px; padding: 0; float: left; margin-bottom: 10px}
+    .contents .artcle .aboutUs .work {width: 33%; height: 300px; padding: 0; float: left; margin-bottom: 50px}
     .contents .artcle .aboutUs .work p.cir {width: 150px; height: 150px; border-radius: 100%; margin: 20px auto; }
+    .contents .artcle .aboutUs .work p img {margin-top: 40px}
     #container2 .contents .artcle .aboutUs div .pc_work {display: none}
     #container2 .contents .artcle .aboutUs div .m_work {display: block}
+    
+    .org_bg {background: none;}
+	.org_bg2 {background: none; padding: 15px 0 25px;}
+    
     
     /* aboutUs03 */
     .map_wrap {}
@@ -129,11 +138,59 @@
     .artcle .customer .cus_content p {font-size: 1.2rem;}
     .artcle .customer .cus_content p a {}
     .artcle .customer .cus_content p span {font-size: 1.3rem;}
+    
+    
+    
+    
+    
+    #section0 {padding: 40% 19% !important;}
+    
+    #slide1, #slide2, #slide3 {padding: 5% 0 0 0 !important;}
+    #slide1 .pt46 {padding-top: 5%;}
+	#slide1 .pt20 {padding-bottom: 5%;}
+    .slide h1, #section2 h1 {text-align: center; width: 100%;}
+    
+    #slide2 {background-position: 55% 24% !important;}
+    
+    #section2 {padding: 13% 0 0 0 !important;}
+	#section2 .addr, #map {height: 450px!important;}
+    #section2 .addr p {padding: 3%; word-break: break-all;}
+    
+    .pt20 {font-size: 1.6rem; font-weight: bold}
+	.pt46 {font-size: 3rem; font-weight: bold}
+	
+	.aboutUs p {width: 80%; padding-top: 20%; margin-left: 10%;}
 }
 
 
 
 @media screen and (max-width:480px){
+	
+	.navbar-brand {padding: 0!important;}
+	.navbar-brand img {max-height: 35px!important;}
+	.navbar-header .navbar-brand + .btn {top: 0!important;}
+	
+	.fp-controlArrow.fp-prev {border-width: 19.5px 19px 19.5px 0;}
+	.fp-controlArrow.fp-next {border-width: 19.5px 0 19.5px 19px;}
+	
+	#slide1, #slide2, #slide3 {padding: 7% 0 0 0!important;}
+	#section2 {padding: 20% 0 0 0;}
+	
+	#slide1 .pt20 {padding-bottom: 6%;}
+	#slide1 .pt46 {padding-top: 7%;}
+	.slide h1, #section2 h1 {width: 100%; text-align: center;}
+	
+	#slide2 {background-position: 55% 24%!important;}
+	#slide2 img {width: 100%; padding: 10px 35px;}
+	#slide2 .div2 p {width: 100%}
+	
+	#slide3 .div4 div {height: 310px;}
+	
+	#section2 {padding: 15% 0 0 0 !important;}
+	#section2 .addr, #map {height: 300px!important;}
+	#section2 .addr p {padding: 3%; word-break: break-all;}
+	
+	
     #content1 .introduce .con1_img img.fl,
     #content1 .introduce .con1_img img.fr {margin:0; width: 44%}
     #content1 .introduce .con1_img img.ma {margin-left: 1%; margin-top: 20%;}
@@ -153,11 +210,66 @@
     
     .artcle .edu .edu1 p span {font-size: 1.2rem; }
     .edu .edu1 p span.edutt {font-size:0.8rem;}
+    
+    #footer {padding: 13px 0 0 0 !important;}
+    #footer .footerWrap address em {font-size: 0.7rem}
+    #footer .footerWrap address a {font-size: 0.7rem}
+    #footer .footerWrap address span {font-size: 0.7rem}
+    
+    .pt14 {font-size: 10px!important;}
+    .pt18 {font-size: 12px!important;}
+    .pt36 {font-size: 1rem!important;}
+    .pt20 {font-size: 0.8rem;}
+	.pt46 {font-size: 1.4rem;}
+	
+	#section0 {padding: 15% 5%!important;}
+	#section0 h1 {padding-top:150px}
+	#section0 .pt14 {font-size: 0.9rem!important;}
+	#section0 .pt18 {font-size: 1.3rem!important;}
+	#section0 .pt20 {font-size: 1.4rem;}
+	#section0 .pt46 {font-size: 2.4rem;}
+	.org_bg { padding: 120px 0 20px;}
+	.org_bg2 { padding:0; font-size:1rem;}
+	.org {width: 30%; margin-right: 2%}
+	.org:last-child {margin-right: 0}
+	.org ul li { font-size: 0.6rem;}
+	
+	#slide1 .pt46 {padding-top: 12%}
+	
 }
 
 
 
 @media screen and (max-width:320px){
+	.navbar-brand {padding: 0!important;}
+	.navbar-brand img {max-height: 35px!important;}
+	.navbar-header .navbar-brand + .btn {top: 0!important;}
+	
+	#section0 h1 {font-size: 2.4rem!impoprtant;}
+	#section0 .pt20 {font-size: 1.3rem!important;}
+	#section0 .biz a span {margin-top: 5px;}
+	
+	.fp-controlArrow.fp-prev {border-width: 19.5px 19px 19.5px 0;}
+	.fp-controlArrow.fp-next {border-width: 19.5px 0 19.5px 19px;}
+	
+	#slide1, #slide2, #slide3 {padding: 7% 0 0 0!important;}
+	#section2 {padding: 20% 0 0 0;}
+	
+	#slide1 .pt20 {padding-bottom: 6%;}
+	#slide1 .pt46 {padding-top: 7%;}
+	.slide h1, #section2 h1 {width: 100%; text-align: center;}
+	
+	#slide2 {background-position: 55% 24%;}
+	#slide2 img {width: 100%; padding: 10px 35px;}
+	#slide2 .div2 p {width: 100%}
+	
+	#slide3 .div4 div {height: 310px;}
+	
+	.aboutUs p {width: 80%; padding-top: 20%; margin-left: 10%; font-size: 14px}
+	
+	#section2 .addr, #map {height: 200px!important;}
+	#section2 .addr p {padding: 3%; word-break: break-all;}
+	
     #content1 .introduce .con1_img img.fl,
     #content1 .introduce .con1_img img.fr {margin:0; width: 43%}
     #content1 .introduce .con1_img img.ma {margin-left: 1%; margin-top: 16%;}
@@ -172,4 +284,14 @@
     #content3 .contact .con3_img img {width: 240px}
     
     .artcle .edu .edu1 p span {font-size: 1.1rem; }
+    
+    #footer .footerWrap address em {font-size: 0.7rem}
+    #footer .footerWrap address a {font-size: 0.7rem}
+    #footer .footerWrap address span {font-size: 0.7rem}
+    
+    .pt14 {font-size: 10px!important;}
+    .pt18 {font-size: 12px!important;}
+    .pt20 {font-size: 0.7rem!important;}
+    .pt36 {font-size: 1rem!important;}
+	.pt46 {font-size: 1.4rem!important;}
 }

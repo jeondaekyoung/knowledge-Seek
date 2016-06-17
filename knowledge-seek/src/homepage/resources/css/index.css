@@ -1,0 +1,206 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+*{list-style:none; font-family:'Noto Sans KR', sans-serif}
+a, input[type="button"] {cursor: pointer;}
+
+
+
+/* layout UI Object */
+body{_text-align:center; width:100%; min-width: 1140px; overflow-y: scroll}
+#wrap{margin:0 auto;_text-align:left;background: url('../images/bg/pattern.pn')}
+
+/* header */
+#header{width:100%; height: 80px; z-index: 2;position: relative; background: #fff; margin-bottom:0 !important}
+.sta_wrap h1,.sta_wrap ul,.sta_wrap li,.sta_wrap form,.sta_wrap fieldset,.sta_wrap legend,.sta_wrap input,.sta_wrap label,.sta_wrap a,.sta_wrap img{margin:0;padding:0;font-size:12px;line-height:14px;height:60px;}
+.sta_wrap{position:relative;width:1140px;height:60px;_height /**/:60px;margin:0 auto;padding:10px 0;}
+.sta_wrap h1{_display:inline;margin:0;_margin:0;font-size:0}
+.sta_wrap h1 a{display:block;width: 300px; }
+.sta_wrap .nav_btn {display: none;}
+.sta_wrap .nav_btn img {cursor: pointer}
+.navbar-brand img {max-height: 60px!important; margin-top: 10px!important;}
+/* top nav */
+.nav_wrap {position: absolute;width: 100%; background: #66c7ff; height: 10px}
+.nav_wrap .nav {overflow: hidden; width: 100%; }
+.nav_wrap .m_nav {display: none}
+.nav #subMenu {overflow: hidden; max-width: 1140px; margin: 0 auto}
+.nav_wrap .nav ul {display: none;float: left; margin: 0 auto;}
+.nav_wrap .nav ul li { margin: 0 0 0 20px; float:left}
+.nav_wrap .nav ul li a {font-size: 1em; color:#fff}
+.dropdown-submenu .dropdown-menu {left: 0!important; top: 45px!important;}
+
+/* //header */
+
+.gnb {margin-top: -30px; overflow: hidden}
+.gnb ul{overflow: hidden}
+.gnb ul li{float: left; padding: 5px 0; margin: 0 20px; }
+.gnb ul li:last-child {margin-right: 0}
+.gnb ul li a { font-weight: 600; font-size: 22px; color: #555}
+
+/*  container */
+#container{position:relative;width:100%;min-width: 1140px; margin: 0 auto;}
+#container2{position:relative;width: 1140px; margin: 0 auto; overflow: hidden; background: #fff; padding: 0 80px}
+#container:after{display:block;clear:both;content:''}
+/* side nav */
+.side_nav {position:fixed; top:230px; right:10px;}
+.side_nav li {margin:20px 0;}
+.side_nav li a {background: #666;text-indent: -9999px;display: block;width: 10px;height: 10px;margin: 0 5px;outline: 0; -moz-border-radius: 5px;-webkit-border-radius: 5px; border-radius: 5px;}
+.side_nav li a:hover,
+.side_nav li a.active {background: #000;}
+.nav_hover {position: absolute; top:4px; right: 20px;}
+.nav_hover p{display: none; background: #555; width:100px; padding: 3px 0; border-radius: 3px; font-size: 14px; text-align: center; color: #fff; }
+.nav_hover p.hover1{position: absolute;top:8px; right: 0px;}
+.nav_hover p.hover2{position: absolute;top:40px; right: 0px;}
+.nav_hover p.hover3{position: absolute;top:70px; right: 0px;}
+.nav_hover p.hover4{position: absolute;top:100px; right: 0px;}
+
+
+/* content */
+#content1, #content2, #content3 {overflow: hidden; min-width:1140px; margin: 0 auto}
+
+#content1{width:100%; height: 550px; background: url('../images/bg/dreamcatcher.jpg') no-repeat;}
+.introduce {width: 1140px; margin: 0 auto}
+.introduce .open {width: 100%; color: #fff; margin-top: 140px}
+.introduce .open p {text-align: center; margin-bottom: 20px }
+
+#content2 {width:1140px; margin: 80px auto}
+.business .open {width: 100%; color: #fff; overflow: hidden}
+.business .open div {float:left}
+.business .open div p {text-align: center; margin: 20px 0;}
+.business .open .about {width: 30%; height: 306px; margin-right: 5%;}
+.business .open .about:last-child {margin-right: 0px;}
+
+#content3 {width:1140px; margin: 80px auto; background: #f0f0f0}
+.contact {width: 100%; overflow: hidden}
+.contact .about {width: 50%; height: 356px; float: left}
+.contact .about p {}
+.contact .about p a {margin: 40px 0}
+.contact .about .img {width: 197px; height: 218px; margin: auto; line-height: 356px}
+.bgbl2 {background: #b7e0f1}
+.contact .about .fl {margin: 65px 45px}
+.contact .about .fr {margin: 65px 45px}
+.contact .about .fr p {text-align: right}
+.contact .about .fr p a {vertical-align: top}
+
+
+
+
+
+/* aboutUs */
+
+#container2 .contents{ width: 100%; margin: 0 auto}
+#container2 .contents .contentSbj{ padding: 50px 0 10px 0; overflow: hidden; border-bottom: 1px solid #ddd}
+#container2 .contents .contentSbj h3 {font-size: 24px;float: left;}
+#container2 .contents .contentSbj .direction {float: right; }
+
+.aboutUs h4 {font-size: 20px; color:#fff; text-shadow: 1px 1px 2px #666; background: #66c7ff; padding: 5px 10px;}
+.contents .artcle {margin: 40px 0;}
+.contents .artcle .m_map {display: none}
+.contents .artcle .aboutUs{margin: 40px 0 0;}
+.contents .artcle .aboutUs .work {width: 33.33%; padding: 20px 0; float: left; margin-bottom: 40px}
+.contents .artcle .aboutUs .work p {width: 100%; text-align: center;}
+.contents .artcle .aboutUs .work p.cir {width: 200px; height: 200px; border-radius: 100px; margin: 20px auto; }
+.contents .artcle .aboutUs .work p.bgw1 {background: #ededed }
+.contents .artcle .aboutUs .work p.bgw2 {background: #ddffff }
+.contents .artcle .aboutUs .work p.aleft {margin-top: 10px }
+.contents .artcle .aboutUs .work p img {margin-top: 38px }
+.contents .artcle .aboutUs .m_work {display: none}
+
+.artcle .org_bg,
+.artcle .org_bg2 {width: 100%; text-align: center;}
+.artcle .org_bg {padding: 80px 0; background: url('../images/bg/bg_org.png') no-repeat center;}
+.artcle .org_bg2 {padding: 70px 0 90px; margin-bottom: 20px; background: url('../images/bg/org.png') no-repeat center; font-size: 20px; color: #ccc; font-weight: bold;}
+.artcle .org {width: 30%; float: left; margin: 0 1.6% 80px;}
+.artcle .org ul {border-top: 3px solid #ccc;}
+.artcle .org ul li {border-bottom: 1px solid #ccc; padding: 20px 0; font-size: 1.2rem; font-weight: bold; text-align: center;}
+
+
+/* business */
+
+.edu {margin-bottom: 50px;}
+.edu h4{padding: 5px; background: #1D8AB7; color: #fff;margin-bottom: 20px; margin-top: 60px; font-size: 16px;}
+.edu .edu1{overflow: hidden; margin-bottom: 100px}
+.edu .edu1 p{width: 50%; padding: 20px; font-size: 13px}
+.edu .edu1 p span {font-size: 19px; font-weight: bold; color: #555; line-height: 80px}
+.edu .edu1 p span.edutt {font-size:14px; line-height:50px; color:#47ADD7}
+.edu .edu1 img{}
+.edu .edu1 .fr{float: right}
+.edu .edu1 .fl{float: left}
+
+
+
+
+/* resource */
+
+.edu .resource .h_auto {height: auto!important}
+.edu .resource .rsc {width: 50%; float: left; background: #fff}
+.edu .resource .rscimg1 img {margin: 30px 70px 72px}
+.edu .resource .rscimg2 img {margin: 30px 70px 35px}
+.edu .resource .rscimg3 img {margin: 30px 70px -25px}
+.edu h5 {width: 446px; margin: 30px 0 10px; padding: 8px 0px; background: url('../images/bg/bgH4.jpg'); font-size: 16px; color: #444; font-weight: bold}
+.edu .resource p {font-size: 14px}
+.edu .resource p strong {font-size: 15px; line-height: 30px}
+
+
+
+/* customer */
+
+.customer{}
+.customer .cus_content{}
+.customer .cus_content .custom {width: 320px; height:200px; margin: 80px 7px 80px 0; float: left; border: 1px dashed #ddd;}
+.customer .cus_content .custom:hover {background: #eee}
+.customer .cus_content .custom:last-child {margin-right: 0px;}
+.customer .cus_content .custom p {text-align: center}
+.customer .cus_content .custom p img {margin-top: 10px}
+.customer .cus_content .custom span p {font-weight: normal; color: #727272; font-size: 12px}
+.customer .cus_content span{ font-size: 12px; font-weight: bold; color: #727272;}
+.customer .cus_content h4{ font-size: 18px; margin-top: 20px; text-align: center}
+.customer .cus_content p a{color: #727272; font-size: 12px}
+
+
+/*  //container */
+
+
+.pt14 {font-size: 14px;}
+.pt18 {font-size: 18px}
+.pt22 {font-size: 22px}
+.pt36 {font-size: 36px; font-weight: bold}
+
+.shadow {text-shadow: 2px 2px 3px #555}
+.lh6 {line-height: 6px;}
+
+.col000 {color: #434343;}
+.bgbk {background: #696969;}
+.bgbl {background: #c2d1d7;}
+.bggr {background: #cdd7c2;}
+
+a.ghostBtn1 {display: inline-block; width: 100px; padding: 5px 0; margin: 0 auto; border: 1px solid #434343; text-align: center; color: #434343}
+a.ghostBtn1:hover {background: #434343; opacity: 0.5; color: #fff}
+a.ghostBtn2 {display: inline-block; width: 100px; padding: 5px 0; margin: 0 auto; border: 1px solid #fff; text-align: center; color: #fff}
+a.ghostBtn2:hover {background: #fff; opacity: 0.5; color: #000}
+
+/* footer */
+#footer{width:100%; min-width:1140px; background: #333;clear:both;margin:0;padding:50px 0 30px;border-top:1px solid #ccc;text-align:left}
+#footer ul,#footer li,#footer a,#footer strong,#footer img,#footer em,#footer address,#footer span{margin:0;padding:0;color:#333;font-size:12px;line-height:normal;list-style:none;font-style:normal}
+#footer .footerWrap {width: 1140px; margin: 0 auto; overflow: hidden}
+#footer a{color:#fff;}
+#footer a:visited{color:#fff;}
+#footer a:hover{text-decoration:underline}
+#footer ul{margin:0 0 10px 265px}
+#footer ul li{display:inline;position:relative;padding:0 5px 0 7px;background:url(http://static.naver.com/common/footer/bu_bar.gif) 0 50% no-repeat;font-size:12px;white-space:nowrap}
+#footer ul li a:hover,#footer ul li a:hover strong{color:#009bc8}
+#footer ul li.frst{padding:0 3px 0 0;background:none}
+#footer .info{margin:0 0 11px;color:#7e7e7e;font-size:12px;line-height:15px}
+#footer .info2{margin:3px 0 13px;font-size:12px;line-height:18px;color: #bbb; overflow: hidden; float: left; width: 80%; text-align: center}
+#footer .info2 img {padding: 10px 10px 0}
+#footer .info2 span{display:inline-block;margin-left:2px;padding-left:7px;background:url(http://static.naver.com/common/footer/bu_bar.gif) 1px 50% no-repeat;font-size:12px;vertical-align: top; color: #bbb}
+#footer address{width: 100%; font-size:11px;line-height:14px;overflow: hidden;float: left; text-align: center;}
+#footer address img{vertical-align:middle}
+#footer address a{color:#777;font-size:11px;font-weight:bold}
+#footer address a:hover{color:#009bc8}
+#footer address span{padding-left:2px;font-size:11px;line-height:14px; color:#fff }
+#footer address em{padding-left:0px;font-size:11px; color:#fff}
+#footer address .logo{display:inline-block;*display:inline;vertical-align:top;*vertical-align:baseline}
+#footer address .logo_v1{position:relative;top:-2px}
+
+#footer .fl {float: left}
+#footer .fr {float: right}
+/* //footer */

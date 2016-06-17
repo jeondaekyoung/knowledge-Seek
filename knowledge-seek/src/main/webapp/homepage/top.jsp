@@ -1,67 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<div id="header">
-    <div class="sta_wrap">
-        <h1><a href="index.jsp"><img src="${pageContext.request.contextPath}/resources/images/logo/logo_cooper.png" alt="나리지식"></a></h1>    
-        
-         <div class="gnb" style="float:right">
-            <ul>
-                <li><a href="aboutUs01.jsp" id="gnb1">회사소개</a></li>
-                <li><a href="business01.jsp" id="gnb2">사업영역</a></li>
-                <li><a href="customer.jsp" id="gnb4">고객센터</a></li>
-            </ul>
-        </div>
-        
-        <div class="nav_btn"><img class="m_btn" src="${pageContext.request.contextPath}/resources/images/icon/m_menu.png" alt="메뉴보이기"></div>
+	pageEncoding="UTF-8"%>
+
+<header id="header" class="navbar navbar-fixed-top bg-white box-shadow b-b b-light" data-spy="affix" data-offset-top="1">
+  <div id="menu" class="container">
+    <div class="navbar-header">
+      <a href="index.jsp" class="navbar-brand"><img src="${pageContext.request.contextPath}/resources/images/logo/logo_cooper.png" class="m-r-sm"></a>
+      <button class="btn btn-link visible-xs" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+        <i class="fa fa-bars"></i>
+      </button>
     </div>
-   
-    
-    <div class="nav_wrap">
-        <div class="nav">
-            <div id="subMenu">
-                <div class="subContent">
-                    <ul id="sub1" style="margin-left: 60%;">
-                        <li><a href="aboutUs01.jsp">인사말</a></li>
-                        <li><a href="aboutUs02.jsp">조직도</a></li>
-                        <li><a href="aboutUs03.jsp">오시는길</a></li>
-                    </ul>
-                    <ul id="sub2" style="margin-left: 70%;">
-                        <li><a href="business01.jsp">IT사업</a></li>
-                        <li><a href="business02.jsp">교육사업</a></li>
-                        <li><a href="business03.jsp">정부 R&amp;D 과제</a></li>
-                    </ul>
-                    <!-- <ul id="sub3" style="margin-left: 78%;">
-                        <li><a href="resource01.jsp">취업교육자료</a></li>
-                    </ul> -->
-                    <ul id="sub4" style="margin-left: 90%;">
-                        <li><a href="customer.jsp">문의하기</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="m_nav">
-            <div id="m_subMenu">
-                <div class="m_subContent">
-                    <ul>
-                        <li class="gnbTit">회사소개</li>
-                        <li><a href="aboutUs01.jsp">인사말</a></li>
-                        <li><a href="aboutUs02.jsp">조직도</a></li>
-                        <li><a href="aboutUs03.jsp">오시는길</a></li>
-                        
-                        <li class="gnbTit">사업영역</li>
-                        <li><a href="business01.jsp">IT사업</a></li>
-                        <li><a href="business02.jsp">교육사업</a></li>
-                        <li><a href="business03.jsp">정부 R&amp;D 과제</a></li>
-                        
-                        <!-- <li class="gnbTit">자료실</li>
-                        <li><a href="resource01.jsp">취업교육자료</a></li> -->
-                    
-                        <li class="gnbTit">고객센터</li>
-                        <li><a href="customer.jsp">문의하기</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li data-menuanchor="firstPage" class="scroll">
+          <a href="#section0">회사소개</a>
+        </li>
+        <li data-menuanchor="secondPage" class="scroll">
+          <a href="#section1">사업소개</a>
+        </li>
+        <li data-menuanchor="3rdPage" class="scroll">
+          <a href="#section2">Contact</a>
+        </li>
+      </ul>
+		<script>
+			jQuery(document).ready(function($){
+				$('.scroll').click(function(event){
+					event.preventDefault();
+					$('html, body').animate({'scrollTop' : $(this.hash).offset().top}, "slow");
+				});
+			});
+		</script>
     </div>
-    
-</div>
+  </div>
+</header>

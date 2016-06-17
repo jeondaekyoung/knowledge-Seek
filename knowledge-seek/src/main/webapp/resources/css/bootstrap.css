@@ -40,7 +40,6 @@ template {
 }
 
 html {
-  font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
@@ -95,7 +94,6 @@ code,
 kbd,
 pre,
 samp {
-  font-family: monospace, serif;
   font-size: 1em;
 }
 
@@ -305,7 +303,6 @@ html {
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
@@ -481,7 +478,6 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   line-height: 1.1;
   color: inherit;
@@ -734,13 +730,6 @@ address {
   margin-bottom: 20px;
   font-style: normal;
   line-height: 1.428571429;
-}
-
-code,
-kbd,
-pre,
-samp {
-  font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
 }
 
 code {
@@ -4081,7 +4070,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .nav > li > a:hover,
 .nav > li > a:focus {
   text-decoration: none;
-  background-color: #eeeeee;
+  /* background-color: #eeeeee; */
 }
 
 .nav > li.disabled > a {
@@ -4429,7 +4418,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
     margin-left: -15px;
   }
   .navbar-collapse .navbar-nav.navbar-right:last-child {
-    margin-right: -15px;
+    margin: 0 -15px 0 0;
   }
   .navbar-collapse .navbar-text:last-child {
     margin-right: 0;
@@ -6502,7 +6491,6 @@ button.close {
   height: 20px;
   margin-top: -10px;
   margin-left: -10px;
-  font-family: serif;
 }
 
 .carousel-control .icon-prev:before {

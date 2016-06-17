@@ -21,13 +21,12 @@ html {
   overflow-x: hidden;
 }
 body {
-  font-family: "맑은 고딕", "Malgun Gothic", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 12px/1.5;
   color: #717171;
   background-color: transparent;
   -webkit-font-smoothing: antialiased;
 }
-.lang-en, :lang(en) { font: 12px/1.5 "Helvetica Neue", Helvetica, Verdana, Arial, Sans-Serief; }
+.lang-en, :lang(en) { font: 12px/1.5; }
 ol, ul { list-style: none; }
 blockquote, q { quotes: none; }
 hr { display: none; }
@@ -51,20 +50,7 @@ input,select { vertical-align:middle;}
 legend {display:none;}
 a {text-decoration:none; color:#000;}
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif, malgun gothic;
-}
+
 a {
   color: #2e3e4e;
   text-decoration: none;
@@ -397,10 +383,10 @@ a:hover .caret-white {
 .panel-group .panel-heading + .panel-collapse .panel-body {
   border-top: 1px solid #eaedef;
 }
-.open {
+/* .open {
   z-index: 1050;
   position: relative;
-}
+} */
 .dropdown-menu {
   font-size: 13px;
   border-radius: 2px;
@@ -452,8 +438,8 @@ a:hover .caret-white {
   margin-left: 10px;
 }
 .dropdown-submenu .dropdown-menu {
-  left: 100%;
-  top: 0;
+  left: 0%;
+  top: 50px;
   margin-top: -6px;
   margin-left: -1px;
 }
@@ -819,7 +805,7 @@ a:hover .caret-white {
 }
 .navbar-header .navbar-brand + .btn {
   right: 0;
-  top: 0;
+  top: 15px;
   left: auto;
 }
 .navbar-brand {
@@ -828,14 +814,14 @@ a:hover .caret-white {
   font-size: 20px;
   line-height: 50px;
   display: inline-block;
-  padding: 0 15px;
+  padding: 5px 15px;
   font-weight: bold;
 }
 .navbar-brand:hover {
   text-decoration: none;
 }
 .navbar-brand img {
-  max-height: 20px;
+  max-height: 46px;
   margin-top: -4px;
   vertical-align: middle;
 }

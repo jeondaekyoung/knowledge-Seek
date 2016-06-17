@@ -1,0 +1,177 @@
+@CHARSET "utf-8";
+
+@media screen and (max-width:768px) {
+    html {font-size: 12px}
+    body {width: 100%; min-width:320px; max-width: 768px;}
+	#wrap {width: 100%; max-width: 768px;}
+    
+    #header {position: fixed; height: 55px !important; top:0; left:0; width: 100%; max-width: 768px; background: #f7f7f7}
+    #header .sta_wrap {position: relative;width: 100%; max-width: 768px;}
+    #header .sta_wrap h1 {display: block; width: 100%; max-width: 768px; }
+    #header .sta_wrap h1 a {display:block;width: 250px;}
+    #header .sta_wrap h1 a img {width: 100%}
+	.navbar-brand img {max-height: 40px!important; margin-top: 0px!important;}
+    #header .sta_wrap .gnb {display: none}
+    
+	.container > .navbar-collapse {background: #fff}
+    .nav_wrap {position: relative;}
+    .nav_wrap .m_nav {display: none; background: #333}
+    .m_nav #m_subMenu {}
+    .m_nav #m_subMenu .m_subContent{}
+    .m_nav #m_subMenu .m_subContent ul{}
+    .m_nav #m_subMenu .m_subContent ul li{padding: 10px}
+    .m_nav #m_subMenu .m_subContent ul li.gnbTit{background: linear-gradient(to bottom, #444, #333); font-weight: bold; color: #fff; font-size: 1.2rem}
+    .m_nav #m_subMenu .m_subContent ul li a{padding: 10px; color: #fff; font-size: 1rem}
+    .sta_wrap .nav_btn {display: block; }
+    .sta_wrap .nav_btn img {position: absolute; top:26px;right: 0;}
+    
+    #footer {width: 100%; max-width: 768px; min-width: 320px;}
+    #footer .footerWrap {width: 100%; max-width: 768px; min-width: 320px; display: inline-block; text-align: center}
+    #footer .footerWrap ul {margin: 0; }
+    #footer .footerWrap ul li {}
+    #footer .footerWrap ul li a {font-size: 1rem}
+    #footer .footerWrap img.fl,
+    #footer .footerWrap img.fr {display: none}
+    #footer .footerWrap p.info2 {width: 100%; padding: 10px 0; margin-bottom: 0; font-size: 1rem}
+    #footer .footerWrap address {display: inline-block; margin: 0 auto; clear: both; width: 100%}
+    #footer .footerWrap address em {font-size: 0.9rem}
+    #footer .footerWrap address a {font-size: 0.9rem}
+    #footer .footerWrap address span {font-size: 0.9rem}
+    
+/*****************************************************************************************/    
+    
+    
+/* 메인 */    
+    #container {width: 100%; max-width: 768px; min-width: 320px;}
+    #container .side_nav {display: none}
+    #container .side_nav .nav_hover {}
+    
+    #content1 {width: 100%; max-width: 768px; min-width: 320px; height: 100%; padding-bottom: 60px; background-position: 50% 60%}
+    #content1 .introduce {width: 100%; max-width: 768px; min-width: 320px; }
+    #content1 .introduce .open {width: 100%; display: inline-block; text-align: center; margin-top: 150px;}
+    #content1 .introduce p { font-size: 1rem}
+    
+    #content2 {width: 100%; max-width: 768px; min-width: 320px; height: 100%; padding-bottom: 0px}
+    #content2 .business .open {width: 100%; color: #fff; overflow: hidden}
+    #content2 .business .open div {float:left}
+    #content2 .business .open div p {text-align: center; margin: 20px 0;}
+    #content2 .business .open .about {width: 33.3%; height: 306px; margin: 0}
+    
+    #content3 {width: 100%; max-width: 768px; min-width: 320px; height: 100%; border-bottom: 1px solid #555}
+    #content3 .contact {width: 100%; overflow: hidden}
+    #content3 .contact .about {width: 100%; height: 240px; border-top: 1px solid #555; }
+    #content3 .contact .abouth {display: none}
+    #content3 .contact .about p {font-size: 1.3rem}
+    #content3 .contact .about .fl {margin: 35px 15px}
+    #content3 .contact .about .fr {margin: 35px 15px}
+    #content3 .contact .about .fr p {text-align: left}
+
+    
+    
+/* aboutUs01, 02, 03 */
+    #container2 {width: 100%; max-width: 768px; min-width: 320px;padding: 0;margin-top: 20px}
+    #container2 .aside {width: 100%; max-width: 768px; min-width: 320px; padding: 0}
+    #container2 .aside h2 {display: none;}
+    #container2 .aside ul {}
+    #container2 .aside ul li {}
+    #container2 .aside ul li a {padding:12px 200px 12px 0; font-size: 1rem }
+    
+    #container2 .contents {width: 100%; max-width: 768px; min-width: 320px;}
+    .contents .contentSbj {width: 100%; margin: 0 0; padding: 20px 0 20px}
+    .contents .contentSbj h3 {font-size: 2rem}
+    .contents .contentSbj .direction {display: none}
+    .contents .artcle {width: 100%; margin: 20px 0}
+    .contents .artcle img {}
+    .contents .artcle img.organi {width: 115%; margin-left: -8%}
+    .contents .artcle .aboutUs {}
+    .contents .artcle .aboutUs div {}
+    .contents .artcle .aboutUs div h4 {font-size: 1.4rem}
+    .contents .artcle .aboutUs div img {height: 50%; width: auto}
+    .contents .artcle .aboutUs .work {width: 50%; height: 300px; padding: 0; float: left; margin-bottom: 10px}
+    .contents .artcle .aboutUs .work p.cir {width: 150px; height: 150px; border-radius: 100%; margin: 20px auto; }
+    #container2 .contents .artcle .aboutUs div .pc_work {display: none}
+    #container2 .contents .artcle .aboutUs div .m_work {display: block}
+    
+    /* aboutUs03 */
+    .map_wrap {}
+    .map_wrap .map_content2 {}
+    .map_wrap .map_content2 .box-map {}
+    .map_wrap .map_content2 .addr {}
+    .map_wrap .map_content2 .addr .m_map {display: block}
+    .map_wrap .map_content2 .addr img {width: 100%}
+    
+    
+/* business01, 02 */
+    .artcle .edu {}
+    .artcle .edu h4 {font-size: 1.4rem; margin: 0}
+    .artcle .edu .edu1 {}
+    .artcle .edu .edu1 img {width: 100%}
+    .artcle .edu .edu1 p {float: none; width: 100%; padding: 0px; font-size: 1rem; text-align: center}
+    .artcle .edu .edu1 p span {font-size: 1.4rem; }
+    
+    
+/* resource01 */
+    .artcle .resource {}
+    .artcle .resource h4 {font-size: 1.4rem; margin-bottom: 5%}
+    .artcle .resource .rsc {width: 100%; padding-bottom: 5%}
+    .artcle .resource .rsc h5 {margin: 5%}
+    .artcle .resource .rsc p {padding: 0 5%}
+    .artcle .resource .rsc p strong {}
+    .artcle .resource .rscimg1 ,
+    .artcle .resource .rscimg2 ,
+    .artcle .resource .rscimg3  {display: none}
+    
+    
+/* costomer */
+    .artcle .customer {}
+    .artcle .customer .cus_content {}
+    .artcle .customer .cus_content .custom {width: 100%; margin: 0}
+    .artcle .customer .cus_content img.cusmain {float: right}
+    .artcle .customer .cus_content h4 {clear: both;font-size: 1.5rem;}
+    .artcle .customer .cus_content p {font-size: 1.2rem;}
+    .artcle .customer .cus_content p a {}
+    .artcle .customer .cus_content p span {font-size: 1.3rem;}
+}
+
+
+
+@media screen and (max-width:480px){
+    #content1 .introduce .con1_img img.fl,
+    #content1 .introduce .con1_img img.fr {margin:0; width: 44%}
+    #content1 .introduce .con1_img img.ma {margin-left: 1%; margin-top: 20%;}
+    
+    
+    #content2 .business .open .about {width: 100%; height: 306px; margin: 0}
+    
+    #content3 .contact .con3_img {width: 240px}
+    #content3 .contact .con3_img img {width: 240px}
+    
+    #container2 .contents .artcle img.au1 {width:170%}
+    
+    .contents .artcle .aboutUs .work {width: 100%; }
+    
+    .artcle .resource .rsc {overflow: hidden}
+    .artcle .resource .rsc h5 {margin: 2%;}
+    
+    .artcle .edu .edu1 p span {font-size: 1.2rem; }
+    .edu .edu1 p span.edutt {font-size:0.8rem;}
+}
+
+
+
+@media screen and (max-width:320px){
+    #content1 .introduce .con1_img img.fl,
+    #content1 .introduce .con1_img img.fr {margin:0; width: 43%}
+    #content1 .introduce .con1_img img.ma {margin-left: 1%; margin-top: 16%;}
+    
+    #content2 {width: 100%; max-width: 768px; min-width: 320px; height: 100%; padding-bottom: 60px}
+    #content2 .business .open {width: 100%; color: #fff; overflow: hidden}
+    #content2 .business .open div {float:left}
+    #content2 .business .open div p {text-align: center; margin: 20px 0;}
+    #content2 .business .open .about {width: 100%; height: 306px; margin: 0}
+    
+    #content3 .contact .con3_img {width: 240px}
+    #content3 .contact .con3_img img {width: 240px}
+    
+    .artcle .edu .edu1 p span {font-size: 1.1rem; }
+}

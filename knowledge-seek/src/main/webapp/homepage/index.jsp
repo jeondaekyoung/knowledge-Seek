@@ -73,7 +73,7 @@
 				<h1 class="pt46 shadow fadeInLeft animated">Open Innovation</h1>
                 <p class="pt26 shadow fadeInLeft animated">혁신을 바탕으로 지식-IT사업을 선도하는 리더가 되겠습니다.</p>
                 <div class="biz pt20 shadow fadeInUp animated">
-                	<a href="aboutUs.jsp"><span>자세히 보기</span></a>
+                	<a href="${pageContext.request.contextPath}/homepage/aboutUs.jsp"><span>자세히 보기</span></a>
                 </div>
 			</div>
 			            

@@ -10,7 +10,9 @@
 <body>
 
 <%
-	response.sendRedirect("/homepage/index.jsp"); 
+	//response.sendRedirect("/homepage/index.jsp"); 
+RequestDispatcher rd=request.getRequestDispatcher("/homepage/index.jsp");
+rd.forward(request,response);
 
 %>
 

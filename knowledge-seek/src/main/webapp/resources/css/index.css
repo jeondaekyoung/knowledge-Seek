@@ -162,7 +162,7 @@ body{_text-align:center; width:100%; min-width: 980px;}
 #slide1 .pt46 {padding-top: 2.1%}
 #slide1 .pt20 {padding-bottom: 1.8%}
 #slide1 div {-webkit-transition: all 2s; transition: all 2s;}
-#slide1 div.wrap {width: 1140px; margin: 0 auto;}
+#slide1 div.wrap {width: 1186px; margin: 0 auto;}
 #slide1 .b1 {background: url('../images/bg/b1.jpg') no-repeat center/175%; margin-right: 1%;}
 #slide1 .b2 {background: url('../images/bg/b3.jpg') no-repeat center/175%; margin-right: 1%;}
 #slide1 .b3 {background: url('../images/bg/b2.jpg') no-repeat center/175%;}
@@ -176,18 +176,18 @@ body{_text-align:center; width:100%; min-width: 980px;}
 #slide1 .b2 p,
 #slide1 .b3 p {display: table-cell; font-weight: bold;}
 
-#slide2 .div2 {width: 1130px; min-height: 375px; margin: 0 auto;}
+#slide2 .div2 {width: 1186px; min-height: 375px; margin: 0 auto; padding: 0 23px;}
 #slide2 .div2 .pt20 {padding: 3% 0; float: left; text-align: left;}
 #slide2 .div2 .img {width: 235px; height:77px; background: url('../images/img/logo_sbc.png'); margin: 3% 0 1%;}
 #slide2 .div2 .img2 {width: 189px; height: 73px; background: url('../images/img/logo_mi.png');}
-
+#slide2 p, #slide2 h1 {width: 1186px; text-align: left; margin: 0 auto; padding: 0 23px;}
 #slide3 .div4 {width: 100%; margin: 2% auto 0; overflow: hidden;}
-#slide3 .div4 div {float:left; width: 25%; height: 495px; line-height: -moz-block-height; -webkit-transition: all 1s; transition: all 1s; }
-#slide3 .div4 div:first-child {background: url('../images/bg/1.jpg') no-repeat center/160%;}
-#slide3 .div4 div:nth-child(2) {background: url('../images/bg/2.jpg') no-repeat center/160%;}
-#slide3 .div4 div:nth-child(3) {background: url('../images/bg/3.jpg') no-repeat center/160%;}
-#slide3 .div4 div:last-child {background: url('../images/bg/4.jpg') no-repeat center/160%;}
-#slide3 .div4 div:hover {background-size: 200%; background-color: rgba(0,60,100,0.5)}
+#slide3 .div4 div {float:left; width: 25%; height: 495px; line-height: 495px; line-height: -moz-block-height; -webkit-transition: all 1s; transition: all 1s; }
+#slide3 .div4 div:first-child {background: url('../images/bg/1.jpg') no-repeat center/165%;}
+#slide3 .div4 div:nth-child(2) {background: url('../images/bg/2.jpg') no-repeat center/165%;}
+#slide3 .div4 div:nth-child(3) {background: url('../images/bg/3.jpg') no-repeat center/165%;}
+#slide3 .div4 div:last-child {background: url('../images/bg/4.jpg') no-repeat center/165%;}
+#slide3 .div4 div:hover {background-size: 205%; background-color: rgba(0,60,100,0.5);}
 
 #section2 h1 {}
 #section2 .addr {width:100%; height:350px;}

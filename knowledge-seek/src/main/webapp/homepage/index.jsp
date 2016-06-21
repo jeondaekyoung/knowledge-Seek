@@ -48,9 +48,22 @@
 	</style>
 </head>
     
-<body>
+<body> <!-- onload="switchScreen();" -->
+
+<!-- 로딩 애니메이션 -->
+<!-- <div id="loading">
+  <div class="stick"></div>
+  <div class="stick"></div>
+  <div class="stick"></div>
+  <div class="stick"></div>
+  <div class="stick"></div>
+  <div class="stick"></div>
+  
+  <h1>Loading...</h1>  
+</div> -->
+
     <!-- UI Object -->
-    <div id="wrap">
+    <div id="wrap"><!--  style="display:none;" -->
         <!-- header -->
         <jsp:include page="top.jsp" flush="false" />
         <!-- //header -->

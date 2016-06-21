@@ -12,13 +12,13 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
         <li data-menuanchor="firstPage" class="scroll">
-          <a href="#section0">회사소개</a>
+          <a href="index.jsp#section0">회사소개</a>
         </li>
         <li data-menuanchor="secondPage" class="scroll">
-          <a href="#section1">사업소개</a>
+          <a href="index.jsp#section1">사업소개</a>
         </li>
         <li data-menuanchor="3rdPage" class="scroll">
-          <a href="#section2">Contact</a>
+          <a href="index.jsp#section2">Contact</a>
         </li>
       </ul>
 		<script>

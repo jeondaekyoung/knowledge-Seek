@@ -146,16 +146,25 @@
     #section0 {padding: 40% 19% !important;}
     
     #slide1, #slide2, #slide3 {padding: 5% 0 0 0 !important;}
+    #slide1 div.wrap { width: 100%;}
+    #slide1 .div3 {width: 100%; height: 200px; margin-top: 0;}
     #slide1 .pt46 {padding-top: 5%;}
 	#slide1 .pt20 {padding-bottom: 5%;}
-    .slide h1, #section2 h1 {text-align: center; width: 100%;}
+    .slide h1, #section2 h1 {font-size:28px !important; text-align: center; width: 100%;}
     
     #slide2 {background-position: 55% 24% !important;}
+    #slide2 p,
+    #slide2 h1,
+    #slide2 .div2 {width: 100%}
+    #slide2 .div2 {min-height: 300px; margin: 50px auto 0; overflow: hidden;}
+    #slide2 .div2 .pt20 {padding: 10% 0 0;}
     
-    #section2 {padding: 13% 0 0 0 !important;}
-	#section2 .addr, #map {height: 450px!important;}
-    #section2 .addr p {padding: 3%; word-break: break-all;}
+    #slide3 .div4 div {width: 50%; height: 175px; line-height: 175px;}
     
+    #section2 {padding: 2% 0 15% !important; overflow: hidden;}
+	#section2 #map {width: 100% !important; height: 350px!important;}
+    #section2 .addr p {width: 100%; padding: 7%; margin-top: 10%; word-break: break-all;}
+    #section0 p.pt26 {width: 270px; font-size: 20px;}
     .pt20 {font-size: 1.6rem; font-weight: bold}
 	.pt46 {font-size: 3rem; font-weight: bold}
 	
@@ -174,7 +183,6 @@
 	.fp-controlArrow.fp-next {border-width: 19.5px 0 19.5px 19px;}
 	
 	#slide1, #slide2, #slide3 {padding: 7% 0 0 0!important;}
-	#section2 {padding: 20% 0 0 0;}
 	
 	#slide1 .pt20 {padding-bottom: 6%;}
 	#slide1 .pt46 {padding-top: 7%;}
@@ -184,11 +192,8 @@
 	#slide2 img {width: 100%; padding: 10px 35px;}
 	#slide2 .div2 p {width: 100%}
 	
-	#slide3 .div4 div {height: 310px;}
-	
-	#section2 {padding: 15% 0 0 0 !important;}
-	#section2 .addr, #map {height: 300px!important;}
-	#section2 .addr p {padding: 3%; word-break: break-all;}
+	#section2 #map {height: 250px!important;}
+	#section2 .addr p {word-break: break-all;}
 	
 	
     #content1 .introduce .con1_img img.fl,
@@ -253,7 +258,6 @@
 	.fp-controlArrow.fp-next {border-width: 19.5px 0 19.5px 19px;}
 	
 	#slide1, #slide2, #slide3 {padding: 7% 0 0 0!important;}
-	#section2 {padding: 20% 0 0 0;}
 	
 	#slide1 .pt20 {padding-bottom: 6%;}
 	#slide1 .pt46 {padding-top: 7%;}
@@ -263,12 +267,10 @@
 	#slide2 img {width: 100%; padding: 10px 35px;}
 	#slide2 .div2 p {width: 100%}
 	
-	#slide3 .div4 div {height: 310px;}
-	
 	.aboutUs p {width: 80%; padding-top: 20%; margin-left: 10%; font-size: 14px}
 	
-	#section2 .addr, #map {height: 200px!important;}
-	#section2 .addr p {padding: 3%; word-break: break-all;}
+	#section2 .addr, #map {height: 180px!important;}
+	#section2 .addr p {word-break: break-all;}
 	
     #content1 .introduce .con1_img img.fl,
     #content1 .introduce .con1_img img.fr {margin:0; width: 43%}

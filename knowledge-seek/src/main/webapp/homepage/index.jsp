@@ -79,8 +79,8 @@
 			            
 			<div class="section" id="section1">
 			    <div class="slide" id="slide1">
-			    	<!-- <p class="pt18 shadow colfff">사업소개</p>
-			    	<h1 class="shadow colfff">IT분야</h1> -->
+			    	<!-- <p class="pt18 shadow colfff">사업소개</p> -->
+			    	<h1 class="shadow colfff">IT</h1>
 			    	<div class="wrap">
 				    	<div class="div3 b1">
 				    		<p class="pt26 shadow colfff">솔루션 제작
@@ -112,8 +112,8 @@
 			    </div>
 			    
 			    <div class="slide" id="slide3">
-			    	<!-- <p class="pt18 shadow colfff">사업소개</p>
-			    	<h1 class="shadow colfff">교육분야</h1> -->
+			    	<!-- <p class="pt18 shadow colfff">사업소개</p> -->
+			    	<h1 class="shadow colfff">교육</h1>
 			    	<div class="div4">
 			    		<div class="pt36 colfff shadow">진로교육</div>
 			    		<div class="pt36 colfff shadow">취업교육</div>

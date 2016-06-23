@@ -79,8 +79,8 @@
 			            
 			<div class="section" id="section1">
 			    <div class="slide" id="slide1">
-			    	<p class="pt18 shadow colfff">사업소개</p>
-			    	<h1 class="shadow colfff">IT분야</h1>
+			    	<!-- <p class="pt18 shadow colfff">사업소개</p>
+			    	<h1 class="shadow colfff">IT분야</h1> -->
 			    	<div class="wrap">
 				    	<div class="div3 b1">
 				    		<p class="pt26 shadow colfff">솔루션 제작
@@ -98,7 +98,7 @@
 			    </div>
 			    
 			    <div class="slide" id="slide2">
-			    	<p class="pt18 shadow colfff">사업소개</p>
+			    	<!-- <p class="pt18 shadow colfff">사업소개</p> -->
 			    	<h1 class="shadow colfff">유아용 성장관리 솔루션</h1>
 			    	<div class="div2">
 			    		<div class="img"></div>
@@ -107,12 +107,13 @@
 			    			2015년 중소기업진흥공단 청년창업사관학교 5기 선발
 			    			<br>2016년 미래창조과학부 본투글로벌 스타트업캠퍼스 선발
 			    		</p>
+			    		<a href="http://phyctogram.com" class="btn btn-info">제품 보러가기</a>
 			    	</div>
 			    </div>
 			    
 			    <div class="slide" id="slide3">
-			    	<p class="pt18 shadow colfff">사업소개</p>
-			    	<h1 class="shadow colfff">교육분야</h1>
+			    	<!-- <p class="pt18 shadow colfff">사업소개</p>
+			    	<h1 class="shadow colfff">교육분야</h1> -->
 			    	<div class="div4">
 			    		<div class="pt36 colfff shadow">진로교육</div>
 			    		<div class="pt36 colfff shadow">취업교육</div>
@@ -145,7 +146,7 @@
                                     activateTrafficMap : false,
                                     activateBicycleMap : false,
                                     minMaxLevel : [ 1, 14 ],
-                                    size : new nhn.api.map.Size(1920, 350) });
+                                    size : new nhn.api.map.Size(1920, 450) });
 
                     var oSize = new nhn.api.map.Size(28, 37);
                     var oOffset = new nhn.api.map.Size(14, 37);

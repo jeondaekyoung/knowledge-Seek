@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!Doctype HTML>
 <html>
 <head>
@@ -34,7 +35,8 @@
         <div id="fullpage">			
 			<div class="section aboutUs">
 				<div class="sign">
-					<img src="${pageContext.request.contextPath}/resources/images/logo/signature.png" alt="signature">
+				
+					<img src=<c:url value='/resources/images/logo/signature.png'/> alt="signature">
 				</div>
 				<p class="pt36 fadeInDown animated">About Us</p>
 				<p class="pt19 fadeInDown animated">&#40;주&#41;나리지식앤컴퍼니는 &#39;세상의 모든 지식을 말하다&#39;라는 슬로건을 내걸고 지식을 필요로하는 사람과 지식을 가진 사람을 이어주는 사업으로 출발했습니다.

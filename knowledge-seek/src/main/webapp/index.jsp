@@ -9,12 +9,14 @@
 </head>
 <body>
 
-<%
+<!-- %
 	//response.sendRedirect("/homepage/index.jsp"); 
 RequestDispatcher rd=request.getRequestDispatcher("/homepage/index.jsp");
 rd.forward(request,response);
+액션태그로 코드 변경
+% -->
+<jsp:forward page="/homepage/index.jsp"/>
 
-%>
 
 </body>
 </html>

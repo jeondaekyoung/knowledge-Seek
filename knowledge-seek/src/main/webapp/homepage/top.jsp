@@ -21,14 +21,6 @@
           <a href="index.jsp#section2">CONTACT</a>
         </li>
       </ul>
-		<script>
-			jQuery(document).ready(function($){
-				$('.scroll').click(function(event){
-					event.preventDefault();
-					$('html, body').animate({'scrollTop' : $(this.hash).offset().top}, "slow");
-				});
-			});
-		</script>
     </div>
   </div>
 </header>

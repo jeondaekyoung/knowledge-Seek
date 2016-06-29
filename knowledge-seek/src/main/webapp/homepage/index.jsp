@@ -49,20 +49,7 @@
 	</style>
 </head>
     
-<body> <!-- onload="switchScreen();" -->
-
-<!-- 로딩 애니메이션 -->
-<!-- <div id="loading">
-  <div class="stick"></div>
-  <div class="stick"></div>
-  <div class="stick"></div>
-  <div class="stick"></div>
-  <div class="stick"></div>
-  <div class="stick"></div>
-  
-  <h1>Loading...</h1>  
-</div> -->
-
+<body>
     <!-- UI Object -->
     <div id="wrap"><!--  style="display:none;" -->
         <!-- header -->
@@ -83,15 +70,15 @@
 			    	<!-- <p class="pt18 shadow colfff">사업소개</p> -->
 			    	<h1 class="shadow colfff">IT</h1>
 			    	<div class="wrap">
-				    	<div class="div3 b1">
+				    	<div class="div3 b1 hover">
 				    		<p class="pt26 shadow colfff">솔루션 제작
 				    		<br><span class="pt20 shadow colfff">SI / 웹 솔루션 / 교육용 소프트웨어</span></p>
 				    	</div>
-				    	<div class="div3 b2">
+				    	<div class="div3 b2 hover">
 				    		<p class="pt26 shadow colfff">어플리케이션 제작
 				    		<br><span class="pt20 shadow colfff">IoT 어플리케이션 / 교육 어플리케이션</span></p>
 				    	</div>
-				    	<div class="div3 b3">
+				    	<div class="div3 b3 hover">
 				    		<p class="pt26 shadow colfff">홈페이지 제작
 				    		<br><span class="pt20 shadow colfff">기업 홈페이지 / 쇼핑몰 구축</span></p>
 				    	</div>
@@ -116,10 +103,10 @@
 			    	<!-- <p class="pt18 shadow colfff">사업소개</p> -->
 			    	<h1 class="shadow colfff">교육</h1>
 			    	<div class="div4">
-			    		<div class="pt36 colfff shadow">진로교육</div>
-			    		<div class="pt36 colfff shadow">취업교육</div>
-			    		<div class="pt36 colfff shadow">창업교육</div>
-			    		<div class="pt36 colfff shadow">NCS교육</div>
+			    		<div class="pt36 colfff shadow hover">진로교육</div>
+			    		<div class="pt36 colfff shadow hover">취업교육</div>
+			    		<div class="pt36 colfff shadow hover">창업교육</div>
+			    		<div class="pt36 colfff shadow hover">NCS교육</div>
 			    	</div>
 			    </div>
 			</div>
@@ -180,5 +167,17 @@
     </div>
     <!-- //UI Object -->
     <jsp:include page="script.jsp" flush="false" />
+    
+    <script>
+		$(document).ready(function() {
+			$('.hover').hover(function(){
+				$(this).stop().animate({'background-size': '205%' }, 800);
+			});
+	
+			$('.hover').mouseleave(function(){
+				$(this).stop().animate({'background-size': '175%' }, 200);
+			});
+		});
+	</script>
 </body>
 </html>

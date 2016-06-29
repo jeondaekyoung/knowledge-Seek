@@ -18,35 +18,6 @@
 			});
 		});
 	</script>
-	<style>	
-		/* Defining each sectino background and styles
-		* --------------------------------------- */
-		#section0{
-			background-image: url(${pageContext.request.contextPath}/resources/images/bg/main_bg.jpg);
-			padding: 15% 19%;
-		}
-		#section2{
-			background-image: url(${pageContext.request.contextPath}/resources/images/bg/bg1.jpg);
-			padding: 2% 0 0 0;
-		}
-	
-	 	/*Adding background for the slides
-		* --------------------------------------- */
-		#slide1{
-			background-color: #1e1e1e;
-			padding: 2% 0 7% 0;
-			overflow: hidden;
-		}
-		#slide2{
-			background-image: url(${pageContext.request.contextPath}/resources/images/bg/Phyctogram.png);
-			background-position: center;
-			padding: 7% 0 0 0;
-		}
-		#slide3{
-			background-color: #f5f5f5;
-			padding: 2% 0 7% 0;
-		}
-	</style>
 </head>
     
 <body>

@@ -24,32 +24,6 @@
 <link type="text/css" href="${pageContext.request.contextPath}/resources/css/app.css" rel="stylesheet">
 <%-- <link type="text/css" href="${pageContext.request.contextPath}/resources/css/loading.css" rel="stylesheet"> --%>
 
-<style>
-    .section {text-align: center;}
-      
-    #footer{
-		position:fixed;
-		height: 50px;
-		display:block;
-		z-index:9;
-		text-align:center;
-		color: #f2f2f2;
-		padding: 10px 0 0 0;
-		bottom:0px;
-	}
-	
-	/* Backgrounds will cover all the section
-	* --------------------------------------- */
-	#section0,
-	#section1,
-	#section2,
-	#section3,
-	#slide2{
-		background-size: cover;
-		background-attachment: fixed;
-	}
-</style>
-
 <!--[if IE]>
 		<script type="text/javascript">
 			 var console = { log: function() {} };

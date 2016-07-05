@@ -124,7 +124,7 @@
                 <!-- //지도 API -->
                 <div class="addr">
                     <p class="pt20 shadow colfff"><i class="fa fa-phone fa-3x icon-muted"></i><br>070-8624-4536</p>
-                	<p class="pt20 shadow colfff"><i class="fa fa-map-marker fa-3x icon-muted"></i><br>경기도 성남시 분당 판교로289번길 20<br>(삼평동, 스타트업 캠퍼스) 3동 310호</p>
+                	<p class="pt20 shadow colfff"><i class="fa fa-map-marker fa-3x icon-muted"></i><br>경기도 성남시 분당구 판교로289번길 20<br>3동 310호(삼평동, 스타트업캠퍼스)</p>
                 	<p class="pt20 shadow colfff"><i class="fa fa-envelope-o fa-3x icon-muted"></i><br>seek-knowledge@knowledge-seek.com</p>
                 </div>
                 

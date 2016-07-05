@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <header id="header" class="navbar navbar-fixed-top bg-white box-shadow b-b b-light" data-spy="affix" data-offset-top="1">
   <div id="menu" class="container">
     <div class="navbar-header">
-      <a href="index.jsp" class="navbar-brand"><img src="${pageContext.request.contextPath}/resources/images/logo/logo_cooper.png" class="m-r-sm"></a>
+      <a href="index.jsp" class="navbar-brand"><img src="<c:url value='/resources/images/logo/logo_cooper.png'/>" class="m-r-sm"></a>
       <button class="btn btn-link visible-xs" type="button" data-toggle="collapse" data-target=".navbar-collapse">
         <i class="fa fa-bars"></i>
       </button>

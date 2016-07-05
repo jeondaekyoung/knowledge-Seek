@@ -6,16 +6,16 @@
 <head>
     <jsp:include page="head.jsp" flush="false" />
     <script type="text/javascript">
-		$(document).ready(function() {
-			$('#fullpage').fullpage (function(){
-				verticalCentered: false,
-				anchors: ['firstPage', 'secondPage', '3rdPage'],
-				menu: '#menu',
-				scrollingSpeed: 1500,
-	         
-				//to avoid problems with css3 transforms and fixed elements in Chrome, as detailed here: https://github.com/alvarotrigo/fullPage.js/issues/208
-				css3:false
-			});
+    $(document).ready(function() {
+		$('#fullpage').fullpage ({
+			verticalCentered: false,
+			anchors: ['firstPage', 'secondPage', '3rdPage'],
+			menu: '#menu',
+			scrollingSpeed: 1500,
+         
+			//to avoid problems with css3 transforms and fixed elements in Chrome, as detailed here: https://github.com/alvarotrigo/fullPage.js/issues/208
+			css3:false
+		});	
 		});
 	</script>
 </head>

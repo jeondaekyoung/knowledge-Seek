@@ -7,7 +7,7 @@
     <jsp:include page="head.jsp" flush="false" />
     <script type="text/javascript">
 		$(document).ready(function() {
-			$('#fullpage').fullpage({
+			$('#fullpage').fullpage (function(){
 				verticalCentered: false,
 				anchors: ['firstPage', 'secondPage', '3rdPage'],
 				menu: '#menu',

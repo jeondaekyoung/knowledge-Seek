@@ -7,6 +7,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>knowledge-seek Maven Webapp</name>
   <url>http://maven.apache.org</url>
+   
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -119,7 +120,13 @@
 		<artifactId>commons-dbcp2</artifactId>
 		<version>2.0.1</version>
 	</dependency>
-    
+   <!-- 서버에러 관련 -->
+   <dependency>
+    <groupId>javax</groupId>
+    <artifactId>javaee-web-api</artifactId>
+    <version>7.0</version>
+    <scope>provided</scope>
+</dependency> 
     
     
     

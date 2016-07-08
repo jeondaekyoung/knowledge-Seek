@@ -6,10 +6,10 @@ a, input[type="button"] {cursor: pointer;}
 
 /* layout UI Object */
 body{_text-align:center; width:100%; min-width: 980px;}
-#wrap{margin:0 auto;_text-align:left;background: url('../images/bg/pattern.pn'); font-size:12px}
+#wrap{margin:0 auto;_text-align:left;background: url('http://knowledge-seek.com/resources/images/bg/pattern.pn'); font-size:12px}
 
 /*  container */
-#container{position:relative;width:100%;min-width: 980px; margin: 0 auto; background: url('../images/bg/bg.jpg') cover/center;}
+#container{position:relative;width:100%;min-width: 980px; margin: 0 auto; background: url('http://knowledge-seek.com/resources/images/bg/bg.jpg') cover/center;}
 #container2{position:relative;width: 980px; margin: 0 auto; overflow: hidden; background: #fff}
 #container:after{display:block;clear:both;content:''}
 
@@ -46,7 +46,7 @@ body{_text-align:center; width:100%; min-width: 980px;}
 	overflow: hidden;
 }
 #slide2{
-	background-image: url(../images/bg/Phyctogram.png);
+	background-image: url(http://knowledge-seek.com/resources/images/bg/Phyctogram.png);
 	background-position: center;
 	padding: 7% 0 0 0;
 }
@@ -61,7 +61,7 @@ body{_text-align:center; width:100%; min-width: 980px;}
 #section0 p.pt26 {width: 435px; font-size: 26px;}
 #section0 .biz {margin-top: 5%;}
 #section0 .biz a {width:46px; height:46px; color: #fff; border: 1px solid #fff; -webkit-transition: all 0.2s ease-in; transition: all 0.2s ease-in; display:inline-block; text-align:left; overflow:hidden;}
-#section0 .biz a:before {content:''; display:block; float:left; width:48px; height:48px; background: url('../images/bg/bg_more.png') no-repeat center; text-indent:-9999px; vertical-align:middle;}
+#section0 .biz a:before {content:''; display:block; float:left; width:48px; height:48px; background: url('http://knowledge-seek.com/resources/images/bg/bg_more.png') no-repeat center; text-indent:-9999px; vertical-align:middle;}
 #section0 .biz a span {display:block; opacity: 0; -webkit-transition : all 0s ease-in; transition: all 0s ease-in; margin-top: 7px; vertical-align: middle;}
 #section0 .biz a:hover {width:175px;}
 #section0 .biz a:hover span {opacity:1; -webkit-transition: all 0.5s ease-in; transition: all 0.5s ease-in;}
@@ -73,14 +73,14 @@ body{_text-align:center; width:100%; min-width: 980px;}
 #section0 .biz2,
 #section0 .biz3 {padding:10px 0;}
 
-#section0_1 {background: url('../images/bg/bg1.jpg'); }
+#section0_1 {background: url('http://knowledge-seek.com/resources/images/bg/bg1.jpg'); }
 #section0_1 p,
 #section0_1 li {color: #fff}
 
 .org_bg,
 .org_bg2 {width: 100%; text-align: center;}
-.org_bg {padding: 120px 0; background: url('../images/bg/bg_org.png') no-repeat center;}
-.org_bg2 {padding: 70px 0 90px; margin-bottom: 20px; background: url('../images/bg/org.png') no-repeat center; font-size: 20px; color: #fff; font-weight: bold;}
+.org_bg {padding: 120px 0; background: url('http://knowledge-seek.com/resources/images/bg/bg_org.png') no-repeat center;}
+.org_bg2 {padding: 70px 0 90px; margin-bottom: 20px; background: url('http://knowledge-seek.com/resources/images/bg/org.png') no-repeat center; font-size: 20px; color: #fff; font-weight: bold;}
 .org {width: 20%; float: left; margin: 0 6.6% 30px;}
 .org ul {border-top: 3px solid #fff;}
 .org ul li {border-bottom: 1px solid #fff; padding: 20px 0; font-size: 1.2rem; font-weight: bold;}
@@ -92,9 +92,9 @@ body{_text-align:center; width:100%; min-width: 980px;}
 #slide1 .pt20 {padding-bottom: 1.8%}
 #slide1 div {-webkit-transition: all 2s; transition: all 2s;}
 #slide1 div.wrap {width: 1186px; margin: 0 auto;}
-#slide1 .b1 {background: url('../images/bg/b1.jpg') no-repeat center/175%; margin-right: 1%;}
-#slide1 .b2 {background: url('../images/bg/b3.jpg') no-repeat center/175%; margin-right: 1%;}
-#slide1 .b3 {background: url('../images/bg/b2.jpg') no-repeat center/175%;}
+#slide1 .b1 {background: url('http://knowledge-seek.com/resources/images/bg/b1.jpg') no-repeat center/175%; margin-right: 1%;}
+#slide1 .b2 {background: url('http://knowledge-seek.com/resources/images/bg/b3.jpg') no-repeat center/175%; margin-right: 1%;}
+#slide1 .b3 {background: url('http://knowledge-seek.com/resources/images/bg/b2.jpg') no-repeat center/175%;}
 #slide1 .b1,
 #slide1 .b2,
 #slide1 .b3 {display: table;}
@@ -104,15 +104,15 @@ body{_text-align:center; width:100%; min-width: 980px;}
 
 #slide2 .div2 {width: 1186px; min-height: 375px; margin: 0 auto; padding: 0 23px;}
 #slide2 .div2 .pt20 {padding: 3% 0; float: left; text-align: left;}
-#slide2 .div2 .img {width: 235px; height:77px; background: url('../images/img/logo_sbc.png'); margin: 3% 0 1%;}
-#slide2 .div2 .img2 {width: 189px; height: 73px; background: url('../images/img/logo_mi.png');}
+#slide2 .div2 .img {width: 235px; height:77px; background: url('http://knowledge-seek.com/resources/images/img/logo_sbc.png'); margin: 3% 0 1%;}
+#slide2 .div2 .img2 {width: 189px; height: 73px; background: url('http://knowledge-seek.com/resources/images/img/logo_mi.png');}
 #slide2 p, #slide2 h1 {width: 1186px; text-align: left; margin: 0 auto; padding: 0 23px;}
 #slide3 .div4 {width: 100%; margin: 2% auto 0; overflow: hidden;}
 #slide3 .div4 div {float:left; width: 25%; height: 495px; line-height: 495px; line-height: -moz-block-height; -webkit-transition: all 1s; transition: all 1s; }
-#slide3 .div4 div:first-child {background: url('../images/bg/1.jpg') no-repeat center/165%;}
-#slide3 .div4 div:nth-child(2) {background: url('../images/bg/2.jpg') no-repeat center/165%;}
-#slide3 .div4 div:nth-child(3) {background: url('../images/bg/3.jpg') no-repeat center/165%;}
-#slide3 .div4 div:last-child {background: url('../images/bg/4.jpg') no-repeat center/165%;}
+#slide3 .div4 div:first-child {background: url('http://knowledge-seek.com/resources/images/bg/1.jpg') no-repeat center/165%;}
+#slide3 .div4 div:nth-child(2) {background: url('http://knowledge-seek.com/resources/images/bg/2.jpg') no-repeat center/165%;}
+#slide3 .div4 div:nth-child(3) {background: url('http://knowledge-seek.com/resources/images/bg/3.jpg') no-repeat center/165%;}
+#slide3 .div4 div:last-child {background: url('http://knowledge-seek.com/resources/images/bg/4.jpg') no-repeat center/165%;}
 
 #section2 h1 {}
 #section2 .addr {width:100%; height:450px;}
@@ -120,8 +120,8 @@ body{_text-align:center; width:100%; min-width: 980px;}
 #section2 .addr p {width:33.33%; padding: 10% 0 0; float: left;}
 
 
-.aboutUs {width: 100%; background: url('../images/bg/bg0.jpg') no-repeat; padding: 8% 0;}
-.aboutUs .sign {width: 200px; height: 211px; margin: 0 auto; background: url('../images/logo/signature_box.png');}
+.aboutUs {width: 100%; background: url('http://knowledge-seek.com/resources/images/bg/bg0.jpg') no-repeat; padding: 8% 0;}
+.aboutUs .sign {width: 200px; height: 211px; margin: 0 auto; background: url('http://knowledge-seek.com/resources/images/logo/signature_box.png');}
 .aboutUs .sign img {
     /* -webkit-animation: rint 4s linear infinite;
     -moz-animation: rint 4s linear infinite;

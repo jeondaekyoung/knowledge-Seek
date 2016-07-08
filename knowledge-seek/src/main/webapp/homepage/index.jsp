@@ -105,7 +105,7 @@
                                     activateTrafficMap : false,
                                     activateBicycleMap : false,
                                     minMaxLevel : [ 1, 14 ],
-                                    size : new nhn.api.map.Size(1920, 450) });
+                                    size : new nhn.api.map.Size(1920, 540) });
 
                     var oSize = new nhn.api.map.Size(28, 37);
                     var oOffset = new nhn.api.map.Size(14, 37);

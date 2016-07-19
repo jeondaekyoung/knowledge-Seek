@@ -6,7 +6,7 @@ a, input[type="button"] {cursor: pointer;}
 
 /* layout UI Object */
 body{_text-align:center; width:100%; min-width: 980px;}
-#wrap{margin:0 auto;_text-align:left;background: url('http://knowledge-seek.com/resources/images/bg/pattern.pn'); font-size:12px}
+/*	#wrap{margin:0 auto;_text-align:left;background: url('http://knowledge-seek.com/resources/images/bg/pattern.pn'); font-size:12px}*/
 
 /*  container */
 #container{position:relative;width:100%;min-width: 980px; margin: 0 auto; background: url('http://knowledge-seek.com/resources/images/bg/bg.jpg') cover/center;}

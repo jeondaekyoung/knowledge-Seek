@@ -257,7 +257,7 @@ public class AndController {
 	@RequestMapping(value = "engToday.do")
 	@ResponseBody
 	public Eng engToday(){
-		ModelAndView mv = new ModelAndView();
+		
 		
 		//오늘의 예문과 뜻
 		System.out.println("============== 오늘의 예문 찾기==============");

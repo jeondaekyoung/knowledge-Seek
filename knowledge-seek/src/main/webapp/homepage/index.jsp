@@ -124,8 +124,8 @@
                 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=q75JAw4IDhy_FdPfXN3R"></script>
           <div id="map" class="box-map" style="width:100%;height:450px;"></div>
           <script type="text/javascript">
-          var oSeoulCityPoint = new nhn.api.map.LatLng(37.4046237,127.1058193); //좌표값 ( 위도, 경도 )
-
+          var position = new naver.maps.LatLng(37.4046237,127.1058193);//좌표값 ( 위도, 경도 )
+          
             var map = new naver.maps.Map('map', {
                 center: position,
                 scrollWheel : false,

@@ -84,14 +84,14 @@
 			
 			<div class="section" id="section2">
 				<h1 class="pt18 shadow colfff">CONTACT</h1>
-				<!-- 지도 API -->
+				<!--  (구) 지도 API-->
+                <!--
                 <div class="addr">
 	                <div id="map" class="box-map"></div>                
                 </div>
 
-                <!-- <script type="text/javascript" src="http://openapi.map.naver.com/openapi/naverMap.naver?ver=2.0&key=q75JAw4IDhy_FdPfXN3R"></script>
+                <script type="text/javascript" src="http://openapi.map.naver.com/openapi/naverMap.naver?ver=2.0&key=3458891285f3e9f9c5aa09005e704c79"></script>
                 <script type="text/javascript" src="http://openapi.map.naver.com/openapi/naverMap.naver?ver=2.0&key=a2087383a7b455ac2da93ccd02ba28b6"></script>
-
                 <script type="text/javascript">
                     var oSeoulCityPoint = new nhn.api.map.LatLng(37.4046237,127.1058193); //좌표값 ( 위도, 경도 )
                     var defaultLevel = 11;
@@ -120,12 +120,11 @@
                     oMap.addOverlay(oLabel); // - 마커의 라벨을 지도에 추가한다. 
                     oLabel.setVisible(true, oMarker); // 마커의 라벨을 보이게 설정한다.
                 </script> -->
-                
-                <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=q75JAw4IDhy_FdPfXN3R"></script>
+         <!-- //지도 API -->       
+         <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=q75JAw4IDhy_FdPfXN3R"></script>
           <div id="map" class="box-map" style="width:100%;height:450px;"></div>
           <script type="text/javascript">
-          var position = new naver.maps.LatLng(37.4046237,127.1058193);//좌표값 ( 위도, 경도 )
-          
+          var position = new naver.maps.LatLng(37.4045237, 127.1064496);//좌표값 ( 위도, 경도 )
             var map = new naver.maps.Map('map', {
                 center: position,
                 scrollWheel : false,
@@ -144,9 +143,7 @@
 
             var marker = new naver.maps.Marker(markerOptions);
           </script>
-
-                <!-- //지도 API -->
-                <div class="addr">
+		        <div class="addr">
                     <p class="pt20 shadow colfff"><i class="fa fa-phone fa-3x icon-muted"></i><br>070-8624-4536</p>
                 	<p class="pt20 shadow colfff"><i class="fa fa-map-marker fa-3x icon-muted"></i><br>경기도 성남시 분당구 판교로289번길 20<br>3동 310호(삼평동, 스타트업캠퍼스)</p>
                 	<p class="pt20 shadow colfff"><i class="fa fa-envelope-o fa-3x icon-muted"></i><br>seek-knowledge@knowledge-seek.com</p>
